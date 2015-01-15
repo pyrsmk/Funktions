@@ -1,0 +1,14 @@
+{
+	"name": "pyrsmk/funktions",
+	"description": "Several useful PHP functions",
+	"keywords": ["functions","array","color","debug","system"],
+	"license": "MIT",
+	"authors": [{
+		"name": "Aurélien Delogu",
+		"email": "dev@dreamysource.fr",
+		"homepage": "http://dreamysource.fr"
+	}],
+	"require": {
+		"php": ">=5.3.0"
+	}
+}
