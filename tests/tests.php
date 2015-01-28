@@ -100,14 +100,32 @@ $minisuite->group('color.php',function() use($minisuite){
 
 ########################################################### system.php
 
-$minisuite->group('color.php',function() use($minisuite){
+$minisuite->group('system.php',function() use($minisuite){
 
 	$minisuite->expects('human_filesize()')
-			  ->that(human_filesize('sample.txt'))
+			  ->that(human_filesize('files/sample.txt'))
 			  ->equals('9 b');
 
 	$minisuite->expects('lessdir()')
 			  ->that(count(lessdir('.')))
 			  ->equals(5);
+
+	$minisuite->group('human_fileperms()',function($minisuite){
+		$minisuite->expects('files/')
+				  ->that(human_fileperms('files/'))
+				  ->equals('drwxrwxrwx');
+		$minisuite->expects('files/sample.txt')
+				  ->that(human_fileperms('files/sample.txt'))
+				  ->equals('-rw-rw-rw-');
+	});
+
+	$minisuite->group('mimetype()',function($minisuite){
+		$minisuite->expects('files/sample.txt')
+				  ->that(mimetype('files/sample.txt'))
+				  ->equals('text/plain');
+		$minisuite->expects('files/sample.jpg')
+				  ->that(mimetype('files/sample.jpg'))
+				  ->equals('image/jpeg');
+	});
 
 });
