@@ -1,4 +1,4 @@
-Funktions 0.1.1
+Funktions 0.1.2
 ===============
 
 Funktions is a set of functions that I found useful in several of my projects. Feel free to fork and add yours ;)
@@ -14,12 +14,6 @@ Pick up the source or install it with [Composer](https://getcomposer.org/) :
         "pyrsmk/funktions": "0.1.*"
     }
 }
-```
-
-Requiring `vendor/autoload.php` does not load functions, you need to import the bundle you want by yourself :
-
-```php
-require 'vendor/pyrsmk/Funktions/src/debug.php';
 ```
 
 Available functions by bundle
