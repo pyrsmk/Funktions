@@ -1,4 +1,4 @@
-Funktions 0.1.3
+Funktions 0.1.4
 ===============
 
 Funktions is a set of functions that I found useful in several of my projects. Feel free to fork and add yours ;)
@@ -38,6 +38,7 @@ Available functions by bundle
 - human_fileperms(`$path`) : get human-readable file permissions (like `drwxr-xr-x`)
 - lessdir(`$path`) : scan a directory without returning dot directories (the well-known `.` and `..`)
 - mimetype(`$path`) : get the mime type of a file
+- rrmdir(`path`) : remove a directory recursively
 
 License
 -------

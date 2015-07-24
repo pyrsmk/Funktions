@@ -145,3 +145,23 @@ function human_fileperms($path){
 				(($perms & 0x0200)?'T':'-'));
 	return $info;
 }
+
+/*
+	Remove a directory recursively
+
+	Parameters
+		string $path
+*/
+function rrmdir($path) {
+	if(is_dir($path)) {
+		foreach(lessdir($path) as $file) {
+			if(is_dir("$path/$file")) {
+				rrmdir("$path/$file");
+			}
+			else {
+				unlink("$path/$file");
+			}
+		}
+		rmdir($path);
+	}
+}
