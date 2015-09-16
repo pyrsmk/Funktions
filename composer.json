@@ -18,14 +18,5 @@
 			"src/debug.php",
 			"src/system.php"
 		]
-	},
-	"archive": {
-		"exclude": [
-			".git/",
-			".gitignore",
-			"tests/",
-			"vendor/",
-			"composer.*"
-		]
 	}
 }
