@@ -9,11 +9,7 @@ Install
 Pick up the source or install it with [Composer](https://getcomposer.org/) :
 
 ```json
-{
-    "require": {
-        "pyrsmk/funktions": "~0.1"
-    }
-}
+composer require pyrsmk/funktions
 ```
 
 Available functions by bundle
