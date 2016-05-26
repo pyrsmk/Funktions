@@ -1,4 +1,4 @@
-Funktions 0.1.6
+Funktions 0.1.7
 ===============
 
 Funktions is a set of functions that I found useful in several of my projects. Feel free to fork and add yours ;)
@@ -8,7 +8,7 @@ Install
 
 Pick up the source or install it with [Composer](https://getcomposer.org/) :
 
-```json
+```
 composer require pyrsmk/funktions
 ```
 
