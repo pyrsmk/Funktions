@@ -30,7 +30,12 @@ function human_filesize($path){
 		array
 */
 function lessdir($dir){
-	return array_slice(scandir($dir),2);
+	if(!file_exists($dir)) {
+		return [];
+	}
+	else {
+		return array_slice(scandir($dir),2);
+	}
 }
 
 /*
