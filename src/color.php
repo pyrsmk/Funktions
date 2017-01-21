@@ -11,46 +11,46 @@
 	Return
 		array   : the HSL color
 */
-function rgb2hsl($r,$g,$b){
+function rgb2hsl($r, $g, $b) {
 	// Format
-	$r=(int)$r;
-	$g=(int)$g;
-	$b=(int)$b;
-	if($r<0)    $r=0;
-	if($r>255)  $r=255;
-	if($g<0)    $g=0;
-	if($g>255)  $g=255;
-	if($b<0)    $b=0;
-	if($b>255)  $b=255;
+	$r = (int)$r;
+	$g = (int)$g;
+	$b = (int)$b;
+	if($r < 0) $r = 0;
+	if($r > 255) $r = 255;
+	if($g < 0) $g = 0;
+	if($g > 255) $g = 255;
+	if($b < 0) $b = 0;
+	if($b > 255) $b = 255;
 	// Normalize
-	$r/=255;
-	$g/=255;
-	$b/=255;
+	$r /= 255;
+	$g /= 255;
+	$b /= 255;
 	// Init vars
-	$min=min($r,$g,$b);
-	$max=max($r,$g,$b);
-	$delta=$max-$min;
+	$min = min($r, $g, $b);
+	$max = max($r, $g, $b);
+	$delta = $max - $min;
 	// Hue calculation
-	switch($max){
-		case $min   : $h=0; break;
-		case $r     : $h=(60*(($g-$b)/$delta)+360)%360; break;
-		case $g     : $h=60*(($b-$r)/$delta)+120; break;
-		case $b     : $h=60*(($r-$g)/$delta)+240;
+	switch($max) {
+		case $min   : $h = 0; break;
+		case $r     : $h = (60 * (($g - $b) / $delta) + 360) % 360; break;
+		case $g     : $h = 60 * (($b - $r) / $delta) + 120; break;
+		case $b     : $h = 60 * (($r - $g) / $delta) + 240;
 	}
 	// Luminosity calculation
-	$l=($max+$min)/2;
+	$l = ($max + $min) / 2;
 	// Saturation calculation
-	if($max==$min){
-		$s=0;
+	if($max == $min) {
+		$s = 0;
 	}
-	elseif($l<=.5){
-		$s=$delta/($l*2);
+	else if($l <= 0.5) {
+		$s = $delta / ($l * 2);
 	}
-	elseif($l>.5){
-		$s=$delta/(2-($l*2));
+	else if($l > 0.5) {
+		$s = $delta/(2-($l*2));
 	}
 	// Return HSL color
-	return array(round($h),round($s*100),round($l*100));
+	return [round($h), round($s * 100), round($l * 100)];
 }
 
 /*
@@ -64,63 +64,63 @@ function rgb2hsl($r,$g,$b){
 	Return
 		array   : the RGB color
 */
-function hsl2rgb($h,$s,$l){
+function hsl2rgb($h, $s, $l) {
 	// Format
-	$h=(int)$h;
-	$s=(int)$s;
-	$l=(int)$l;
-	if($h<0)    $h=0;
-	if($h>360)  $h=360;
-	if($s<0)    $s=0;
-	if($s>100)  $s=100;
-	if($l<0)    $l=0;
-	if($l>100)  $l=100;
+	$h = (int)$h;
+	$s = (int)$s;
+	$l = (int)$l;
+	if($h < 0) $h = 0;
+	if($h > 360) $h = 360;
+	if($s < 0) $s = 0;
+	if($s > 100) $s = 100;
+	if($l < 0) $l = 0;
+	if($l > 100) $l = 100;
 	// Normalize
-	$h/=360;
-	$s/=100;
-	$l/=100;
+	$h /= 360;
+	$s /= 100;
+	$l /= 100;
 	// Init vars
-	if($l<.5){
-		$q=$l*(1+$s);
+	if($l < 0.5) {
+		$q = $l * (1 + $s);
 	}
-	else{
-		$q=$l+$s-($l*$s);
+	else {
+		$q = $l + $s - ($l * $s);
 	}
-	$p=(2*$l)-$q;
-	$delta=$q-$p;
+	$p = (2 * $l) - $q;
+	$delta = $q - $p;
 	// Separate hues
-	$hues=array(
-		$h+(1/3),   // red hue
+	$hues = [
+		$h + (1/3),   // red hue
 		$h,         // green hue
-		$h-(1/3)    // blue hue
-	);
+		$h - (1/3)    // blue hue
+	];
 	// Colors calculation
-	$i=0;
+	$i = 0;
 	do{
 		// Adjust
-		if($hues[$i]<0){
+		if($hues[$i] < 0) {
 			++$hues[$i];
 		}
-		elseif($hues[$i]>1){
+		else if($hues[$i] > 1) {
 			--$hues[$i];
 		}
 		// Final calculation
-		if($hues[$i]*6<1){
-			$hues[$i]=$p+($delta*6*$hues[$i]);
+		if($hues[$i] * 6 < 1) {
+			$hues[$i] = $p + ($delta * 6 * $hues[$i]);
 		}
-		elseif($hues[$i]*2<1){
-			$hues[$i]=$q;
+		else if($hues[$i] * 2 < 1) {
+			$hues[$i] = $q;
 		}
-		elseif($hues[$i]*3<2){
-			$hues[$i]=$p+($delta*6*(2/3-$hues[$i]));
+		else if($hues[$i] * 3 < 2) {
+			$hues[$i] = $p + ($delta * 6 * (2/3 - $hues[$i]));
 		}
-		else{
-			$hues[$i]=$p;
+		else {
+			$hues[$i] = $p;
 		}
 	}
-	while(++$i<3);
+	while(++$i < 3);
 	// Return the RGB color
-	return array(round($hues[0]*255),round($hues[1]*255),round($hues[2]*255));
+	return [round($hues[0] * 255), round($hues[1] * 255), round($hues[2] * 255)];
 }
 
 /*
@@ -134,41 +134,41 @@ function hsl2rgb($h,$s,$l){
 	Return
 		array   : the HSV color
 */
-function rgb2hsv($r,$g,$b){
+function rgb2hsv($r, $g, $b) {
 	// Format
-	$r=(int)$r;
-	$g=(int)$g;
-	$b=(int)$b;
-	if($r<0)    $r=0;
-	if($r>255)  $r=255;
-	if($g<0)    $g=0;
-	if($g>255)  $g=255;
-	if($b<0)    $b=0;
-	if($b>255)  $b=255;
+	$r = (int)$r;
+	$g = (int)$g;
+	$b = (int)$b;
+	if($r < 0) $r = 0;
+	if($r  >255) $r = 255;
+	if($g < 0) $g = 0;
+	if($g > 255) $g = 255;
+	if($b < 0) $b = 0;
+	if($b > 255) $b = 255;
 	// Normalize
-	$r/=255;
-	$g/=255;
-	$b/=255;
+	$r /= 255;
+	$g /= 255;
+	$b /= 255;
 	// Init vars
-	$min=min($r,$g,$b);
-	$max=max($r,$g,$b);
-	$delta=$max-$min;
+	$min = min($r, $g, $b);
+	$max = max($r, $g, $b);
+	$delta = $max - $min;
 	// Hue calculation
-	switch($max){
-		case $min   : $h=0; break;
-		case $r     : $h=(60*(($g-$b)/$delta)+360)%360; break;
-		case $g     : $h=60*(($b-$r)/$delta)+120; break;
-		case $b     : $h=60*(($r-$g)/$delta)+240;
+	switch($max) {
+		case $min   : $h = 0; break;
+		case $r     : $h = (60 * (($g - $b) / $delta) + 360) % 360; break;
+		case $g     : $h = 60 * (($b - $r) / $delta) + 120; break;
+		case $b     : $h = 60 * (($r - $g) / $delta) + 240;
 	}
 	// Saturation calculation
-	if($max==0){
-		$s=0;
+	if($max == 0) {
+		$s = 0;
 	}
-	else{
-		$s=1-($min/$max);
+	else {
+		$s = 1 - ($min / $max);
 	}
 	// Return the HSV color
-	return array(round($h),round($s*100),round($max*100));
+	return [round($h), round($s * 100), round($max * 100)];
 }
 
 /*
@@ -182,32 +182,32 @@ function rgb2hsv($r,$g,$b){
 	Return
 		array   : the RGB color
 */
-function hsv2rgb($h,$s,$v){
+function hsv2rgb($h, $s, $v) {
 	// Format
-	$h=(int)$h;
-	$s=(int)$s;
-	$v=(int)$v;
-	if($h<0 or $h>=360) $h=0;
-	if($s<0)            $s=0;
-	if($s>100)          $s=100;
-	$s/=100;
-	if($v<0)            $v=0;
-	if($v>100)          $v=100;
+	$h = (int)$h;
+	$s = (int)$s;
+	$v = (int)$v;
+	if($h < 0 or $h >= 360) $h = 0;
+	if($s < 0) $s = 0;
+	if($s > 100) $s = 100;
+	$s /= 100;
+	if($v < 0) $v = 0;
+	if($v > 100) $v = 100;
 	// Init vars
-	$teta=$h/60;
-	$delta=floor($teta)%6;
-	$f=$teta-$delta;
-	$l=$v*(1-$s);
-	$m=$v*(1-$f*$s);
-	$n=$v*(1-(1-$f)*$s);
+	$teta = $h / 60;
+	$delta = floor($teta) % 6;
+	$f = $teta - $delta;
+	$l = $v * (1 - $s);
+	$m = $v * (1 - $f * $s);
+	$n = $v * (1 - (1 - $f) * $s);
 	// Convert
-	switch($delta){
-		case 0: return array(floor($v*2.55),floor($n*2.55),floor($l*2.55)); break;
-		case 1: return array(floor($m*2.55),floor($v*2.55),floor($l*2.55)); break;
-		case 2: return array(floor($l*2.55),floor($v*2.55),floor($n*2.55)); break;
-		case 3: return array(floor($l*2.55),floor($m*2.55),floor($v*2.55)); break;
-		case 4: return array(floor($n*2.55),floor($l*2.55),floor($v*2.55)); break;
-		case 5: return array(floor($v*2.55),floor($l*2.55),floor($m*2.55)); break;
+	switch($delta) {
+		case 0: return [floor($v * 2.55), floor($n * 2.55), floor($l * 2.55)]; break;
+		case 1: return [floor($m * 2.55), floor($v * 2.55), floor($l * 2.55)]; break;
+		case 2: return [floor($l * 2.55), floor($v * 2.55), floor($n * 2.55)]; break;
+		case 3: return [floor($l * 2.55), floor($m * 2.55), floor($v * 2.55)]; break;
+		case 4: return [floor($n * 2.55), floor($l * 2.55), floor($v * 2.55)]; break;
+		case 5: return [floor($v * 2.55), floor($l * 2.55), floor($m * 2.55)]; break;
 	}
 }
 
@@ -225,17 +225,17 @@ function hsv2rgb($h,$s,$v){
 	Return
 		string   : the HTML color
 */
-function rgb2html($r,$g,$b){
+function rgb2html($r, $g, $b) {
 	// Format
-	$r=(int)$r;
-	$g=(int)$g;
-	$b=(int)$b;
-	if($r<0)    $r=0;
-	if($r>255)  $r=255;
-	if($g<0)    $g=0;
-	if($g>255)  $g=255;
-	if($b<0)    $b=0;
-	if($b>255)  $b=255;
+	$r = (int)$r;
+	$g = (int)$g;
+	$b = (int)$b;
+	if($r < 0) $r = 0;
+	if($r > 255) $r = 255;
+	if($g < 0) $g = 0;
+	if($g > 255) $g = 255;
+	if($b < 0) $b = 0;
+	if($b > 255) $b = 255;
 	// Convert
 	return '#'.dechex($r).dechex($g).dechex($b);
 }
@@ -252,17 +252,17 @@ function rgb2html($r,$g,$b){
 	Return
 		array           : the RGB color
 */
-function html2rgb($html){
+function html2rgb($html) {
 	// Format
-	$html=ltrim($html,'#');
+	$html = ltrim($html, '#');
 	// Verify
-	if(strlen($html)!=6){
-		trigger_error('HTML color must have a length of 6 hexadecimal characters',E_USER_ERROR);
+	if(strlen($html) != 6) {
+		trigger_error('HTML color must have a length of 6 hexadecimal characters', E_USER_ERROR);
 	}
 	// Convert
-	return array(
-		hexdec(substr($html,0,2)),
-		hexdec(substr($html,2,2)),
-		hexdec(substr($html,4,2))
-	);
+	return [
+		hexdec(substr($html, 0, 2)),
+		hexdec(substr($html, 2, 2)),
+		hexdec(substr($html, 4, 2))
+	];
 }
