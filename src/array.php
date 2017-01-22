@@ -19,7 +19,7 @@
 function array_merge_recursive_unique() {
 	// Get arrays
 	if(func_num_args() < 2) {
-		throw new Exception(__FUNCTION__.' needs two or more array arguments');
+		throw new Exception('array_merge_recursive_unique() needs two or more arguments');
 		return;
 	}
 	$arrays = func_get_args();
@@ -28,7 +28,7 @@ function array_merge_recursive_unique() {
 	while($arrays) {
 		$array = array_shift($arrays);
 		if(!is_array($array)) {
-			throw new Exception(__FUNCTION__.' has encountered a non array argument');
+			throw new Exception('array_merge_recursive_unique() has encountered a non array argument');
 			return;
 		}
 		// Merge an array
@@ -41,7 +41,7 @@ function array_merge_recursive_unique() {
 					$merged[$key] = $value;
 				}
 			}
-			else{
+			else {
 				$merged[] = $value;
 			}
 		}

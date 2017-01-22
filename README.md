@@ -1,4 +1,4 @@
-Funktions 0.1.9
+Funktions 0.2.0
 ===============
 
 Funktions is a set of functions that I found useful in several of my projects. Feel free to fork and add yours ;)
@@ -26,14 +26,12 @@ Available functions by bundle
 - rgb2html(`$r`,`$g`,`$b`)
 - html2rgb(`$html`)
 
-### debug.php
-- debug(`$variable`) : prints formatted informations about a variable
-
 ### system.php
+- debug(`$variable`) : prints formatted informations about a variable
 - human_filesize(`$path`) : get the human-readable size of a file
 - human_fileperms(`$path`) : get human-readable file permissions (like `drwxr-xr-x`)
 - lessdir(`$path`) : scan a directory without returning dot directories (the well-known `.` and `..`)
-- mimetype(`$path`) : get the mime type of a file
+- mimetype(`$path`) : get the mime type of a local or remote file
 - rrmdir(`path`) : remove a directory recursively
 
 License

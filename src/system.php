@@ -1,6 +1,36 @@
 <?php
 
 /*
+	Tiny debugging function
+
+	Previous author
+		Zend
+
+	Parameters
+		mixed $var
+
+	Return
+		mixed
+*/
+function debug($var) {
+	// Bufferize the output
+	ob_start();
+	var_dump($var);
+	$output = ob_get_clean();
+	// Neaten the newlines and indents
+	$output = preg_replace("/\]\=\>\n(\s+)/m", "] => ", $output);
+	// Write the output
+	if(php_sapi_name() == 'cli'){
+		$output = PHP_EOL.$output.PHP_EOL;
+	}
+	else{
+		$output = '<pre>'.$output.'</pre>';
+	}
+	echo $output;
+	return $var;
+}
+
+/*
 	Get human-readable file size
 	
 	Parameters
@@ -48,36 +78,29 @@ function lessdir($dir) {
 		string
 */
 function mimetype($path) {
-	if(!is_file($path)) {
-		throw new Exception("'$path' is not a file");
-	}
-	if(!is_readable($path)) {
-		throw new Exception("'$path' is not readable");
-	}
-	// METHOD 1: FileInfo extension
-	if(extension_loaded('fileinfo')) {
-		$finfo = finfo_open(FILEINFO_MIME);
-		$type = finfo_file($finfo,$path);
-		finfo_close($finfo);
-		if(empty($type)) {
-			throw new Exception("Cannot retrieve mime type with fileinfo extension");
-		}
-	}
-	// METHOD 2: mime_content_type() function
-	else if(function_exists('mime_content_type')) {
-		$type = mime_content_type($path);
-		if(empty($type)) {
-			throw new Exception("Cannot retrieve mime type with mime_content_type() function");
-		}
-	}
-	// METHOD 3: file command
-	else if(function_exists('exec')) {
-		$out = `file -bi $path`;
-		if(empty($out)) {
-			throw new Exception("It seems that the 'file' command does not exist on this operating system");
-		}
-		$type = substr($out,0,strpos($out,';'));
-	}
+    if(filter_var($path, FILTER_VALIDATE_URL)) {
+        $request = curl_init($path);
+        curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($request, CURLOPT_NOBODY, true);
+        curl_setopt($request, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($request, CURLOPT_SSL_VERIFYPEER, false);
+        curl_exec($request);
+        $type = curl_getinfo($request, CURLINFO_CONTENT_TYPE);
+    }
+    else {
+        if(!is_file($path)) {
+            throw new Exception("'$path' is not a file");
+        }
+        if(!is_readable($path)) {
+            throw new Exception("'$path' is not readable");
+        }
+        $finfo = finfo_open(FILEINFO_MIME);
+        $type = finfo_file($finfo,$path);
+        finfo_close($finfo);
+        if(empty($type)) {
+            throw new Exception("Cannot retrieve mime type with fileinfo extension");
+        }
+    }
 	if(!$type) {
 		return 'application/octet-stream';
 	}
