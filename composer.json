@@ -17,7 +17,6 @@
 		"files": [
 			"src/array.php",
 			"src/color.php",
-			"src/debug.php",
 			"src/system.php"
 		]
 	}
