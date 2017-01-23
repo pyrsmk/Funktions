@@ -24,7 +24,7 @@ function debug($var) {
 		$output = PHP_EOL.$output.PHP_EOL;
 	}
 	else{
-		$output = '<pre>'.$output.'</pre>';
+		$output = '<pre>'.htmlspecialchars($output).'</pre>';
 	}
 	echo $output;
 	return $var;
