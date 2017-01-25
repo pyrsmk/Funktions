@@ -94,30 +94,46 @@ $minisuite->expects('html2rgb()')
 
 $minisuite = new MiniSuite\Suite('system.php');
 
+$minisuite->expects('getimagesizefast() : local JPEG')
+          ->that(getimagesizefast('files/sample.jpg'))
+          ->equals(['width' => 500, 'height' => 375]);
+
+$minisuite->expects('getimagesizefast() : remote GIF')
+          ->that(getimagesizefast('https://lh3.googleusercontent.com/-tkF_d81a24I/WIgvLk6D6II/AAAAAAABExc/QfiIaGA-YXw7rJOfdX4fBw3b2DNMuIpJACJoC/w506-h750/484d442e-51ee-45e3-a335-122167d9005d'))
+          ->equals(['width' => 300, 'height' => 162]);
+
+$minisuite->expects('getimagesizefast() : remote JPEG')
+          ->that(getimagesizefast('http://pre09.deviantart.net/057d/th/pre/f/2017/024/c/8/my_inner_sanctuary_by_yuumei-dawkyn9.jpg'))
+          ->equals(['width' => 873, 'height' => 914]);
+
+$minisuite->expects('getimagesizefast() : remote PNG')
+          ->that(getimagesizefast('http://pngimg.com/upload/water_PNG3290.png'))
+          ->equals(['width' => 1280, 'height' => 798]);
+
 $minisuite->expects('human_filesize()')
           ->that(human_filesize('files/sample.txt'))
           ->equals('9 b');
+
+$minisuite->expects('human_fileperms() : directory')
+          ->that(human_fileperms('files/'))
+          ->equals('drwxrwxrwx');
+
+$minisuite->expects('human_fileperms() : file')
+          ->that(human_fileperms('files/sample.txt'))
+          ->equals('-rw-rw-rw-');
 
 $minisuite->expects('lessdir()')
           ->that(count(lessdir('.')))
           ->equals(5);
 
-$minisuite->expects('human_fileperms() : files/')
-          ->that(human_fileperms('files/'))
-          ->equals('drwxrwxrwx');
-
-$minisuite->expects('human_fileperms() : files/sample.txt')
-          ->that(human_fileperms('files/sample.txt'))
-          ->equals('-rw-rw-rw-');
-
-$minisuite->expects('mimetype() : files/sample.txt')
+$minisuite->expects('mimetype() : local TXT file')
           ->that(mimetype('files/sample.txt'))
           ->equals('text/plain');
 
-$minisuite->expects('mimetype() : files/sample.jpg')
+$minisuite->expects('mimetype() : local JPEG file')
           ->that(mimetype('files/sample.jpg'))
           ->equals('image/jpeg');
 
-$minisuite->expects('mimetype() : http://img13.deviantart.net/f3dc/i/2017/021/1/8/breathe_by_fukari-daw6ae3.jpg')
+$minisuite->expects('mimetype() : remote JPEG file')
           ->that(mimetype('http://img13.deviantart.net/f3dc/i/2017/021/1/8/breathe_by_fukari-daw6ae3.jpg'))
           ->equals('image/jpeg');

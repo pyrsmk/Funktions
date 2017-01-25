@@ -1,4 +1,4 @@
-Funktions 0.2.2
+Funktions 0.2.3
 ===============
 
 Funktions is a set of functions that I found useful in several of my projects. Feel free to fork and add yours ;)
@@ -28,6 +28,7 @@ Available functions by bundle
 
 ### system.php
 - debug(`$variable`) : prints formatted informations about a variable
+- getimagesizefast(`$path`) : get fast the local/remote image size
 - human_filesize(`$path`) : get the human-readable size of a file
 - human_fileperms(`$path`) : get human-readable file permissions (like `drwxr-xr-x`)
 - lessdir(`$path`) : scan a directory without returning dot directories (the well-known `.` and `..`)

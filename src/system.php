@@ -3,9 +3,6 @@
 /*
 	Tiny debugging function
 
-	Previous author
-		Zend
-
 	Parameters
 		mixed $var
 
@@ -31,6 +28,45 @@ function debug($var) {
 }
 
 /*
+	Get local/remote image size
+
+	Parameters
+		string $path
+
+	Return
+		array
+*/
+function getimagesizefast($path) {
+    if(filter_var($path, FILTER_VALIDATE_URL)) {
+        $request = curl_init($path);
+        curl_setopt($request, CURLOPT_HTTPHEADER, ['Range: bytes=0-32768']);
+        curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($request, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($request, CURLOPT_SSL_VERIFYPEER, false);
+        $data = curl_exec($request);
+        curl_close($request);
+        $image = @imagecreatefromstring($data);
+        // GIF, JPEG
+        if($image !== false) {
+            $width = imagesx($image);
+            $height = imagesy($image);
+        }
+        // PNG
+        else {
+            // Inspired from : https://github.com/tommoor/fastimage/blob/master/Fastimage.php
+            list(, $width, $height) = unpack('N*', substr($data, 16, 8));
+        }
+    }
+    else {
+        list($width, $height) = getimagesize($path);
+    }
+    return [
+        'width' => $width,
+        'height' => $height
+    ];
+}
+
+/*
 	Get human-readable file size
 	
 	Parameters
@@ -48,66 +84,6 @@ function human_filesize($path) {
 		}
 	}
 	return false;
-}
-
-/*
-	Scan a directory without '.' and '..'
-
-	Parameters
-		string $dir
-
-	Return
-		array
-*/
-function lessdir($dir) {
-	if(!file_exists($dir)) {
-		return [];
-	}
-	else {
-		return array_slice(scandir($dir), 2);
-	}
-}
-
-/*
-	Get a file's mime type
-
-	Parameters
-		string $path
-
-	Return
-		string
-*/
-function mimetype($path) {
-    if(filter_var($path, FILTER_VALIDATE_URL)) {
-        $request = curl_init($path);
-        curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($request, CURLOPT_NOBODY, true);
-        curl_setopt($request, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($request, CURLOPT_SSL_VERIFYPEER, false);
-        curl_exec($request);
-        $type = curl_getinfo($request, CURLINFO_CONTENT_TYPE);
-    }
-    else {
-        if(!is_file($path)) {
-            throw new Exception("'$path' is not a file");
-        }
-        if(!is_readable($path)) {
-            throw new Exception("'$path' is not readable");
-        }
-        $finfo = finfo_open(FILEINFO_MIME);
-        $type = finfo_file($finfo,$path);
-        finfo_close($finfo);
-        if(empty($type)) {
-            throw new Exception("Cannot retrieve mime type with fileinfo extension");
-        }
-    }
-	if(!$type) {
-		return 'application/octet-stream';
-	}
-	else {
-		$type = explode(';', $type);
-		return $type[0];
-	}
 }
 
 /*
@@ -172,6 +148,67 @@ function human_fileperms($path) {
         (($perms & 0x0200) ? 't' : 'x'):
         (($perms & 0x0200) ? 'T' : '-'));
 	return $info;
+}
+
+/*
+	Scan a directory without '.' and '..'
+
+	Parameters
+		string $dir
+
+	Return
+		array
+*/
+function lessdir($dir) {
+	if(!file_exists($dir)) {
+		return [];
+	}
+	else {
+		return array_slice(scandir($dir), 2);
+	}
+}
+
+/*
+	Get a file's mime type
+
+	Parameters
+		string $path
+
+	Return
+		string
+*/
+function mimetype($path) {
+    if(filter_var($path, FILTER_VALIDATE_URL)) {
+        $request = curl_init($path);
+        curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($request, CURLOPT_NOBODY, true);
+        curl_setopt($request, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($request, CURLOPT_SSL_VERIFYPEER, false);
+        curl_exec($request);
+        $type = curl_getinfo($request, CURLINFO_CONTENT_TYPE);
+        curl_close($request);
+    }
+    else {
+        if(!is_file($path)) {
+            throw new Exception("'$path' is not a file");
+        }
+        if(!is_readable($path)) {
+            throw new Exception("'$path' is not readable");
+        }
+        $finfo = finfo_open(FILEINFO_MIME);
+        $type = finfo_file($finfo,$path);
+        finfo_close($finfo);
+        if(empty($type)) {
+            throw new Exception("Cannot retrieve mime type with fileinfo extension");
+        }
+    }
+	if(!$type) {
+		return 'application/octet-stream';
+	}
+	else {
+		$type = explode(';', $type);
+		return $type[0];
+	}
 }
 
 /*
