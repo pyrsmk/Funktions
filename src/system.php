@@ -21,7 +21,8 @@ function debug($var) {
 		$output = PHP_EOL.$output.PHP_EOL;
 	}
 	else{
-		$output = '<pre>'.htmlspecialchars($output).'</pre>';
+        $escaped = htmlspecialchars($output);
+		$output = '<pre>'.($escaped ? $escaped : $output).'</pre>';
 	}
 	echo $output;
 	return $var;

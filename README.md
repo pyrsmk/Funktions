@@ -1,4 +1,4 @@
-Funktions 0.2.3
+Funktions 0.2.4
 ===============
 
 Funktions is a set of functions that I found useful in several of my projects. Feel free to fork and add yours ;)
