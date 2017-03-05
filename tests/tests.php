@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 
 require 'vendor/autoload.php';
 
-$path = '../src/';
+$path = __DIR__.'/../src/';
 foreach(array_slice(scandir($path), 2) as $file) {
 	require $path.$file;
 }
@@ -95,7 +95,7 @@ $minisuite->expects('html2rgb()')
 $minisuite = new MiniSuite\Suite('system.php');
 
 $minisuite->expects('getimagesizefast() : local JPEG')
-          ->that(getimagesizefast('files/sample.jpg'))
+          ->that(getimagesizefast(__DIR__.'/files/sample.jpg'))
           ->equals(['width' => 500, 'height' => 375]);
 
 $minisuite->expects('getimagesizefast() : remote GIF')
@@ -111,40 +111,40 @@ $minisuite->expects('getimagesizefast() : remote PNG')
           ->equals(['width' => 1280, 'height' => 798]);
 
 $minisuite->expects('human_filesize()')
-          ->that(human_filesize('files/sample.txt'))
+          ->that(human_filesize(__DIR__.'/files/sample.txt'))
           ->equals('9 b');
 
 $minisuite->expects('human_fileperms() : directory')
-          ->that(human_fileperms('files/'))
+          ->that(human_fileperms(__DIR__.'/files/'))
           ->equals('drwxrwxrwx');
 
 $minisuite->expects('human_fileperms() : file')
-          ->that(human_fileperms('files/sample.txt'))
+          ->that(human_fileperms(__DIR__.'/files/sample.txt'))
           ->equals('-rw-rw-rw-');
 
 $minisuite->expects('lessdir()')
-          ->that(count(lessdir('.')))
+          ->that(count(lessdir(__DIR__)))
           ->equals(5);
 
 $minisuite->expects('mimetype() : local TXT file')
-          ->that(mimetype('files/sample.txt'))
+          ->that(mimetype(__DIR__.'/files/sample.txt'))
           ->equals('text/plain');
 
 $minisuite->expects('mimetype() : local JPEG file')
-          ->that(mimetype('files/sample.jpg'))
+          ->that(mimetype(__DIR__.'/files/sample.jpg'))
           ->equals('image/jpeg');
 
 $minisuite->expects('mimetype() : remote JPEG file')
           ->that(mimetype('http://img13.deviantart.net/f3dc/i/2017/021/1/8/breathe_by_fukari-daw6ae3.jpg'))
           ->equals('image/jpeg');
 
-mkdir('files/rrmdir/');
-touch('files/rrmdir/1');
-mkdir('files/rrmdir/2');
-touch('files/rrmdir/2/1');
+mkdir(__DIR__.'/files/rrmdir/');
+touch(__DIR__.'/files/rrmdir/1');
+mkdir(__DIR__.'/files/rrmdir/2');
+touch(__DIR__.'/files/rrmdir/2/1');
 
-rrmdir('files/rrmdir/');
+rrmdir(__DIR__.'/files/rrmdir/');
 
 $minisuite->expects('rrmdir()')
-          ->that(file_exists('files/rrmdir'))
+          ->that(file_exists(__DIR__.'/files/rrmdir'))
           ->equals(false);
