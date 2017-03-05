@@ -36,6 +36,9 @@ function debug($var) {
 
 	Return
 		array
+    
+    Note
+        Not reliable enough to lie completely on it; it can fails
 */
 function getimagesizefast($path) {
     if(filter_var($path, FILTER_VALIDATE_URL)) {
@@ -219,6 +222,9 @@ function mimetype($path) {
 		string $path
 */
 function rrmdir($path) {
+    if($path[strlen($path) - 1] == '/') {
+        $path = substr($path, 0, -1);
+    }
 	if(is_dir($path)) {
 		foreach(lessdir($path) as $file) {
 			if(is_dir("$path/$file")) {

@@ -137,3 +137,14 @@ $minisuite->expects('mimetype() : local JPEG file')
 $minisuite->expects('mimetype() : remote JPEG file')
           ->that(mimetype('http://img13.deviantart.net/f3dc/i/2017/021/1/8/breathe_by_fukari-daw6ae3.jpg'))
           ->equals('image/jpeg');
+
+mkdir('files/rrmdir/');
+touch('files/rrmdir/1');
+mkdir('files/rrmdir/2');
+touch('files/rrmdir/2/1');
+
+rrmdir('files/rrmdir/');
+
+$minisuite->expects('rrmdir()')
+          ->that(file_exists('files/rrmdir'))
+          ->equals(false);
