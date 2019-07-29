@@ -1,23 +1,29 @@
 {
-	"name": "pyrsmk/funktions",
-	"description": "Several useful PHP functions",
-	"keywords": ["functions","array","color","debug","system"],
-	"license": "MIT",
-	"authors": [{
-		"name": "Aurélien Delogu",
-		"email": "dev@dreamysource.fr",
-		"homepage": "http://dreamysource.io/project/funktions"
-	}],
-	"require": {
-		"php": ">=5.4.0",
+    "name": "pyrsmk/funktions",
+    "description": "Several useful PHP functions",
+    "keywords": [
+        "function",
+        "array",
+        "color",
+        "debug",
+        "system"
+    ],
+    "license": "MIT",
+    "authors": [{
+        "name": "Aurélien Delogu",
+        "email": "dev@dreamysource.fr",
+        "homepage": "https://github.com/pyrsmk/Funktions"
+    }],
+    "require": {
+        "php": ">=7.2.0",
         "ext-curl": "*",
         "ext-fileinfo": "*"
-	},
-	"autoload": {
-		"files": [
-			"src/array.php",
-			"src/color.php",
-			"src/system.php"
-		]
-	}
+    },
+    "autoload": {
+        "files": [
+            "src/array.php",
+            "src/color.php",
+            "src/system.php"
+        ]
+    }
 }
