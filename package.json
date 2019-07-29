@@ -1,7 +1,7 @@
 {
   "devDependencies": {
-    "gulp": "^3.8.11",
-    "gulp-replace": "^0.5.3",
-    "gulp-shell": "^0.4.1"
+    "execa": "^2.0.3",
+    "just-task": "^0.13.1",
+    "readline-sync": "^1.4.9"
   }
 }
