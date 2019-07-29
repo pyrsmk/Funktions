@@ -28,3 +28,15 @@ function uuid4(): string
         mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
     );
 }
+
+/**
+ * Generate a random hash
+ * https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
+ *
+ * @param int $length
+ * @return string
+ */
+function random_hash(int $length = 5): string
+{
+    return bin2hex(random_bytes($length));
+}
