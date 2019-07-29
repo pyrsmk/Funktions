@@ -1,5 +1,7 @@
 <?php
 
+namespace Funktions;
+
 /**
  * Tiny debugging function with variable passthrough support
  *
@@ -25,7 +27,7 @@ function debug($var)
  * @param string $path
  * @return string
  */
-function human_filesize (string $path): string
+function human_filesize(string $path): string
 {
     $bytes = filesize($path);
     $units = ['b', 'Kb', 'Mb', 'Gb', 'Tb', 'Eb'];

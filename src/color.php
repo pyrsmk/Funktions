@@ -1,5 +1,7 @@
 <?php
 
+namespace Funktions;
+
 /**
  * Convert RGB to HSL color
  *

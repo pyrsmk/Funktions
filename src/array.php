@@ -1,5 +1,7 @@
 <?php
 
+namespace Funktions;
+
 /**
  * Merge arrays recursively
  *
