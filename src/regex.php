@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Funktions;
 
+use Exception;
+
 /**
  * Test if a regex matches against a string
  *

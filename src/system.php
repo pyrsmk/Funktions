@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Funktions;
 
+use Exception;
+
 /**
  * Tiny debugging function with variable passthrough support
  *

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Funktions;
 
 use Generator;
+use Exception;
 
 /**
  * Merge arrays recursively
