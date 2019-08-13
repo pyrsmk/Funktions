@@ -71,6 +71,11 @@ $sorted_array = array_sort($my_array);
 
 ## string.php
 
+- `mb_to_camelcase(string $string): string`: converts a string to camel case
+- `mb_ucwords(string $string, ?string $encoding = null): string`: capitalize all words in a string
+- `mb_ucfirst(string $string, ?string $encoding = null): string`: capitalize a string
+- `mb_lcfirst($string, ?string $encoding = null): string`: uncapitalize a string
+- `mb_truncate(string $string, int $length, ?string $encoding = null): string`: truncate a string to a specific length and append `...` at the end of the string
 - `random_hash(int $length = 5): string`: generate a random hash
 - `uuid4(): string`: generate a random v4 UUID
 

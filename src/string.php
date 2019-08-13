@@ -5,6 +5,90 @@ declare(strict_types=1);
 namespace Funktions;
 
 /**
+ * Converts a string to camel case
+ *
+ * @param string $string
+ * @return string
+ */
+function mb_to_camelcase(string $string): string
+{
+    return mb_ereg_replace('-', '', ucwords($string, '-'));
+}
+
+/**
+ * Capitalize all words in a string
+ *
+ * @param string $string
+ * @param string $encoding
+ * @return string
+ */
+function mb_ucwords(string $string, ?string $encoding = null): string
+{
+    return mb_convert_case(
+        $string,
+        MB_CASE_TITLE,
+        $encoding ?? mb_internal_encoding()
+    );
+}
+
+/**
+ * Capitalize a string
+ *
+ * @param string $string
+ * @param string $encoding
+ * @return string
+ */
+function mb_ucfirst(string $string, ?string $encoding = null): string
+{
+    $encoding = $encoding ?? mb_internal_encoding();
+    $first = mb_strtoupper(
+        mb_substr($string, 0, 1, $encoding),
+        $encoding
+    );
+    return $first . mb_substr($string, 1, null, $encoding);
+}
+
+/**
+ * Uncapitalize a string
+ *
+ * @param string $string
+ * @param string $encoding
+ * @return string
+ */
+function mb_lcfirst($string, ?string $encoding = null): string
+{
+    $encoding = $encoding ?? mb_internal_encoding();
+    $first = mb_strtolower(
+        mb_substr($string, 0, 1, $encoding),
+        $encoding
+    );
+    return $first . mb_substr($string, 1, null, $encoding);
+}
+
+/**
+* Truncate a string
+*
+* @param string $string
+* @param int $length
+* @param string $remainder
+* @return string
+*/
+function mb_truncate(string $string, int $length, ?string $encoding = null): string
+{
+   if (mb_strlen($string) <= $length) {
+       return $string;
+   }
+   $encoding = $encoding ?? mb_internal_encoding();
+   $truncated = mb_substr(
+       mb_substr($string . ' ', 0, $length, $encoding),
+       0,
+       mb_strrpos($string, ' ', 0, $encoding),
+       $encoding
+    );
+   return $truncated . '...';
+}
+
+/**
  * Generate a random hash
  * https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
  *
