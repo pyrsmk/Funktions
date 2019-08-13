@@ -7,19 +7,6 @@ namespace Funktions;
 use Exception;
 
 /**
- * Test if a regex matches against a string
- *
- * @param string $pattern
- * @param string $text
- * @param integer $flags
- * @return boolean
- */
-function regex_test(string $pattern, string $text, int $flags = 0): bool
-{
-    return (bool) preg_match($pattern, $text, $matches, $flags);
-}
-
-/**
  * Count the number of matches for a regex in a string
  *
  * @param string $pattern
@@ -62,4 +49,17 @@ function regex_match_all(string $pattern, string $text, int $flags = 0): array
         throw new Exception("'$pattern' has no match");
     }
     return $matches;
+}
+
+/**
+ * Test if a regex matches against a string
+ *
+ * @param string $pattern
+ * @param string $text
+ * @param integer $flags
+ * @return boolean
+ */
+function regex_test(string $pattern, string $text, int $flags = 0): bool
+{
+    return (bool) preg_match($pattern, $text, $matches, $flags);
 }

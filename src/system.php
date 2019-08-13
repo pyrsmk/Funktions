@@ -26,24 +26,6 @@ function debug($var)
 }
 
 /**
- * Get human-readable file size
- *
- * @param string $path
- * @return string
- */
-function human_filesize(string $path): string
-{
-    $bytes = filesize($path);
-    $units = ['b', 'Kb', 'Mb', 'Gb', 'Tb', 'Eb'];
-    for ($i = count($units) - 1; $i >= 0; --$i) {
-        if ($bytes >= pow(1024, $i)) {
-            return round($bytes / pow(1024, $i), 2) . ' ' . $units[$i];
-        }
-    }
-    throw new \Exception("Unable to translate filesize for '$path'");
-}
-
-/**
  * Get human-readable permissions
  *
  * @param string $path
@@ -88,6 +70,24 @@ function human_fileperms(string $path): string
         (($perms & 0x0200) ? 'T' : '-'));
     // Return permissions
     return "$type$owner$group$all";
+}
+
+/**
+ * Get human-readable file size
+ *
+ * @param string $path
+ * @return string
+ */
+function human_filesize(string $path): string
+{
+    $bytes = filesize($path);
+    $units = ['b', 'Kb', 'Mb', 'Gb', 'Tb', 'Eb'];
+    for ($i = count($units) - 1; $i >= 0; --$i) {
+        if ($bytes >= pow(1024, $i)) {
+            return round($bytes / pow(1024, $i), 2) . ' ' . $units[$i];
+        }
+    }
+    throw new Exception("Unable to translate filesize for '$path'");
 }
 
 /**

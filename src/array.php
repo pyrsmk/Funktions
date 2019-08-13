@@ -8,16 +8,124 @@ use Generator;
 use Exception;
 
 /**
- * Convert an array to a generator
+ * Strict diff between two arrays by comparing the values at the same index
  *
- * @param array $items
- * @return Generator
+ * @param array $array1
+ * @param array $array2
+ * @return array
  */
-function array_to_generator(array $items): Generator
+function array_diff_strict(array $array1, array $array2): array
 {
-    foreach ($items as $item) {
-        yield $item;
+    if (count($array1) !== count($array2)) {
+        throw new Exception('Arrays must be of the same length');
     }
+    return array_kvreduce(
+        $array1,
+        function (array $diff, $key, $value) use ($array2): array {
+            if ($value !== $array2[$key]) {
+                $diff[] = [
+                    'offset' => $key,
+                    'left' => $value,
+                    'right' => $array2[$key],
+                ];
+            }
+            return $diff;
+        }, []
+    );
+}
+
+/**
+ * Drop a part of an array
+ *
+ * @param array $array
+ * @param integer $offset
+ * @param integer $length
+ * @return array
+ */
+function array_drop(array $array, int $offset, int $length): array
+{
+    array_splice($array, $offset, $length);
+    return $array;
+}
+
+/**
+ * Initialize multi-dimensional arrays
+ *
+ * @param integer $dimensions
+ * @param integer $size
+ * @param mixed $value
+ * @return array
+ */
+function array_fill_multi(int $dimensions, int $size, $value): array
+{
+    $create = function (int $dimension, int $size, $value) use (&$create, $dimensions): array {
+        $array = [];
+        foreach (range(1, $size) as $i) {
+            if ($dimension < $dimensions) {
+                $array[] = $create($dimension + 1, $size, $value);
+            } else {
+                $array[] = $value;
+            }
+        }
+        return $array;
+    };
+    return $create(1, $size, $value);
+}
+
+/**
+ * Strict insersection between two arrays by comparing the values at the same index
+ *
+ * @param array $array1
+ * @param array $array2
+ * @return array
+ */
+function array_intersect_strict(array $array1, array $array2): array
+{
+    if (count($array1) !== count($array2)) {
+        throw new Exception('Arrays must be of the same length');
+    }
+    return array_kvreduce(
+        $array1,
+        function (array $diff, $key, $value) use ($array2): array {
+            if ($value === $array2[$key]) {
+                $diff[] = $value;
+            }
+            return $diff;
+        }, []
+    );
+}
+
+/**
+ * array_map with key/value support
+ *
+ * @param array $array
+ * @param callable $callback
+ * @return array
+ */
+function array_kvmap(array $array, callable $callback): array
+{
+    return array_map($callback, array_keys($array), $array);
+}
+
+/**
+ * array_reduce with key/value support
+ *
+ * @param array $array
+ * @param callable $callback
+ * @param mixed $initial
+ * @return mixed
+ */
+function array_kvreduce(array $array, callable $callback, $initial = null)
+{
+    $carry = $initial;
+    foreach ($array as $key => $value) {
+        $carry = call_user_func_array($callback, [
+            $carry,
+            $key,
+            $value
+        ]);
+    }
+    return $carry;
 }
 
 /**
@@ -49,17 +157,16 @@ function array_merge_recursive_unique(array ...$arrays): array
 }
 
 /**
- * Drop part of an array
+ * Convert an array to a generator
  *
- * @param array $array
- * @param integer $offset
- * @param integer $length
- * @return array
+ * @param array $items
+ * @return Generator
  */
-function array_drop(array $array, int $offset, int $length): array
+function array_to_generator(array $items): Generator
 {
-    array_splice($array, $offset, $length);
-    return $array;
+    foreach ($items as $item) {
+        yield $item;
+    }
 }
 
 /**
@@ -78,113 +185,6 @@ function array_substitute(array $array, int $offset, int $length, array $replace
         $replacement,
         array_slice($array, $offset + $length)
     );
-}
-
-/**
- * array_reduce with key/value support
- *
- * @param array $array
- * @param callable $callback
- * @param mixed $initial
- * @return mixed
- */
-function array_kvreduce(array $array, callable $callback, $initial = null)
-{
-    $carry = $initial;
-    foreach ($array as $key => $value) {
-        $carry = call_user_func_array($callback, [
-            $carry,
-            $key,
-            $value
-        ]);
-    }
-    return $carry;
-}
-
-/**
- * array_map with key/value support
- *
- * @param array $array
- * @param callable $callback
- * @return array
- */
-function array_kvmap(array $array, callable $callback): array
-{
-    return array_map($callback, array_keys($array), $array);
-}
-
-/**
- * Strict diff between two arrays by comparing the values at the same index
- *
- * @param array $array1
- * @param array $array2
- * @return array
- */
-function array_diff_strict(array $array1, array $array2): array
-{
-    if (count($array1) !== count($array2)) {
-        throw new Exception('Arrays must be of the same length');
-    }
-    return array_kvreduce(
-        $array1,
-        function (array $diff, $key, $value) use ($array2): array {
-            if ($value !== $array2[$key]) {
-                $diff[] = [
-                    'offset' => $key,
-                    'left' => $value,
-                    'right' => $array2[$key],
-                ];
-            }
-            return $diff;
-        }, []
-    );
-}
-
-/**
- * Strict insersection between two arrays by comparing the values at the same index
- *
- * @param array $array1
- * @param array $array2
- * @return array
- */
-function array_intersect_strict(array $array1, array $array2): array
-{
-    if (count($array1) !== count($array2)) {
-        throw new Exception('Arrays must be of the same length');
-    }
-    return array_kvreduce(
-        $array1,
-        function (array $diff, $key, $value) use ($array2): array {
-            if ($value === $array2[$key]) {
-                $diff[] = $value;
-            }
-            return $diff;
-        }, []
-    );
-}
-
-/**
- * Initialize multi-dimensional arrays
- *
- * @param integer $dimensions
- * @param integer $size
- * @param mixed $value
- * @return array
- */
-function array_fill_multi(int $dimensions, int $size, $value): array
-{
-    $create = function (int $dimension, int $size, $value) use (&$create, $dimensions): array {
-        $array = [];
-        foreach (range(1, $size) as $i) {
-            if ($dimension < $dimensions) {
-                $array[] = $create($dimension + 1, $size, $value);
-            } else {
-                $array[] = $value;
-            }
-        }
-        return $array;
-    };
-    return $create(1, $size, $value);
 }
 
 /**
@@ -329,34 +329,14 @@ function array_natcasesort(array $array): array
 }
 
 /**
- * Move the array pointer
+ * Glue array elements
  *
  * @param array $array
- * @param integer|string $key
- * @return void
+ * @return string
  */
-function seek(array &$array, $key): void
+function glue(array $array): string
 {
-    reset($array);
-    while(key($array) !== $key) {
-        if (next($array) === false) {
-            throw new Exception("'$key' key not found");
-        }
-    }
-}
-
-/**
- * Return the key of the minimum value
- *
- * @param array $array
- * @return void
- */
-function kmin(array $array)
-{
-    return array_search(
-        min($array),
-        $array
-    );
+    return implode('', $array);
 }
 
 /**
@@ -374,14 +354,17 @@ function kmax(array $array)
 }
 
 /**
- * Glue array elements
+ * Return the key of the minimum value
  *
  * @param array $array
- * @return string
+ * @return void
  */
-function glue(array $array): string
+function kmin(array $array)
 {
-    return implode('', $array);
+    return array_search(
+        min($array),
+        $array
+    );
 }
 
 /**
@@ -394,4 +377,21 @@ function glue(array $array): string
 function map(array $array, callable $callback): array
 {
     return array_map($callback, $array);
+}
+
+/**
+ * Move the array pointer
+ *
+ * @param array $array
+ * @param integer|string $key
+ * @return void
+ */
+function seek(array &$array, $key): void
+{
+    reset($array);
+    while(key($array) !== $key) {
+        if (next($array) === false) {
+            throw new Exception("'$key' key not found");
+        }
+    }
 }

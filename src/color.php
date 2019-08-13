@@ -62,7 +62,7 @@ function rgb2hsl(int $r, int $g, int $b): array
  * @param integer $l
  * @return array
  */
-function hsl2rgb (int $h, int $s, int $l): array
+function hsl2rgb(int $h, int $s, int $l): array
 {
     // Format
     if($h < 0)      $h = 0;
@@ -164,7 +164,7 @@ function rgb2hsv(int $r, int $g, int $b): array
 }
 
 /**
- * Conver HSV to RGB color
+ * Convert HSV to RGB color
  *
  * @param integer $h
  * @param integer $s
@@ -232,7 +232,7 @@ function hsv2rgb(int $h, int $s, int $v): array
  * @param integer $b
  * @return string
  */
-function rgb2html(int $r, int $g, int $b): string
+function rgb2hex(int $r, int $g, int $b): string
 {
     // Format
     if ($r < 0)     $r = 0;
@@ -242,9 +242,9 @@ function rgb2html(int $r, int $g, int $b): string
     if ($b < 0)     $b = 0;
     if ($b > 255)   $b = 255;
     // Convert
-    $html = '#' . dechex($r) . dechex($g) . dechex($b);
+    $hex = '#' . dechex($r) . dechex($g) . dechex($b);
     // Return color
-    return $html;
+    return $hex;
 }
 
 /**
@@ -253,18 +253,18 @@ function rgb2html(int $r, int $g, int $b): string
  * @param string $html
  * @return array
  */
-function html2rgb(string $html): array
+function hex2rgb(string $hex): array
 {
     // Format
-    $html = ltrim($html, '#');
+    $hex = ltrim($hex, '#');
     // Verify
-    if (strlen($html) !== 6) {
+    if (strlen($hex) !== 6) {
         trigger_error('HTML color must have a length of 6 hexadecimal characters', E_USER_ERROR);
     }
     // Convert
-    $r = hexdec(substr($html, 0, 2));
-    $g = hexdec(substr($html, 2, 2));
-    $b = hexdec(substr($html, 4, 2));
+    $r = hexdec(substr($hex, 0, 2));
+    $g = hexdec(substr($hex, 2, 2));
+    $b = hexdec(substr($hex, 4, 2));
     // Return color
     return [$r, $g, $b];
 }
