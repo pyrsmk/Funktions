@@ -1,5 +1,3 @@
 node_modules/
 tests/vendor/
-tests/composer.lock
-composer.lock
 vendor/
