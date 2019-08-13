@@ -8,6 +8,19 @@ use Generator;
 use Exception;
 
 /**
+ * Convert an array to a generator
+ *
+ * @param array $items
+ * @return Generator
+ */
+function array_to_generator(array $items): Generator
+{
+    foreach ($items as $item) {
+        yield $item;
+    }
+}
+
+/**
  * Merge arrays recursively
  *
  * @param array ...$arrays
@@ -151,7 +164,7 @@ function array_intersect_strict(array $array1, array $array2): array
 }
 
 /**
- * Initialize arrays with several dimensions
+ * Initialize multi-dimensional arrays
  *
  * @param integer $dimensions
  * @param integer $size
@@ -372,14 +385,13 @@ function glue(array $array): string
 }
 
 /**
- * Convert an array to a generator
+ * array_map() with parameters in the right order
  *
- * @param array $items
- * @return Generator
+ * @param array $array
+ * @param callable $callback
+ * @return array
  */
-function array_to_generator(array $items): Generator
+function map(array $array, callable $callback): array
 {
-    foreach ($items as $item) {
-        yield $item;
-    }
+    return array_map($callback, $array);
 }
