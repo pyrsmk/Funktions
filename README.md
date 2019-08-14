@@ -83,7 +83,7 @@ $sorted_array = array_sort($my_array);
 
 ## System
 
-- `debug(mixed $var): mixed` : tiny debugging function with variable passthrough support
+- `dump(mixed $var): mixed` : formatted variable dumping function with variable passthrough
 - `human_fileperms(string $path): string`: get human-readable permissions
 - `human_filesize(string $path): string`: get human-readable file size
 - `lessdir(string $dir): array`: like `scandir()` but without `.` and `..`

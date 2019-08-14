@@ -7,12 +7,12 @@ namespace Funktions;
 use Exception;
 
 /**
- * Tiny debugging function with variable passthrough support
+ * Formatted variable dumping function with variable passthrough
  *
  * @param mixed $var
  * @return mixed
  */
-function debug($var)
+function dump($var)
 {
     $output = var_export($var, true);
     if (php_sapi_name() === 'cli') {
@@ -23,6 +23,11 @@ function debug($var)
     }
     echo $output;
     return $var;
+}
+// For retro-compatibility purpose
+function debug($var)
+{
+    return dump($var);
 }
 
 /**
