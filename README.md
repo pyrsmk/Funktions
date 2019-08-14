@@ -20,7 +20,7 @@ use function Funktions\array_sort;
 $sorted_array = array_sort($my_array);
 ```
 
-## array.php
+## Arrays
 
 - `array_diff_strict(array $array1, array $array2): array`: strict diff between two arrays by comparing the values at the same index
 - `array_drop(array $array, int $offset, int $length): array`: drop a part of an array
@@ -48,7 +48,7 @@ $sorted_array = array_sort($my_array);
 - `map(array $array, callable $callback): array`: `array_map()` with parameters in the right order
 - `seek(array &$array, int|string $key): void`: move the array pointer (mutable)
 
-## color.php
+## Colors
 
 - `rgb2hsl(int $r, int $g, int $b): array`: convert RGB to HSL color
 - `hsl2rgb(int $h, int $s, int $l): array`: convert HSL to RGB color
@@ -57,19 +57,21 @@ $sorted_array = array_sort($my_array);
 - `rgb2hex(int $r, int $g, int $b): string`: convert RGB to HTML color
 - `hex2rgb(string $hex): array`: convert HTML to RGB color
 
-## number.php
+## Numbers
 
 - `is_even(int $value): bool`: verify if the value is even
 - `is_odd(int $value): bool`: verify if the value is odd
+- `above(float $value, float $min): float`: bound a number to a minimum value
+- `under(float $value, float $max): float`: bound a number to a maximum value
 
-## regex.php
+## Regexes
 
 - `regex_count(string $pattern, string $text, int $flags = 0): int`: count the number of matches for a regex in a string
 - `regex_match(string $pattern, string $text, int $flags = 0): array`: return the matches of a regex, for the first match
 - `regex_match_all(string $pattern, string $text, int $flags = 0): array`: return all the matches of a regex
 - `regex_test(string $pattern, string $text, int $flags = 0): bool`: test if a regex matches against a string
 
-## string.php
+## Strings
 
 - `mb_to_camelcase(string $string): string`: converts a string to camel case
 - `mb_ucwords(string $string, ?string $encoding = null): string`: capitalize all words in a string
@@ -79,7 +81,7 @@ $sorted_array = array_sort($my_array);
 - `random_hash(int $length = 5): string`: generate a random hash
 - `uuid4(): string`: generate a random v4 UUID
 
-## system.php
+## System
 
 - `debug(mixed $var): mixed` : tiny debugging function with variable passthrough support
 - `human_fileperms(string $path): string`: get human-readable permissions
