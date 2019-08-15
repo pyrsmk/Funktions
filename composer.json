@@ -26,8 +26,10 @@
         "files": [
             "src/array.php",
             "src/color.php",
+            "src/garbage.php",
             "src/instruction.php",
             "src/number.php",
+            "src/output.php",
             "src/regex.php",
             "src/string.php",
             "src/system.php"
