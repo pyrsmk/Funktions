@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Funktions;
 
 /**
- * Return a default value for a variable
+ * [DEPRECATED] Return a default value for a variable
  *
  * @param mixed $variable
  * @param mixed $default

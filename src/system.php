@@ -24,7 +24,13 @@ function dump($var)
     echo $output;
     return $var;
 }
-// For retro-compatibility purpose
+
+/**
+ * [DEPRECATED] Formatted variable dumping function with variable passthrough
+ *
+ * @param mixed $var
+ * @return mixed
+ */
 function debug($var)
 {
     return dump($var);
