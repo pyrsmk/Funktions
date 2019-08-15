@@ -1,12 +1,15 @@
 {
     "name": "pyrsmk/funktions",
-    "description": "Several useful PHP functions",
+    "description": "Enhance PHP functions with a salt of functional programming",
     "keywords": [
-        "function",
+        "functional",
         "array",
         "color",
-        "debug",
-        "system"
+        "number",
+        "regex",
+        "string",
+        "mimetype",
+        "filesystem"
     ],
     "license": "MIT",
     "authors": [{
@@ -23,6 +26,10 @@
         "files": [
             "src/array.php",
             "src/color.php",
+            "src/instruction.php",
+            "src/number.php",
+            "src/regex.php",
+            "src/string.php",
             "src/system.php"
         ]
     }
