@@ -5,6 +5,21 @@ declare(strict_types=1);
 namespace Funktions;
 
 /**
+ * Return a default value for a variable
+ *
+ * @param mixed $variable
+ * @param mixed $default
+ * @return mixed
+ */
+function alt($variable, $default)
+{
+    if ($variable === null) {
+        return $default;
+    }
+    return $variable;
+}
+
+/**
  * Collect garbage after callable execution
  *
  * @param callable $callable
