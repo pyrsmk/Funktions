@@ -368,46 +368,6 @@ function kmin(array $array)
 }
 
 /**
- * Loop over items and pass them to a generator
- *
- * @param iterable $iterable
- * @param callable $callable
- * @return array
- */
-function loop(iterable $iterable, callable $callable): array
-{
-    $array = [];
-    foreach ($iterable as $item) {
-        $generator = call_user_func($callable, $item);
-        if ($generator instanceof Generator === false) {
-            throw Exception('callable must be a generator');
-        }
-        $array = array_merge($array, iterator_to_array($generator));
-    }
-    return $array;
-}
-
-/**
- * Loop in a generator until a returned condition
- *
- * @param callable $callable
- * @return array
- */
-function loop_until(callable $callable): array
-{
-    $array = [];
-    do {
-        $generator = call_user_func($callable);
-        if ($generator instanceof Generator === false) {
-            throw Exception('callable must be a generator');
-        }
-        $array = array_merge($array, iterator_to_array($generator));
-    }
-    while(!$generator->getReturn());
-    return $array;
-}
-
-/**
  * array_map() with parameters in the right order
  *
  * @param array $array
