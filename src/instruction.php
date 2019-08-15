@@ -15,9 +15,9 @@ namespace Funktions;
 function condition(bool $test, callable $truthy, callable $falsy)
 {
     if ($test) {
-        return $truthy();
+        return call_user_func($truthy);
     }
-    return $falsy();
+    return call_user_func($falsy);
 }
 
 /**
