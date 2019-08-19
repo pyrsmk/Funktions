@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Funktions;
 
 use Exception;
+use Generator;
 
 /**
  * Return a value based on a test
