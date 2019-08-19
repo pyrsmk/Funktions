@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Funktions;
 
+use Exception;
+
 /**
  * Return a value based on a test
  *
@@ -33,7 +35,7 @@ function loop(iterable $iterable, callable $callable): array
     foreach ($iterable as $item) {
         $generator = call_user_func($callable, $item);
         if ($generator instanceof Generator === false) {
-            throw Exception('Callable must be a generator');
+            throw new Exception('Callable must be a generator');
         }
         $array = array_merge($array, iterator_to_array($generator));
     }
