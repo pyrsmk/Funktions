@@ -368,7 +368,7 @@ function kmin(array $array)
 }
 
 /**
- * array_map() with parameters in the right order
+ * [DEPRECATED] array_map() with parameters in the right order
  *
  * @param array $array
  * @param callable $callback
