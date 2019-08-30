@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Funktions;
 
-use Exception;
 use Generator;
+use function Funktions\ensure;
 
 /**
  * Return a value based on a test
@@ -33,11 +33,10 @@ function condition(bool $test, callable $truthy, callable $falsy)
 function loop(iterable $iterable, callable $callable): Generator
 {
     foreach ($iterable as $item) {
-        $generator = call_user_func($callable, $item);
-        if ($generator instanceof Generator === false) {
-            throw new Exception('Callable must be a generator');
-        }
-        yield from $generator;
+        yield from ensure(
+            call_user_func($callable, $item),
+            'Generator'
+        );
     }
 }
 
@@ -50,11 +49,27 @@ function loop(iterable $iterable, callable $callable): Generator
 function loop_until(callable $callable): Generator
 {
     do {
-        $generator = call_user_func($callable);
-        if ($generator instanceof Generator === false) {
-            throw Exception('Callable must be a generator');
-        }
-        yield from $generator;
+        yield from ensure(
+            $generator = call_user_func($callable),
+            'Generator'
+        );
     }
     while($generator->getReturn() === false);
+}
+
+/**
+ * Loop over a generator while a condition is met
+ *
+ * @param callable $callable
+ * @return Generator
+ */
+function loop_while(callable $callable): Generator
+{
+    do {
+        yield from ensure(
+            $generator = call_user_func($callable),
+            'Generator'
+        );
+    }
+    while($generator->getReturn() === true);
 }
