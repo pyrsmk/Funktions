@@ -28,37 +28,33 @@ function condition(bool $test, callable $truthy, callable $falsy)
  *
  * @param iterable $iterable
  * @param callable $callable
- * @return array
+ * @return Generator
  */
-function loop(iterable $iterable, callable $callable): array
+function loop(iterable $iterable, callable $callable): Generator
 {
-    $array = [];
     foreach ($iterable as $item) {
         $generator = call_user_func($callable, $item);
         if ($generator instanceof Generator === false) {
             throw new Exception('Callable must be a generator');
         }
-        $array = array_merge($array, iterator_to_array($generator));
+        yield from $generator;
     }
-    return $array;
 }
 
 /**
- * Loop in a generator until a condition is met
+ * Loop over a generator until a condition is met
  *
  * @param callable $callable
- * @return array
+ * @return Generator
  */
-function loop_until(callable $callable): array
+function loop_until(callable $callable): Generator
 {
-    $array = [];
     do {
         $generator = call_user_func($callable);
         if ($generator instanceof Generator === false) {
             throw Exception('Callable must be a generator');
         }
-        $array = array_merge($array, iterator_to_array($generator));
+        yield from $generator;
     }
-    while(!$generator->getReturn());
-    return $array;
+    while($generator->getReturn() === false);
 }
