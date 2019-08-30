@@ -20,7 +20,7 @@ use function Funktions\array_sort;
 $sorted_array = array_sort($my_array);
 ```
 
-## Arrays
+## Array
 
 - `array_diff_strict(array $array1, array $array2): array`: strict diff between two arrays by comparing the values at the same index
 - `array_drop(array $array, int $offset, int $length): array`: drop a part of an array
@@ -48,7 +48,7 @@ $sorted_array = array_sort($my_array);
 - `map(array $array, callable $callback): array`: `array_map()` with parameters in the right order
 - `seek(array &$array, int|string $key): void`: move the array pointer (mutable)
 
-## Colors
+## Color
 
 - `rgb2hsl(int $r, int $g, int $b): array`: convert RGB to HSL color
 - `hsl2rgb(int $h, int $s, int $l): array`: convert HSL to RGB color
@@ -57,21 +57,32 @@ $sorted_array = array_sort($my_array);
 - `rgb2hex(int $r, int $g, int $b): string`: convert RGB to HTML color
 - `hex2rgb(string $hex): array`: convert HTML to RGB color
 
-## Numbers
+## Instruction
+
+- `condition(bool $test, callable $truthy, callable $falsy)`: return a value based on a test
+- `loop(iterable $iterable, callable $callable): array`: loop over items and pass them to a generator
+- `loop_until(callable $callable): array`: loop in a generator until a returned condition a condition is met
+
+## Number
 
 - `is_even(int $value): bool`: verify if the value is even
 - `is_odd(int $value): bool`: verify if the value is odd
 - `above(float $value, float $min): float`: bound a number to a minimum value
 - `under(float $value, float $max): float`: bound a number to a maximum value
 
-## Regexes
+## Output
+
+- `capture(callable $callable)`: capture output on a callable execution
+- `mute(callable $callable)`: mute output on a callable execution
+
+## Regex
 
 - `regex_count(string $pattern, string $text, int $flags = 0): int`: count the number of matches for a regex in a string
 - `regex_match(string $pattern, string $text, int $flags = 0): array`: return the matches of a regex, for the first match
 - `regex_match_all(string $pattern, string $text, int $flags = 0): array`: return all the matches of a regex
 - `regex_test(string $pattern, string $text, int $flags = 0): bool`: test if a regex matches against a string
 
-## Strings
+## String
 
 - `mb_to_camelcase(string $string): string`: converts a string to camel case
 - `mb_ucwords(string $string, ?string $encoding = null): string`: capitalize all words in a string
@@ -89,6 +100,10 @@ $sorted_array = array_sort($my_array);
 - `lessdir(string $dir): array`: like `scandir()` but without `.` and `..`
 - `mimetype(string $path): string`: get a file's mime type with several mecanism support
 - `rrmdir(string $path): void`: remove a directory recursively
+
+## Various
+
+- `clean(callable $callable)`: collect garbage after callable execution
 
 ## License
 

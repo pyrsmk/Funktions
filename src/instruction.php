@@ -44,7 +44,7 @@ function loop(iterable $iterable, callable $callable): array
 }
 
 /**
- * Loop in a generator until a returned condition
+ * Loop in a generator until a condition is met
  *
  * @param callable $callable
  * @return array
