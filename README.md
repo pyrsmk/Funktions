@@ -65,7 +65,8 @@ Some useful aliases :
 
 - `condition(bool $test, callable $truthy, callable $falsy)`: return a value based on a test
 - `loop(iterable $iterable, callable $callable): array`: loop over items and pass them to a generator
-- `loop_until(callable $callable): array`: loop in a generator until a returned condition a condition is met
+- `loop_until(callable $callable): array`: loop in a generator until a condition is met
+- `loop_while(callable $callable): Generator`: loop over a generator while a condition is met
 
 ## Number
 
