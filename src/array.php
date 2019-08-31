@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Funktions;
 
 use Generator;
-use Exception;
+use TypeError;
+use Funktions\Exception\KeyNotFoundException;
 
 /**
  * Strict diff between two arrays by comparing the values at the same index
@@ -17,7 +18,7 @@ use Exception;
 function array_diff_strict(array $array1, array $array2): array
 {
     if (count($array1) !== count($array2)) {
-        throw new Exception('Arrays must be of the same length');
+        throw new TypeError('Arrays must be of the same length');
     }
     return array_kvreduce(
         $array1,
@@ -82,7 +83,7 @@ function array_fill_multi(int $dimensions, int $size, $value): array
 function array_intersect_strict(array $array1, array $array2): array
 {
     if (count($array1) !== count($array2)) {
-        throw new Exception('Arrays must be of the same length');
+        throw new TypeError('Arrays must be of the same length');
     }
     return array_kvreduce(
         $array1,
@@ -403,7 +404,7 @@ function seek(array &$array, $key): void
     reset($array);
     while(key($array) !== $key) {
         if (next($array) === false) {
-            throw new Exception("'$key' key not found");
+            throw new KeyNotFoundException("'$key' key not found");
         }
     }
 }

@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Funktions;
 
-use Exception;
+use Funktions\Exception\UnexpectedErrorException;
+use Funktions\Exception\InvalidFileException;
 
 /**
  * Formatted variable dumping function with variable passthrough
@@ -98,7 +99,7 @@ function human_filesize(string $path): string
             return round($bytes / pow(1024, $i), 2) . ' ' . $units[$i];
         }
     }
-    throw new Exception("Unable to translate filesize for '$path'");
+    throw new UnexpectedErrorException("Unable to translate filesize for '$path'");
 }
 
 /**
@@ -135,16 +136,16 @@ function mimetype(string $path): string
         curl_close($request);
     } else {
         if (!is_file($path)) {
-            throw new Exception("'$path' is not a file");
+            throw new InvalidFileException("'$path' is not a file");
         }
         if (!is_readable($path)) {
-            throw new Exception("'$path' is not readable");
+            throw new InvalidFileException("'$path' is not readable");
         }
         $finfo = finfo_open(FILEINFO_MIME);
         $type = finfo_file($finfo,$path);
         finfo_close($finfo);
         if (empty($type)) {
-            throw new Exception("Cannot retrieve mime type with fileinfo extension");
+            throw new UnexpectedErrorException("Cannot retrieve mime type with fileinfo extension");
         }
     }
     if (!$type) {
