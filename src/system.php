@@ -27,17 +27,6 @@ function dump($var)
 }
 
 /**
- * [DEPRECATED] Formatted variable dumping function with variable passthrough
- *
- * @param mixed $var
- * @return mixed
- */
-function debug($var)
-{
-    return dump($var);
-}
-
-/**
  * Get human-readable permissions
  *
  * @param string $path
