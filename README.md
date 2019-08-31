@@ -45,8 +45,12 @@ $sorted_array = array_sort($my_array);
 - `glue(array $array): string`: glue array elements
 - `kmax(array $array)`: return the key of the maximum value
 - `kmin(array $array)`: return the key of the minimum value
-- `map(array $array, callable $callback): array`: `array_map()` with parameters in the right order
 - `seek(array &$array, int|string $key): void`: move the array pointer (mutable)
+
+Some useful aliases :
+
+- `map(array $array, callable $callback): array`: alias to `array_kvmap()`
+- `reduce(array $array, callable $callback): array`: alias to `array_kvreduce()`
 
 ## Color
 

@@ -99,33 +99,57 @@ function array_intersect_strict(array $array1, array $array2): array
  * array_map with key/value support
  *
  * @param array $array
+ * @param callable $callable
+ * @return array
+ */
+function array_kvmap(array $array, callable $callable): array
+{
+    return array_map($callable, array_keys($array), $array);
+}
+
+/**
+ * Alias to array_kvmap()
+ *
+ * @param array $array
  * @param callable $callback
  * @return array
  */
-function array_kvmap(array $array, callable $callback): array
+function map(array $array, callable $callable): array
 {
-    return array_map($callback, array_keys($array), $array);
+    return array_kvmap($array, $callable);
 }
 
 /**
  * array_reduce with key/value support
  *
  * @param array $array
- * @param callable $callback
+ * @param callable $callable
  * @param mixed $initial
  * @return mixed
  */
-function array_kvreduce(array $array, callable $callback, $initial = null)
+function array_kvreduce(array $array, callable $callable, $initial = null)
 {
     $carry = $initial;
     foreach ($array as $key => $value) {
-        $carry = call_user_func_array($callback, [
+        $carry = call_user_func_array($callable, [
             $carry,
             $key,
             $value
         ]);
     }
     return $carry;
+}
+
+/**
+ * Alias to array_kvreduce()
+ *
+ * @param array $array
+ * @param callable $callback
+ * @return array
+ */
+function reduce(array $array, callable $callable): array
+{
+    return array_kvreduce($array, $callable);
 }
 
 /**
@@ -368,19 +392,7 @@ function kmin(array $array)
 }
 
 /**
- * [DEPRECATED] array_map() with parameters in the right order
- *
- * @param array $array
- * @param callable $callback
- * @return array
- */
-function map(array $array, callable $callable): array
-{
-    return array_map($callable, $array);
-}
-
-/**
- * Move the array pointer
+ * Move the array pointer (mutable)
  *
  * @param array $array
  * @param integer|string $key
