@@ -67,6 +67,7 @@ Some useful aliases :
 - `loop(iterable $iterable, callable $callable): array`: loop over items and pass them to a generator
 - `loop_until(callable $callable): array`: loop in a generator until a condition is met
 - `loop_while(callable $callable): Generator`: loop over a generator while a condition is met
+- `rescue(callable $callable, array $exceptions): mixed`: execute a callback and catch exceptions
 
 ## Number
 

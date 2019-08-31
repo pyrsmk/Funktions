@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Funktions;
 
+use Exception;
 use Generator;
 use function Funktions\ensure;
 
@@ -72,4 +73,25 @@ function loop_while(callable $callable): Generator
         );
     }
     while($generator->getReturn() === true);
+}
+
+/**
+ * Execute a callback and catch exceptions
+ *
+ * @param callable $callable
+ * @param array $exceptions
+ * @return mixed
+ */
+function rescue(callable $callable, array $exceptions)
+{
+    try {
+        return call_user_func($callable);
+    } catch (Exception $e) {
+        foreach ($exceptions as $type => $e_callable) {
+            if (is_a($e, $type, true)) {
+                return call_user_func($e_callable);
+            }
+        }
+        throw $e;
+    }
 }
