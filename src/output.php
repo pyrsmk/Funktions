@@ -10,7 +10,7 @@ namespace Funktions;
  * @param callable $callable
  * @return string
  */
-function capture(callable $callable)
+function capture(callable $callable): string
 {
     ob_start();
     call_user_func($callable);
