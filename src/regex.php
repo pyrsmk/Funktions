@@ -37,6 +37,22 @@ function regex_match(string $pattern, string $text, int $flags = 0): array
 }
 
 /**
+ * Return the first occurrence of the first match of a regex
+ *
+ * @param string $pattern
+ * @param string $text
+ * @param integer $flags
+ * @return string
+ */
+function regex_match_first(string $pattern, string $text, int $flags = 0): string
+{
+    if (!preg_match($pattern, $text, $matches, $flags)) {
+        throw new NoMatchFoundException("'$pattern' has no match in the provided text");
+    }
+    return $matches[1];
+}
+
+/**
  * Return all the matches of a regex
  *
  * @param string $pattern

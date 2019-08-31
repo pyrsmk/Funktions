@@ -83,6 +83,7 @@ Some useful aliases :
 
 - `regex_count(string $pattern, string $text, int $flags = 0): int`: count the number of matches for a regex in a string
 - `regex_match(string $pattern, string $text, int $flags = 0): array`: return the matches of a regex, for the first match
+- `regex_match_first(string $pattern, string $text, int $flags = 0): string`: return the first occurrence of the first match of a regex
 - `regex_match_all(string $pattern, string $text, int $flags = 0): array`: return all the matches of a regex
 - `regex_test(string $pattern, string $text, int $flags = 0): bool`: test if a regex matches against a string
 
