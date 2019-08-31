@@ -43,8 +43,8 @@ $sorted_array = array_sort($my_array);
 - `array_natsort(array $array): array`: immutable `natsort()`
 - `array_natcasesort(array $array): array`: immutable `natcasesort()`
 - `glue(array $array): string`: glue array elements
-- `kmax(array $array)`: return the key of the maximum value
-- `kmin(array $array)`: return the key of the minimum value
+- `kmax(array $array): mixed`: return the key of the maximum value
+- `kmin(array $array): mixed`: return the key of the minimum value
 - `seek(array &$array, int|string $key): void`: move the array pointer (mutable)
 
 Some useful aliases :
@@ -63,7 +63,7 @@ Some useful aliases :
 
 ## Instruction
 
-- `condition(bool $test, callable $truthy, callable $falsy)`: return a value based on a test
+- `condition(bool $test, callable $truthy, callable $falsy): mixed`: return a value based on a test
 - `loop(iterable $iterable, callable $callable): array`: loop over items and pass them to a generator
 - `loop_until(callable $callable): array`: loop in a generator until a condition is met
 - `loop_while(callable $callable): Generator`: loop over a generator while a condition is met
@@ -78,8 +78,8 @@ Some useful aliases :
 
 ## Output
 
-- `capture(callable $callable)`: capture output on a callable execution
-- `mute(callable $callable)`: mute output on a callable execution
+- `capture(callable $callable): string`: capture output on a callable execution
+- `mute(callable $callable): mixed`: mute output on a callable execution
 
 ## Regex
 
