@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Funktions;
 
 use Exception;
+use function Funktions\map;
 
 /**
  * Count the number of matches for a regex in a string
@@ -16,7 +17,7 @@ use Exception;
  */
 function regex_count(string $pattern, string $text, int $flags = 0): int
 {
-    return (int) preg_match($pattern, $text, $matches, $flags);
+    return (int) preg_match($pattern, $text, null, $flags);
 }
 
 /**
@@ -32,7 +33,7 @@ function regex_match(string $pattern, string $text, int $flags = 0): array
     if (!preg_match($pattern, $text, $matches, $flags)) {
         throw new Exception("'$pattern' has no match");
     }
-    return $matches;
+    return array_slice($matches, 1);
 }
 
 /**
@@ -48,7 +49,9 @@ function regex_match_all(string $pattern, string $text, int $flags = 0): array
     if (!preg_match_all($pattern, $text, $matches, $flags)) {
         throw new Exception("'$pattern' has no match");
     }
-    return $matches;
+    return map($matches, function ($matches_line) {
+        return array_slice($matches_line, 1);
+    });
 }
 
 /**
@@ -61,5 +64,5 @@ function regex_match_all(string $pattern, string $text, int $flags = 0): array
  */
 function regex_test(string $pattern, string $text, int $flags = 0): bool
 {
-    return (bool) preg_match($pattern, $text, $matches, $flags);
+    return (bool) preg_match($pattern, $text, null, $flags);
 }
