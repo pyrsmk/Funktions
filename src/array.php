@@ -142,11 +142,12 @@ function array_kvreduce(array $array, callable $callable, $initial = null)
  *
  * @param array $array
  * @param callable $callback
+ * @param mixed $initial
  * @return array
  */
-function reduce(array $array, callable $callable): array
+function reduce(array $array, callable $callable, $initial = null): array
 {
-    return array_kvreduce($array, $callable);
+    return array_kvreduce($array, $callable, $initial);
 }
 
 /**

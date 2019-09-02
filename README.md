@@ -50,7 +50,7 @@ $sorted_array = array_sort($my_array);
 Some useful aliases :
 
 - `map(array $array, callable $callback): array`: alias to `array_kvmap()`
-- `reduce(array $array, callable $callback): array`: alias to `array_kvreduce()`
+- `reduce(array $array, callable $callback, $initial = null): array`: alias to `array_kvreduce()`
 
 ## Color
 
