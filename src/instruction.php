@@ -33,9 +33,9 @@ function condition(bool $test, callable $truthy, callable $falsy)
  */
 function loop(iterable $iterable, callable $callable): Generator
 {
-    foreach ($iterable as $item) {
+    foreach ($iterable as $key => $item) {
         $generator = ensure(
-            call_user_func($callable, $item),
+            call_user_func($callable, $item, $key),
             'Generator'
         );
         foreach ($generator as $value) {
