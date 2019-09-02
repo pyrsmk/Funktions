@@ -105,7 +105,7 @@ function array_intersect_strict(array $array1, array $array2): array
  */
 function array_kvmap(array $array, callable $callable): array
 {
-    return array_map($callable, array_keys($array), $array);
+    return array_map($callable, $array, array_keys($array));
 }
 
 /**
@@ -132,11 +132,7 @@ function array_kvreduce(array $array, callable $callable, $initial = null)
 {
     $carry = $initial;
     foreach ($array as $key => $value) {
-        $carry = call_user_func_array($callable, [
-            $carry,
-            $key,
-            $value
-        ]);
+        $carry = call_user_func($callable, $carry, $value, $key);
     }
     return $carry;
 }
