@@ -45,6 +45,23 @@ function loop(iterable $iterable, callable $callable): Generator
 }
 
 /**
+ * Loop over items and pass them to a generator with key preservation
+ *
+ * @param iterable $iterable
+ * @param callable $callable
+ * @return Generator
+ */
+function loop_with_keys(iterable $iterable, callable $callable): Generator
+{
+    foreach ($iterable as $key => $item) {
+        yield from ensure(
+            call_user_func($callable, $item, $key),
+            'Generator'
+        );
+    }
+}
+
+/**
  * Loop over a generator until a condition is met
  *
  * @param callable $callable
