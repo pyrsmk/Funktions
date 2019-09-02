@@ -18,7 +18,7 @@ function clean(callable $callable)
 }
 
 /**
- * Validate a value and return it
+ * Validate a value's type
  *
  * @param mixed $value
  * @param string $type

@@ -64,8 +64,9 @@ Some useful aliases :
 ## Instruction
 
 - `condition(bool $test, callable $truthy, callable $falsy): mixed`: return a value based on a test
-- `loop(iterable $iterable, callable $callable): array`: loop over items and pass them to a generator
-- `loop_until(callable $callable): array`: loop in a generator until a condition is met
+- `loop(iterable $iterable, callable $callable): Generator`: loop over items and pass them to a generator
+- `loop_with_keys(iterable $iterable, callable $callable): Generator`: loop over items and pass them to a generator with key preservation
+- `loop_until(callable $callable): Generator`: loop in a generator until a condition is met
 - `loop_while(callable $callable): Generator`: loop over a generator while a condition is met
 - `rescue(callable $callable, array $exceptions): mixed`: execute a callback and catch exceptions
 
@@ -110,7 +111,8 @@ Some useful aliases :
 
 ## Various
 
-- `clean(callable $callable)`: collect garbage after callable execution
+- `clean(callable $callable): mixed`: collect garbage after callable execution
+- `ensure(mixed $value, string $type): mixed`: validate a value's type
 
 ## License
 
