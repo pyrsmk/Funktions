@@ -34,10 +34,13 @@ function condition(bool $test, callable $truthy, callable $falsy)
 function loop(iterable $iterable, callable $callable): Generator
 {
     foreach ($iterable as $item) {
-        yield from ensure(
+        $generator = ensure(
             call_user_func($callable, $item),
             'Generator'
         );
+        foreach ($generator as $value) {
+            yield $value;
+        }
     }
 }
 
@@ -50,10 +53,13 @@ function loop(iterable $iterable, callable $callable): Generator
 function loop_until(callable $callable): Generator
 {
     do {
-        yield from ensure(
-            $generator = call_user_func($callable),
+        $generator = ensure(
+            call_user_func($callable),
             'Generator'
         );
+        foreach ($generator as $value) {
+            yield $value;
+        }
     }
     while($generator->getReturn() === false);
 }
@@ -67,10 +73,13 @@ function loop_until(callable $callable): Generator
 function loop_while(callable $callable): Generator
 {
     do {
-        yield from ensure(
-            $generator = call_user_func($callable),
+        $generator = ensure(
+            call_user_func($callable),
             'Generator'
         );
+        foreach ($generator as $value) {
+            yield $value;
+        }
     }
     while($generator->getReturn() === true);
 }
