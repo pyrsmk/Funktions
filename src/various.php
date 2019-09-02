@@ -27,8 +27,17 @@ function clean(callable $callable)
 function ensure($value, string $type)
 {
     if (ucfirst($type) === $type && gettype($value) === 'object') {
-        return is_a($value, $type, true);
+        if (is_a($value, $type, true) === false) {
+            throw new InvalidValueTypeException(
+                sprintf("'%s' class descendent expected, '%s' met", $type, get_class($value))
+            );
+        }
     } else {
-        return gettype($value) === $type;
+        if (gettype($value) !== $type) {
+            throw new InvalidValueTypeException(
+                sprintf("'%s' type expected, '%s' met", $type, gettype($value))
+            );
+        }
     }
+    return $value;
 }
