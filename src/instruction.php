@@ -27,7 +27,7 @@ function loop(iterable $iterable, callable $callable): Generator
     foreach ($iterable as $key => $item) {
         $generator = ensure_type(
             call_user_func($callable, $item, $key),
-            'Generator'
+            Generator::class
         );
         foreach ($generator as $value) {
             yield $value;
@@ -43,7 +43,7 @@ function loop_with_keys(iterable $iterable, callable $callable): Generator
     foreach ($iterable as $key => $item) {
         yield from ensure_type(
             call_user_func($callable, $item, $key),
-            'Generator'
+            Generator::class
         );
     }
 }
@@ -56,7 +56,7 @@ function loop_until(callable $callable): Generator
     do {
         $generator = ensure_type(
             call_user_func($callable),
-            'Generator'
+            Generator::class
         );
         foreach ($generator as $value) {
             yield $value;
@@ -73,7 +73,7 @@ function loop_while(callable $callable): Generator
     do {
         $generator = ensure_type(
             call_user_func($callable),
-            'Generator'
+            Generator::class
         );
         foreach ($generator as $value) {
             yield $value;
