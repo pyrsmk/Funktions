@@ -27,12 +27,12 @@
             "src/array.php",
             "src/color.php",
             "src/instruction.php",
+            "src/miscellaneous.php",
             "src/number.php",
             "src/output.php",
             "src/regex.php",
             "src/string.php",
-            "src/system.php",
-            "src/various.php"
+            "src/system.php"
         ]
     }
 }

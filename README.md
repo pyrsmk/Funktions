@@ -70,6 +70,11 @@ Some useful aliases :
 - `loop_while(callable $callable): Generator`: loop over a generator while a condition is met
 - `rescue(callable $callable, array $exceptions): mixed`: execute a callback and catch exceptions
 
+## Miscellaneous
+
+- `clean(callable $callable): mixed`: collect garbage after callable execution
+- `ensure(mixed $value, string $type): mixed`: validate a value's type
+
 ## Number
 
 - `is_even(int $value): bool`: verify if the value is even
@@ -108,11 +113,6 @@ Some useful aliases :
 - `lessdir(string $dir): array`: like `scandir()` but without `.` and `..`
 - `mimetype(string $path): string`: get a file's mime type with several mecanism support
 - `rrmdir(string $path): void`: remove a directory recursively
-
-## Various
-
-- `clean(callable $callable): mixed`: collect garbage after callable execution
-- `ensure(mixed $value, string $type): mixed`: validate a value's type
 
 ## License
 
