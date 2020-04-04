@@ -146,9 +146,7 @@ function array_merge_recursive_unique(array ...$arrays): array
  */
 function array_to_generator(array $items): Generator
 {
-    foreach ($items as $key => $item) {
-        yield $key => $item;
-    }
+    yield from $items;
 }
 
 /**
