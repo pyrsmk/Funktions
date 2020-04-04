@@ -5,10 +5,7 @@ declare(strict_types=1);
 namespace Funktions\StringFuncs;
 
 /**
- * Converts a string to camel case
- *
- * @param string $string
- * @return string
+ * Converts a string to camelcase (multibyte support)
  */
 function mb_to_camelcase(string $string): string
 {
@@ -16,11 +13,7 @@ function mb_to_camelcase(string $string): string
 }
 
 /**
- * Capitalize all words in a string
- *
- * @param string $string
- * @param string $encoding
- * @return string
+ * Capitalize all words in a string (multibyte support)
  */
 function mb_ucwords(string $string, ?string $encoding = null): string
 {
@@ -32,11 +25,7 @@ function mb_ucwords(string $string, ?string $encoding = null): string
 }
 
 /**
- * Capitalize a string
- *
- * @param string $string
- * @param string $encoding
- * @return string
+ * Capitalize a string (multibyte support)
  */
 function mb_ucfirst(string $string, ?string $encoding = null): string
 {
@@ -49,11 +38,7 @@ function mb_ucfirst(string $string, ?string $encoding = null): string
 }
 
 /**
- * Uncapitalize a string
- *
- * @param string $string
- * @param string $encoding
- * @return string
+ * Uncapitalize a string (multibyte support)
  */
 function mb_lcfirst($string, ?string $encoding = null): string
 {
@@ -66,12 +51,7 @@ function mb_lcfirst($string, ?string $encoding = null): string
 }
 
 /**
-* Truncate a string
-*
-* @param string $string
-* @param int $length
-* @param string $remainder
-* @return string
+* Truncate a string (multibyte support)
 */
 function mb_truncate(string $string, int $length, ?string $encoding = null): string
 {
