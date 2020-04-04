@@ -24,7 +24,7 @@ function mem_cleaned(callable $callable)
  * @param string $type
  * @return mixed
  */
-function ensure($value, string $type)
+function ensure_type($value, string $type)
 {
     if (ucfirst($type) === $type && gettype($value) === 'object') {
         if (is_a($value, $type, true) === false) {

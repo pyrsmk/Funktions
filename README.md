@@ -73,6 +73,7 @@ Some useful aliases :
 ## `Funktions\MiscellaneousFuncs`
 
 - `mem_cleaned(callable $callable): mixed`: collect garbage after callable execution
+- `ensure_type(mixed $value, string $type): mixed`: validate a value's type
 
 ## `Funktions\NumberFuncs`
 

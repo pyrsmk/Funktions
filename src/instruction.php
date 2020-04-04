@@ -6,7 +6,7 @@ namespace Funktions\InstructionFuncs;
 
 use Exception;
 use Generator;
-use function Funktions\ensure;
+use function Funktions\MiscellaneousFuncs\ensure_type;
 
 /**
  * Return a value based on a test
@@ -34,7 +34,7 @@ function condition(bool $test, callable $truthy, callable $falsy)
 function loop(iterable $iterable, callable $callable): Generator
 {
     foreach ($iterable as $key => $item) {
-        $generator = ensure(
+        $generator = ensure_type(
             call_user_func($callable, $item, $key),
             'Generator'
         );
@@ -54,7 +54,7 @@ function loop(iterable $iterable, callable $callable): Generator
 function loop_with_keys(iterable $iterable, callable $callable): Generator
 {
     foreach ($iterable as $key => $item) {
-        yield from ensure(
+        yield from ensure_type(
             call_user_func($callable, $item, $key),
             'Generator'
         );
@@ -70,7 +70,7 @@ function loop_with_keys(iterable $iterable, callable $callable): Generator
 function loop_until(callable $callable): Generator
 {
     do {
-        $generator = ensure(
+        $generator = ensure_type(
             call_user_func($callable),
             'Generator'
         );
@@ -90,7 +90,7 @@ function loop_until(callable $callable): Generator
 function loop_while(callable $callable): Generator
 {
     do {
-        $generator = ensure(
+        $generator = ensure_type(
             call_user_func($callable),
             'Generator'
         );
