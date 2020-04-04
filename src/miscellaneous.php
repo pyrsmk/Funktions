@@ -10,7 +10,7 @@ namespace Funktions\MiscellaneousFuncs;
  * @param callable $callable
  * @return mixed
  */
-function clean(callable $callable)
+function mem_cleaned(callable $callable)
 {
     $value = call_user_func($callable);
     gc_collect_cycles();
