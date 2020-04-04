@@ -52,7 +52,7 @@ function rgb2hsl(int $r, int $g, int $b): array
 /**
  * Convert HSL to RGB color
  */
-function hsl2rgb(int $h, int $s, int $l): array
+function hsl2rgb (int $h, int $s, int $l): array
 {
     // Format
     if($h < 0)      $h = 0;
@@ -110,7 +110,7 @@ function hsl2rgb(int $h, int $s, int $l): array
 /**
  * Convert RGB to HSV color
  */
-function rgb2hsv(int $r, int $g, int $b): array
+function rgb2hsv (int $r, int $g, int $b): array
 {
     // Format
     if ($r < 0)     $r = 0;
@@ -151,7 +151,7 @@ function rgb2hsv(int $r, int $g, int $b): array
 /**
  * Convert HSV to RGB color
  */
-function hsv2rgb(int $h, int $s, int $v): array
+function hsv2rgb (int $h, int $s, int $v): array
 {
     // Format
     if ($h < 0 || $h >= 360)    $h = 0;
@@ -207,7 +207,7 @@ function hsv2rgb(int $h, int $s, int $v): array
 /**
  * Convert RGB to HTML color
  */
-function rgb2hex(int $r, int $g, int $b): string
+function rgb2hex (int $r, int $g, int $b): string
 {
     // Format
     if ($r < 0)     $r = 0;
@@ -225,7 +225,7 @@ function rgb2hex(int $r, int $g, int $b): string
 /**
  * Convert HTML to RGB color
  */
-function hex2rgb(string $hex): array
+function hex2rgb (string $hex): array
 {
     // Format
     $hex = ltrim($hex, '#');

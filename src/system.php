@@ -10,7 +10,7 @@ use Funktions\Exception\InvalidFileException;
 /**
  * Formatted variable dumping function with variable passthrough
  */
-function dump($var)
+function dump ($var)
 {
     $output = var_export($var, true);
     if (php_sapi_name() === 'cli') {
@@ -26,7 +26,7 @@ function dump($var)
 /**
  * Get human-readable permissions
  */
-function human_fileperms(string $path): string
+function human_fileperms (string $path): string
 {
     $perms = fileperms($path);
     // Socket
@@ -70,7 +70,7 @@ function human_fileperms(string $path): string
 /**
  * Get human-readable file size
  */
-function human_filesize(string $path): string
+function human_filesize (string $path): string
 {
     $bytes = filesize($path);
     $units = ['b', 'Kb', 'Mb', 'Gb', 'Tb', 'Eb'];
@@ -85,7 +85,7 @@ function human_filesize(string $path): string
 /**
  * Scan a directory without '.' and '..'
  */
-function lessdir(string $dir): array
+function lessdir (string $dir): array
 {
     if (file_exists($dir) === false) {
         return [];
@@ -97,7 +97,7 @@ function lessdir(string $dir): array
 /**
  * Get a file's mime type
  */
-function mimetype(string $path): string
+function mimetype (string $path): string
 {
     if (filter_var($path, FILTER_VALIDATE_URL)) {
         $request = curl_init($path);
@@ -133,7 +133,7 @@ function mimetype(string $path): string
 /**
  * Remove a directory recursively
  */
-function rrmdir(string $path): void
+function rrmdir (string $path): void
 {
     if ($path[strlen($path) - 1] == '/') {
         $path = substr($path, 0, -1);

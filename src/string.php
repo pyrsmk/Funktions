@@ -7,7 +7,7 @@ namespace Funktions\StringFuncs;
 /**
  * Converts a string to camel case
  */
-function mb_to_camelcase(string $string): string
+function mb_to_camelcase (string $string): string
 {
     return mb_ereg_replace('-', '', ucwords($string, '-'));
 }
@@ -15,7 +15,7 @@ function mb_to_camelcase(string $string): string
 /**
  * Capitalize all words in a string
  */
-function mb_ucwords(string $string, ?string $encoding = null): string
+function mb_ucwords (string $string, ?string $encoding = null): string
 {
     return mb_convert_case(
         $string,
@@ -27,7 +27,7 @@ function mb_ucwords(string $string, ?string $encoding = null): string
 /**
  * Capitalize a string
  */
-function mb_ucfirst(string $string, ?string $encoding = null): string
+function mb_ucfirst (string $string, ?string $encoding = null): string
 {
     $encoding = $encoding ?? mb_internal_encoding();
     $first = mb_strtoupper(
@@ -40,7 +40,7 @@ function mb_ucfirst(string $string, ?string $encoding = null): string
 /**
  * Uncapitalize a string
  */
-function mb_lcfirst($string, ?string $encoding = null): string
+function mb_lcfirst ($string, ?string $encoding = null): string
 {
     $encoding = $encoding ?? mb_internal_encoding();
     $first = mb_strtolower(
@@ -53,7 +53,7 @@ function mb_lcfirst($string, ?string $encoding = null): string
 /**
 * Truncate a string
 */
-function mb_truncate(string $string, int $length, ?string $encoding = null): string
+function mb_truncate (string $string, int $length, ?string $encoding = null): string
 {
    if (mb_strlen($string) <= $length) {
        return $string;
@@ -72,7 +72,7 @@ function mb_truncate(string $string, int $length, ?string $encoding = null): str
  * Generate a random hash
  * @see https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
  */
-function random_hash(int $length = 5): string
+function random_hash (int $length = 5): string
 {
     return bin2hex(random_bytes($length));
 }
@@ -81,7 +81,7 @@ function random_hash(int $length = 5): string
  * Generate a random v4 UUID
  * @see https://php.net/manual/en/function.uniqid.php#94959
  */
-function uuid4(): string
+function uuid4 (): string
 {
     return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
         // 32 bits for "time_low"

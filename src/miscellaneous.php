@@ -9,7 +9,7 @@ use Funktions\Exception\InvalidValueTypeException;
 /**
  * Collect garbage after callable execution
  */
-function mem_cleaned(callable $callable)
+function mem_cleaned (callable $callable)
 {
     $value = call_user_func($callable);
     gc_collect_cycles();
@@ -19,7 +19,7 @@ function mem_cleaned(callable $callable)
 /**
  * Validate a value's type
  */
-function ensure_type($value, string $type)
+function ensure_type ($value, string $type)
 {
     if (ucfirst($type) === $type && gettype($value) === 'object') {
         if (is_a($value, $type, true) === false) {

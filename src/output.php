@@ -7,7 +7,7 @@ namespace Funktions\OutputFuncs;
 /**
  * Capture output on a callable execution
  */
-function capture(callable $callable): string
+function capture (callable $callable): string
 {
     ob_start();
     call_user_func($callable);
@@ -17,7 +17,7 @@ function capture(callable $callable): string
 /**
  * Mute output on a callable execution
  */
-function mute(callable $callable)
+function mute (callable $callable)
 {
     ob_start();
     $value = call_user_func($callable);
