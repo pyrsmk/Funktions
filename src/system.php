@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Funktions;
+namespace Funktions\SystemFuncs;
 
 use Funktions\Exception\UnexpectedErrorException;
 use Funktions\Exception\InvalidFileException;

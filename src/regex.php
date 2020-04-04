@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Funktions;
+namespace Funktions\RegexFuncs;
 
 use Funktions\Exception\NoMatchFoundException;
-use function Funktions\map;
+use function Funktions\ArrayFuncs\map;
 
 /**
  * Count the number of matches for a regex in a string

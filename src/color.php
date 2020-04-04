@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Funktions;
+namespace Funktions\ColorFuncs;
 
 /**
  * Convert RGB to HSL color

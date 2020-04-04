@@ -12,15 +12,15 @@ composer require pyrsmk/funktions
 
 ## Use
 
-To avoid collisions, the functions are namespaced:
+To avoid collisions, the functions are all namespaced:
 
 ```php
-use function Funktions\array_sort;
+use function Funktions\ArrayFuncs\array_sort;
 
 $sorted_array = array_sort($my_array);
 ```
 
-## Array
+## `Funktions\ArrayFuncs`
 
 - `array_diff_strict(array $array1, array $array2): array`: strict diff between two arrays by comparing the values at the same index
 - `array_drop(array $array, int $offset, int $length): array`: drop a part of an array
@@ -52,7 +52,7 @@ Some useful aliases :
 - `map(array $array, callable $callback): array`: alias to `array_kvmap()`
 - `reduce(array $array, callable $callback, $initial = null): array`: alias to `array_kvreduce()`
 
-## Color
+## `Funktions\ColorFuncs`
 
 - `rgb2hsl(int $r, int $g, int $b): array`: convert RGB to HSL color
 - `hsl2rgb(int $h, int $s, int $l): array`: convert HSL to RGB color
@@ -61,7 +61,7 @@ Some useful aliases :
 - `rgb2hex(int $r, int $g, int $b): string`: convert RGB to HTML color
 - `hex2rgb(string $hex): array`: convert HTML to RGB color
 
-## Instruction
+## `Funktions\InstructionFuncs`
 
 - `condition(bool $test, callable $truthy, callable $falsy): mixed`: return a value based on a test
 - `loop(iterable $iterable, callable $callable): Generator`: loop over items and pass them to a generator
@@ -70,24 +70,24 @@ Some useful aliases :
 - `loop_while(callable $callable): Generator`: loop over a generator while a condition is met
 - `rescue(callable $callable, array $exceptions): mixed`: execute a callback and catch exceptions
 
-## Miscellaneous
+## `Funktions\MiscellaneousFuncs`
 
 - `clean(callable $callable): mixed`: collect garbage after callable execution
 - `ensure(mixed $value, string $type): mixed`: validate a value's type
 
-## Number
+## `Funktions\NumberFuncs`
 
 - `is_even(int $value): bool`: verify if the value is even
 - `is_odd(int $value): bool`: verify if the value is odd
 - `above(float $value, float $min): float`: bound a number to a minimum value
 - `under(float $value, float $max): float`: bound a number to a maximum value
 
-## Output
+## `Funktions\OutputFuncs`
 
 - `capture(callable $callable): string`: capture output on a callable execution
 - `mute(callable $callable): mixed`: mute output on a callable execution
 
-## Regex
+## `Funktions\RegexFuncs`
 
 - `regex_count(string $pattern, string $text, int $flags = 0): int`: count the number of matches for a regex in a string
 - `regex_match(string $pattern, string $text, int $flags = 0): array`: return the matches of a regex, for the first match
@@ -95,7 +95,7 @@ Some useful aliases :
 - `regex_match_all(string $pattern, string $text, int $flags = 0): array`: return all the matches of a regex
 - `regex_test(string $pattern, string $text, int $flags = 0): bool`: test if a regex matches against a string
 
-## String
+## `Funktions\StringFuncs`
 
 - `mb_to_camelcase(string $string): string`: converts a string to camel case
 - `mb_ucwords(string $string, ?string $encoding = null): string`: capitalize all words in a string
@@ -105,7 +105,7 @@ Some useful aliases :
 - `random_hash(int $length = 5): string`: generate a random hash
 - `uuid4(): string`: generate a random v4 UUID
 
-## System
+## `Funktions\SystemFuncs`
 
 - `dump(mixed $var): mixed` : formatted variable dumping function with variable passthrough
 - `human_fileperms(string $path): string`: get human-readable permissions
