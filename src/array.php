@@ -27,7 +27,8 @@ function array_diff_strict(array $array1, array $array2): array
                 ];
             }
             return $diff;
-        }, []
+        },
+        []
     );
 }
 
@@ -74,7 +75,8 @@ function array_intersect_strict(array $array1, array $array2): array
                 $diff[] = $value;
             }
             return $diff;
-        }, []
+        },
+        []
     );
 }
 
@@ -109,7 +111,7 @@ function array_kvreduce(array $array, callable $callable, $initial = null)
 /**
  * Alias to array_kvreduce()
  */
-function reduce(array $array, callable $callable, $initial = null): array
+function reduce(array $array, callable $callable, $initial = null)
 {
     return array_kvreduce($array, $callable, $initial);
 }
