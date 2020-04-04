@@ -13,10 +13,7 @@ use function Funktions\MiscellaneousFuncs\ensure_type;
  */
 function condition(bool $test, callable $truthy, callable $falsy)
 {
-    if ($test) {
-        return call_user_func($truthy);
-    }
-    return call_user_func($falsy);
+    return call_user_func($test ? $truthy : $falsy);
 }
 
 /**
