@@ -6,9 +6,6 @@ namespace Funktions\OutputFuncs;
 
 /**
  * Capture output on a callable execution
- *
- * @param callable $callable
- * @return string
  */
 function capture(callable $callable): string
 {
@@ -19,9 +16,6 @@ function capture(callable $callable): string
 
 /**
  * Mute output on a callable execution
- *
- * @param callable $callable
- * @return mixed
  */
 function mute(callable $callable)
 {

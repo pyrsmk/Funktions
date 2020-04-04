@@ -8,9 +8,6 @@ use Funktions\Exception\InvalidValueTypeException;
 
 /**
  * Collect garbage after callable execution
- *
- * @param callable $callable
- * @return mixed
  */
 function mem_cleaned(callable $callable)
 {
@@ -21,10 +18,6 @@ function mem_cleaned(callable $callable)
 
 /**
  * Validate a value's type
- *
- * @param mixed $value
- * @param string $type
- * @return mixed
  */
 function ensure_type($value, string $type)
 {

@@ -10,10 +10,6 @@ use Funktions\Exception\KeyNotFoundException;
 
 /**
  * Strict diff between two arrays by comparing the values at the same index
- *
- * @param array $array1
- * @param array $array2
- * @return array
  */
 function array_diff_strict(array $array1, array $array2): array
 {
@@ -37,11 +33,6 @@ function array_diff_strict(array $array1, array $array2): array
 
 /**
  * Drop a part of an array
- *
- * @param array $array
- * @param integer $offset
- * @param integer $length
- * @return array
  */
 function array_drop(array $array, int $offset, int $length): array
 {
@@ -51,11 +42,6 @@ function array_drop(array $array, int $offset, int $length): array
 
 /**
  * Initialize multi-dimensional arrays
- *
- * @param integer $dimensions
- * @param integer $size
- * @param mixed $value
- * @return array
  */
 function array_fill_multi(int $dimensions, int $size, $value): array
 {
@@ -75,10 +61,6 @@ function array_fill_multi(int $dimensions, int $size, $value): array
 
 /**
  * Strict insersection between two arrays by comparing the values at the same index
- *
- * @param array $array1
- * @param array $array2
- * @return array
  */
 function array_intersect_strict(array $array1, array $array2): array
 {
@@ -98,10 +80,6 @@ function array_intersect_strict(array $array1, array $array2): array
 
 /**
  * array_map with key/value support
- *
- * @param array $array
- * @param callable $callable
- * @return array
  */
 function array_kvmap(array $array, callable $callable): array
 {
@@ -110,10 +88,6 @@ function array_kvmap(array $array, callable $callable): array
 
 /**
  * Alias to array_kvmap()
- *
- * @param array $array
- * @param callable $callback
- * @return array
  */
 function map(array $array, callable $callable): array
 {
@@ -122,11 +96,6 @@ function map(array $array, callable $callable): array
 
 /**
  * array_reduce with key/value support
- *
- * @param array $array
- * @param callable $callable
- * @param mixed $initial
- * @return mixed
  */
 function array_kvreduce(array $array, callable $callable, $initial = null)
 {
@@ -139,11 +108,6 @@ function array_kvreduce(array $array, callable $callable, $initial = null)
 
 /**
  * Alias to array_kvreduce()
- *
- * @param array $array
- * @param callable $callback
- * @param mixed $initial
- * @return array
  */
 function reduce(array $array, callable $callable, $initial = null): array
 {
@@ -152,9 +116,6 @@ function reduce(array $array, callable $callable, $initial = null): array
 
 /**
  * Merge arrays recursively
- *
- * @param array ...$arrays
- * @return array
  */
 function array_merge_recursive_unique(array ...$arrays): array
 {
@@ -180,9 +141,6 @@ function array_merge_recursive_unique(array ...$arrays): array
 
 /**
  * Convert an array to a generator
- *
- * @param array $items
- * @return Generator
  */
 function array_to_generator(array $items): Generator
 {
@@ -193,12 +151,6 @@ function array_to_generator(array $items): Generator
 
 /**
  * Improved array_splice() with full string keys support when replacing
- *
- * @param array $array
- * @param integer $offset
- * @param integer $length
- * @param array $replacement
- * @return array
  */
 function array_substitute(array $array, int $offset, int $length, array $replacement): array
 {
@@ -211,10 +163,6 @@ function array_substitute(array $array, int $offset, int $length, array $replace
 
 /**
  * Immutable sort()
- *
- * @param array $array
- * @param integer $flags
- * @return array
  */
 function array_sort(array $array, int $flags = SORT_REGULAR): array
 {
@@ -224,10 +172,6 @@ function array_sort(array $array, int $flags = SORT_REGULAR): array
 
 /**
  * Immutable asort()
- *
- * @param array $array
- * @param integer $flags
- * @return array
  */
 function array_asort(array $array, int $flags = SORT_REGULAR): array
 {
@@ -237,10 +181,6 @@ function array_asort(array $array, int $flags = SORT_REGULAR): array
 
 /**
  * Immutable arsort()
- *
- * @param array $array
- * @param integer $flags
- * @return array
  */
 function array_arsort(array $array, int $flags = SORT_REGULAR): array
 {
@@ -250,10 +190,6 @@ function array_arsort(array $array, int $flags = SORT_REGULAR): array
 
 /**
  * Immutable rsort()
- *
- * @param array $array
- * @param integer $flags
- * @return array
  */
 function array_rsort(array $array, int $flags = SORT_REGULAR): array
 {
@@ -263,10 +199,6 @@ function array_rsort(array $array, int $flags = SORT_REGULAR): array
 
 /**
  * Immutable ksort()
- *
- * @param array $array
- * @param integer $flags
- * @return array
  */
 function array_ksort(array $array, int $flags = SORT_REGULAR): array
 {
@@ -276,10 +208,6 @@ function array_ksort(array $array, int $flags = SORT_REGULAR): array
 
 /**
  * Immutable krsort()
- *
- * @param array $array
- * @param integer $flags
- * @return array
  */
 function array_krsort(array $array, int $flags = SORT_REGULAR): array
 {
@@ -289,10 +217,6 @@ function array_krsort(array $array, int $flags = SORT_REGULAR): array
 
 /**
  * Immutable usort()
- *
- * @param array $array
- * @param callable $compare
- * @return array
  */
 function array_usort(array $array, callable $compare): array
 {
@@ -302,10 +226,6 @@ function array_usort(array $array, callable $compare): array
 
 /**
  * Immutable uksort()
- *
- * @param array $array
- * @param callable $compare
- * @return array
  */
 function array_uksort(array $array, callable $compare): array
 {
@@ -315,10 +235,6 @@ function array_uksort(array $array, callable $compare): array
 
 /**
  * Immutable uasort()
- *
- * @param array $array
- * @param callable $compare
- * @return array
  */
 function array_uasort(array $array, callable $compare): array
 {
@@ -328,9 +244,6 @@ function array_uasort(array $array, callable $compare): array
 
 /**
  * Immutable natsort()
- *
- * @param array $array
- * @return array
  */
 function array_natsort(array $array): array
 {
@@ -340,9 +253,6 @@ function array_natsort(array $array): array
 
 /**
  * Immutable natcasesort()
- *
- * @param array $array
- * @return array
  */
 function array_natcasesort(array $array): array
 {
@@ -352,9 +262,6 @@ function array_natcasesort(array $array): array
 
 /**
  * Glue array elements
- *
- * @param array $array
- * @return string
  */
 function glue(array $array): string
 {
@@ -363,9 +270,6 @@ function glue(array $array): string
 
 /**
  * Return the key of the maximum value
- *
- * @param array $array
- * @return void
  */
 function kmax(array $array)
 {
@@ -377,9 +281,6 @@ function kmax(array $array)
 
 /**
  * Return the key of the minimum value
- *
- * @param array $array
- * @return void
  */
 function kmin(array $array)
 {
@@ -391,10 +292,6 @@ function kmin(array $array)
 
 /**
  * Move the array pointer (mutable)
- *
- * @param array $array
- * @param integer|string $key
- * @return void
  */
 function seek(array &$array, $key): void
 {

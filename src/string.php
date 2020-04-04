@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Funktions\StringFuncs;
 
 /**
- * Converts a string to camelcase (multibyte support)
+ * Converts a string to camel case
  */
 function mb_to_camelcase(string $string): string
 {
@@ -13,7 +13,7 @@ function mb_to_camelcase(string $string): string
 }
 
 /**
- * Capitalize all words in a string (multibyte support)
+ * Capitalize all words in a string
  */
 function mb_ucwords(string $string, ?string $encoding = null): string
 {
@@ -25,7 +25,7 @@ function mb_ucwords(string $string, ?string $encoding = null): string
 }
 
 /**
- * Capitalize a string (multibyte support)
+ * Capitalize a string
  */
 function mb_ucfirst(string $string, ?string $encoding = null): string
 {
@@ -38,7 +38,7 @@ function mb_ucfirst(string $string, ?string $encoding = null): string
 }
 
 /**
- * Uncapitalize a string (multibyte support)
+ * Uncapitalize a string
  */
 function mb_lcfirst($string, ?string $encoding = null): string
 {
@@ -51,7 +51,7 @@ function mb_lcfirst($string, ?string $encoding = null): string
 }
 
 /**
-* Truncate a string (multibyte support)
+* Truncate a string
 */
 function mb_truncate(string $string, int $length, ?string $encoding = null): string
 {
@@ -70,10 +70,7 @@ function mb_truncate(string $string, int $length, ?string $encoding = null): str
 
 /**
  * Generate a random hash
- * https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
- *
- * @param int $length
- * @return string
+ * @see https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
  */
 function random_hash(int $length = 5): string
 {
@@ -82,9 +79,7 @@ function random_hash(int $length = 5): string
 
 /**
  * Generate a random v4 UUID
- * https://php.net/manual/en/function.uniqid.php#94959
- *
- * @return string
+ * @see https://php.net/manual/en/function.uniqid.php#94959
  */
 function uuid4(): string
 {

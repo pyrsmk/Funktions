@@ -9,12 +9,7 @@ use Generator;
 use function Funktions\MiscellaneousFuncs\ensure_type;
 
 /**
- * Return a value based on a test
- *
- * @param boolean $test
- * @param callable $truthy
- * @param callable $falsy
- * @return mixed
+ * Return a value based on a condition
  */
 function condition(bool $test, callable $truthy, callable $falsy)
 {
@@ -26,10 +21,6 @@ function condition(bool $test, callable $truthy, callable $falsy)
 
 /**
  * Loop over items and pass them to a generator
- *
- * @param iterable $iterable
- * @param callable $callable
- * @return Generator
  */
 function loop(iterable $iterable, callable $callable): Generator
 {
@@ -46,10 +37,6 @@ function loop(iterable $iterable, callable $callable): Generator
 
 /**
  * Loop over items and pass them to a generator with key preservation
- *
- * @param iterable $iterable
- * @param callable $callable
- * @return Generator
  */
 function loop_with_keys(iterable $iterable, callable $callable): Generator
 {
@@ -63,9 +50,6 @@ function loop_with_keys(iterable $iterable, callable $callable): Generator
 
 /**
  * Loop over a generator until a condition is met
- *
- * @param callable $callable
- * @return Generator
  */
 function loop_until(callable $callable): Generator
 {
@@ -83,9 +67,6 @@ function loop_until(callable $callable): Generator
 
 /**
  * Loop over a generator while a condition is met
- *
- * @param callable $callable
- * @return Generator
  */
 function loop_while(callable $callable): Generator
 {
@@ -103,10 +84,6 @@ function loop_while(callable $callable): Generator
 
 /**
  * Execute a callback and catch exceptions
- *
- * @param callable $callable
- * @param array $exceptions
- * @return mixed
  */
 function rescue(callable $callable, array $exceptions)
 {

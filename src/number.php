@@ -6,9 +6,6 @@ namespace Funktions\NumberFuncs;
 
 /**
  * Verify if the value is even
- *
- * @param integer $value
- * @return boolean
  */
 function is_even(int $value): bool
 {
@@ -17,9 +14,6 @@ function is_even(int $value): bool
 
 /**
  * Verify if the value is odd
- *
- * @param integer $value
- * @return boolean
  */
 function is_odd(int $value): bool
 {
@@ -28,10 +22,6 @@ function is_odd(int $value): bool
 
 /**
  * Bound a number to a minimum value
- *
- * @param float $value
- * @param float $min
- * @return float
  */
 function above(float $value, float $min): float
 {
@@ -40,10 +30,6 @@ function above(float $value, float $min): float
 
 /**
  * Bound a number to a maximum value
- *
- * @param float $value
- * @param float $max
- * @return float
  */
 function under(float $value, float $max): float
 {

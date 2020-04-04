@@ -9,9 +9,6 @@ use Funktions\Exception\InvalidFileException;
 
 /**
  * Formatted variable dumping function with variable passthrough
- *
- * @param mixed $var
- * @return mixed
  */
 function dump($var)
 {
@@ -28,9 +25,6 @@ function dump($var)
 
 /**
  * Get human-readable permissions
- *
- * @param string $path
- * @return string
  */
 function human_fileperms(string $path): string
 {
@@ -75,9 +69,6 @@ function human_fileperms(string $path): string
 
 /**
  * Get human-readable file size
- *
- * @param string $path
- * @return string
  */
 function human_filesize(string $path): string
 {
@@ -93,9 +84,6 @@ function human_filesize(string $path): string
 
 /**
  * Scan a directory without '.' and '..'
- *
- * @param string $dir
- * @return array
  */
 function lessdir(string $dir): array
 {
@@ -108,9 +96,6 @@ function lessdir(string $dir): array
 
 /**
  * Get a file's mime type
- *
- * @param string $path
- * @return string
  */
 function mimetype(string $path): string
 {
@@ -147,9 +132,6 @@ function mimetype(string $path): string
 
 /**
  * Remove a directory recursively
- *
- * @param string $path
- * @return void
  */
 function rrmdir(string $path): void
 {

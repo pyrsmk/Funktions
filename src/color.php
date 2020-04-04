@@ -6,11 +6,6 @@ namespace Funktions\ColorFuncs;
 
 /**
  * Convert RGB to HSL color
- *
- * @param integer $r
- * @param integer $g
- * @param integer $b
- * @return array
  */
 function rgb2hsl(int $r, int $g, int $b): array
 {
@@ -56,11 +51,6 @@ function rgb2hsl(int $r, int $g, int $b): array
 
 /**
  * Convert HSL to RGB color
- *
- * @param integer $h
- * @param integer $s
- * @param integer $l
- * @return array
  */
 function hsl2rgb(int $h, int $s, int $l): array
 {
@@ -119,11 +109,6 @@ function hsl2rgb(int $h, int $s, int $l): array
 
 /**
  * Convert RGB to HSV color
- *
- * @param integer $r
- * @param integer $g
- * @param integer $b
- * @return array
  */
 function rgb2hsv(int $r, int $g, int $b): array
 {
@@ -165,11 +150,6 @@ function rgb2hsv(int $r, int $g, int $b): array
 
 /**
  * Convert HSV to RGB color
- *
- * @param integer $h
- * @param integer $s
- * @param integer $v
- * @return array
  */
 function hsv2rgb(int $h, int $s, int $v): array
 {
@@ -226,11 +206,6 @@ function hsv2rgb(int $h, int $s, int $v): array
 
 /**
  * Convert RGB to HTML color
- *
- * @param integer $r
- * @param integer $g
- * @param integer $b
- * @return string
  */
 function rgb2hex(int $r, int $g, int $b): string
 {
@@ -249,9 +224,6 @@ function rgb2hex(int $r, int $g, int $b): string
 
 /**
  * Convert HTML to RGB color
- *
- * @param string $html
- * @return array
  */
 function hex2rgb(string $hex): array
 {
