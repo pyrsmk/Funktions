@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Funktions\MiscellaneousFuncs;
 
+use Funktions\Exception\InvalidValueTypeException;
+
 /**
  * Collect garbage after callable execution
  *
