@@ -261,11 +261,12 @@ function array_natcasesort(array $array): array
 }
 
 /**
- * Glue array elements
+ * Glue array elements together,
+ * like `implode()` but with parameters in the right order
  */
-function glue(array $array): string
+function glue(array $array, string $glue = ''): string
 {
-    return implode('', $array);
+    return implode($glue, $array);
 }
 
 /**
