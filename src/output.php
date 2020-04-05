@@ -24,3 +24,11 @@ function mute (callable $callable)
     ob_end_clean();
     return $value;
 }
+
+/**
+ * Print a one-line text
+ */
+function puts (string $text): void
+{
+    echo "$text\n";
+}

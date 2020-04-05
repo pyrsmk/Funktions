@@ -84,6 +84,7 @@ Some useful aliases :
 
 - `capture (callable $callable): string`: capture output on a callable execution
 - `mute (callable $callable): mixed`: mute output on a callable execution
+- `puts (string $text): void`: print a one-line text
 
 ### `Funktions\RegexFuncs`
 
