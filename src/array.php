@@ -284,7 +284,7 @@ function kmin (array $array)
 }
 
 /**
- * Move the array pointer (mutable)
+ * Move the array pointer to a specified key (mutable)
  */
 function seek (array &$array, $key): void
 {

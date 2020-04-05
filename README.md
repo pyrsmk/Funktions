@@ -25,29 +25,29 @@ $sorted_array = array_sort($my_array);
 - `array_fill_multi (int $dimensions, int $size, mixed $value): array`: initialize multi-dimensional arrays
 - `array_intersect_strict (array $array1, array $array2): array`: strict insersection between two arrays by comparing the values at the same index
 - `array_kvmap (array $array, callable $callback): array`: `array_map()` with key/value support
-- `array_kvreduce (array $array, callable $callback, mixed $initial = null): mixed`: `array_reduce()` with key/value support
-- `array_merge_recursive_unique (array ...$arrays): array`: contrary to `array_merge_recursive()`, it merges array by replacing values of the same key instead of appending them into a new array
-- `array_substitute (array $array, int $offset, int $length, array $replacement): array`: improved `array_splice()` with full string keys support when replacing
-- `array_sort (array $array, int $flags = SORT_REGULAR): array`: immutable `sort()`
-- `array_asort (array $array, int $flags = SORT_REGULAR): array`: immutable `asort()`
-- `array_arsort (array $array, int $flags = SORT_REGULAR): array`: immutable `arsort()`
-- `array_rsort (array $array, int $flags = SORT_REGULAR): array`: immutable `rsort()`
-- `array_ksort (array $array, int $flags = SORT_REGULAR): array`: immutable `ksort()`
-- `array_krsort (array $array, int $flags = SORT_REGULAR): array`: immutable `krsort()`
-- `array_usort (array $array, callable $compare): array`: immutable `usort()`
-- `array_uksort (array $array, callable $compare): array`: immutable `uksort()`
-- `array_uasort (array $array, callable $compare): array`: immutable `uasort()`
-- `array_natsort (array $array): array`: immutable `natsort()`
-- `array_natcasesort (array $array): array`: immutable `natcasesort()`
-- `glue (array $array, string $glue = ''): string`: glue array elements together, like `implode()` but with parameters in the right order
+- `array_kvreduce (array $array, callable $callback, mixed $initial = null): mixed`: `\array_reduce()` with key/value support
+- `array_merge_recursive_unique (array ...$arrays): array`: contrary to `\array_merge_recursive()`, it merges array by replacing values of the same key instead of appending them into a new array
+- `array_substitute (array $array, int $offset, int $length, array $replacement): array`: improved `\array_splice()` with full string keys support when replacing
+- `array_sort (array $array, int $flags = SORT_REGULAR): array`: immutable `\sort()`
+- `array_asort (array $array, int $flags = SORT_REGULAR): array`: immutable `\asort()`
+- `array_arsort (array $array, int $flags = SORT_REGULAR): array`: immutable `\arsort()`
+- `array_rsort (array $array, int $flags = SORT_REGULAR): array`: immutable `\rsort()`
+- `array_ksort (array $array, int $flags = SORT_REGULAR): array`: immutable `\ksort()`
+- `array_krsort (array $array, int $flags = SORT_REGULAR): array`: immutable `\krsort()`
+- `array_usort (array $array, callable $compare): array`: immutable `\usort()`
+- `array_uksort (array $array, callable $compare): array`: immutable `\uksort()`
+- `array_uasort (array $array, callable $compare): array`: immutable `\uasort()`
+- `array_natsort (array $array): array`: immutable `\natsort()`
+- `array_natcasesort (array $array): array`: immutable `\natcasesort()`
+- `glue (array $array, string $glue = ''): string`: glue array elements together, like `\implode()` but with parameters in the right order
 - `kmax (array $array): mixed`: return the key of the maximum value
 - `kmin (array $array): mixed`: return the key of the minimum value
-- `seek (array &$array, int|string $key): void`: move the array pointer (mutable)
+- `seek (array &$array, int|string $key): void`: move the array pointer to a specified key (mutable)
 
 Some useful aliases :
 
-- `map (array $array, callable $callback): array`: alias to `array_kvmap()`
-- `reduce (array $array, callable $callback, $initial = null)`: alias to `array_kvreduce()`
+- `map (array $array, callable $callback): array`: alias to `\array_kvmap()`
+- `reduce (array $array, callable $callback, $initial = null)`: alias to `\array_kvreduce()`
 
 ### `Funktions\ColorFuncs`
 
@@ -110,7 +110,7 @@ Some useful aliases :
 - `dump (mixed $var): mixed` : formatted variable dumping function with variable passthrough
 - `human_fileperms (string $path): string`: get human-readable permissions
 - `human_filesize (string $path): string`: get human-readable file size
-- `lessdir (string $dir): array`: like `scandir()` but without `.` and `..`
+- `lessdir (string $dir): array`: like `\scandir()` but without `.` and `..`
 - `mimetype (string $path): string`: get a file's mime type with several mecanism support
 - `rrmdir (string $path): void`: remove a directory recursively
 
