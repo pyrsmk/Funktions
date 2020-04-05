@@ -61,6 +61,7 @@ Some useful aliases :
 ### `Funktions\GeneratorFuncs`
 
 - `array_to_generator (array $items): Generator`: convert an array to a generator
+- `ensure_generator ($maybe_a_generator): Generator`: ensure that the passed value will be a generator
 
 ### `Funktions\InstructionFuncs`
 
