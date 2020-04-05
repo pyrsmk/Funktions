@@ -19,12 +19,10 @@ function condition (bool $test, callable $truthy, callable $falsy)
 /**
  * Just loop over items
  */
-function loop (iterable $iterable, callable $callable): Generator
+function loop (iterable $iterable, callable $callable): void
 {
     foreach ($iterable as $key => $item) {
-        foreach (call_user_func($callable, $item, $key) as $value) {
-            yield $value;
-        }
+        call_user_func($callable, $item, $key);
     }
 }
 
