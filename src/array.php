@@ -6,6 +6,7 @@ namespace Funktions\ArrayFuncs;
 
 use TypeError;
 use Funktions\Exception\KeyNotFoundException;
+use function Funktions\IterableFuncs\reduce;
 
 /**
  * Strict diff between two arrays by comparing the values at the same index
@@ -15,7 +16,7 @@ function array_diff_strict (array $array1, array $array2): array
     if (count($array1) !== count($array2)) {
         throw new TypeError('Arrays must be of the same length');
     }
-    return array_kvreduce(
+    return reduce(
         $array1,
         function (array $diff, $key, $value) use ($array2): array {
             if ($value !== $array2[$key]) {
@@ -68,7 +69,7 @@ function array_intersect_strict (array $array1, array $array2): array
     if (count($array1) !== count($array2)) {
         throw new TypeError('Arrays must be of the same length');
     }
-    return array_kvreduce(
+    return reduce(
         $array1,
         function (array $diff, $key, $value) use ($array2): array {
             if ($value === $array2[$key]) {
@@ -78,42 +79,6 @@ function array_intersect_strict (array $array1, array $array2): array
         },
         []
     );
-}
-
-/**
- * `\array_map()` with key/value support
- */
-function array_kvmap (array $array, callable $callable): array
-{
-    return array_map($callable, $array, array_keys($array));
-}
-
-/**
- * Alias to `array_kvmap()`
- */
-function map (array $array, callable $callable): array
-{
-    return array_kvmap($array, $callable);
-}
-
-/**
- * `\array_reduce()` with key/value support
- */
-function array_kvreduce (array $array, callable $callable, $initial = null)
-{
-    $carry = $initial;
-    foreach ($array as $key => $value) {
-        $carry = call_user_func($callable, $carry, $value, $key);
-    }
-    return $carry;
-}
-
-/**
- * Alias to `array_kvreduce()`
- */
-function reduce (array $array, callable $callable, $initial = null)
-{
-    return array_kvreduce($array, $callable, $initial);
 }
 
 /**

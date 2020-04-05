@@ -55,3 +55,25 @@ function reject (iterable $iterable, callable $callable): Generator
         }
     }
 }
+
+/**
+ * Like `array_map()` but works on any iterable and with key/value support.
+ */
+function map (iterable $iterable, callable $callable): Generator
+{
+    foreach ($iterable as $key => $value) {
+        yield $key => call_user_func($callable, $key, $value);
+    }
+}
+
+/**
+ * Like `array_reduce()` but works on any iterable and with key/value support.
+ */
+function reduce (iterable $iterable, callable $callable, $initial = null)
+{
+    $carry = $initial;
+    foreach ($iterable as $key => $value) {
+        $carry = call_user_func($callable, $carry, $key, $value);
+    }
+    return $carry;
+}

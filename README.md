@@ -31,9 +31,7 @@ $sorted_array = array_sort($my_array);
 - `array_drop (array $array, int $offset, int $length): array`: drop a part of an array
 - `array_fill_multi (int $dimensions, int $size, mixed $value): array`: initialize multi-dimensional arrays
 - `array_intersect_strict (array $array1, array $array2): array`: strict insersection between two arrays by comparing the values at the same index
-- `array_kvmap (array $array, callable $callback): array`: `array_map()` with key/value support
-- `array_kvreduce (array $array, callable $callback, mixed $initial = null): mixed`: `\array_reduce()` with key/value support
-- `array_merge_recursive_unique (array ...$arrays): array`: contrary to `\array_merge_recursive()`, it merges array by replacing values of the same key instead of appending them into a new array
+- `array_merge_recursive_unique (array ...$arrays): array`: contrary to `array_merge_recursive()`, it merges array by replacing values of the same key instead of appending them into a new array
 - `array_substitute (array $array, int $offset, int $length, array $replacement): array`: improved `\array_splice()` with full string keys support when replacing
 - `array_sort (array $array, int $flags = SORT_REGULAR): array`: immutable `\sort()`
 - `array_asort (array $array, int $flags = SORT_REGULAR): array`: immutable `\asort()`
@@ -46,15 +44,10 @@ $sorted_array = array_sort($my_array);
 - `array_uasort (array $array, callable $compare): array`: immutable `\uasort()`
 - `array_natsort (array $array): array`: immutable `\natsort()`
 - `array_natcasesort (array $array): array`: immutable `\natcasesort()`
-- `glue (array $array, string $glue = ''): string`: glue array elements together, like `\implode()` but with parameters in the right order
+- `glue (array $array, string $glue = ''): string`: glue array elements together, like `implode()` but with parameters in the right order
 - `kmax (array $array): mixed`: return the key of the maximum value
 - `kmin (array $array): mixed`: return the key of the minimum value
 - `seek (array &$array, int|string $key): void`: move the array pointer to a specified key (mutable)
-
-Some useful aliases :
-
-- `map (array $array, callable $callback): array`: alias to `array_kvmap()`
-- `reduce (array $array, callable $callback, $initial = null)`: alias to `array_kvreduce()`
 
 ### `Funktions\ColorFuncs`
 
@@ -72,10 +65,12 @@ Some useful aliases :
 
 ### `Funktions\IterableFuncs`
 
-- `one (iterable $iterable, callable $callable): bool`: return `true` when at least one element matches the callable's condition
-- `none (iterable $iterable, callable $callable): bool`: return `true` when no element has matched the callable's condition
-- `select (iterable $iterable, callable $callable): Generator`: select items that match the callable's condition
-- `reject (iterable $iterable, callable $callable): Generator`: reject items that match the callable's condition
+- `one (iterable $iterable, callable $callable): bool`: Return `true` when at least one element matches the callable's condition.
+- `none (iterable $iterable, callable $callable): bool`: Return `true` when no element has matched the callable's condition.
+- `select (iterable $iterable, callable $callable): Generator`: Select items that match the callable's condition.
+- `reject (iterable $iterable, callable $callable): Generator`: Reject items that match the callable's condition.
+- `map (iterable $iterable, callable $callable): Generator`: Like `array_map()` but works on any iterable and with key/value support.
+- `reduce (iterable $iterable, callable $callable, $initial = null)`: Like `array_reduce()` but works on any iterable and with key/value support.
 
 ### `Funktions\InstructionFuncs`
 
