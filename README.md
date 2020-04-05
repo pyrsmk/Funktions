@@ -27,7 +27,6 @@ $sorted_array = array_sort($my_array);
 - `array_kvmap (array $array, callable $callback): array`: `array_map()` with key/value support
 - `array_kvreduce (array $array, callable $callback, mixed $initial = null): mixed`: `array_reduce()` with key/value support
 - `array_merge_recursive_unique (array ...$arrays): array`: contrary to `array_merge_recursive()`, it merges array by replacing values of the same key instead of appending them into a new array
-- `array_to_generator (array $items): Generator`: convert an array to a generator
 - `array_substitute (array $array, int $offset, int $length, array $replacement): array`: improved `array_splice()` with full string keys support when replacing
 - `array_sort (array $array, int $flags = SORT_REGULAR): array`: immutable `sort()`
 - `array_asort (array $array, int $flags = SORT_REGULAR): array`: immutable `asort()`
@@ -58,6 +57,10 @@ Some useful aliases :
 - `hsv2rgb (int $h, int $s, int $v): array`: convert HSV to RGB color
 - `rgb2hex (int $r, int $g, int $b): string`: convert RGB to HTML color
 - `hex2rgb (string $hex): array`: convert HTML to RGB color
+
+### `Funktions\GeneratorFuncs`
+
+- `array_to_generator (array $items): Generator`: convert an array to a generator
 
 ### `Funktions\InstructionFuncs`
 

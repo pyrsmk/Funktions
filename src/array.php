@@ -142,14 +142,6 @@ function array_merge_recursive_unique (array ...$arrays): array
 }
 
 /**
- * Convert an array to a generator
- */
-function array_to_generator (array $items): Generator
-{
-    yield from $items;
-}
-
-/**
  * Improved `array_splice()` with full string keys support when replacing
  */
 function array_substitute (array $array, int $offset, int $length, array $replacement): array
