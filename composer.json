@@ -1,15 +1,23 @@
 {
     "name": "pyrsmk/funktions",
-    "description": "Enhance PHP functions with a salt of functional programming",
+    "description": "Premium PHP functions with a salt of functional programming",
     "keywords": [
         "functional",
         "array",
         "color",
+        "generator",
+        "instruction",
+        "iterable",
+        "memory",
         "number",
+        "output",
+        "print",
+        "echo",
         "regex",
         "string",
         "mimetype",
-        "filesystem"
+        "file",
+        "system"
     ],
     "license": "MIT",
     "authors": [{
