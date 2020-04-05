@@ -26,8 +26,9 @@
         "files": [
             "src/array.php",
             "src/color.php",
+            "src/generator.php",
             "src/instruction.php",
-            "src/miscellaneous.php",
+            "src/memory.php",
             "src/number.php",
             "src/output.php",
             "src/regex.php",
