@@ -22,11 +22,7 @@ function condition (bool $test, callable $truthy, callable $falsy)
 function loop (iterable $iterable, callable $callable): Generator
 {
     foreach ($iterable as $key => $item) {
-        $generator = ensure_type(
-            call_user_func($callable, $item, $key),
-            Generator::class
-        );
-        foreach ($generator as $value) {
+        foreach (call_user_func($callable, $item, $key) as $value) {
             yield $value;
         }
     }
@@ -38,10 +34,7 @@ function loop (iterable $iterable, callable $callable): Generator
 function loop_with_keys (iterable $iterable, callable $callable): Generator
 {
     foreach ($iterable as $key => $item) {
-        yield from ensure_type(
-            call_user_func($callable, $item, $key),
-            Generator::class
-        );
+        yield from call_user_func($callable, $item, $key);
     }
 }
 
@@ -51,10 +44,7 @@ function loop_with_keys (iterable $iterable, callable $callable): Generator
 function loop_until (callable $callable): Generator
 {
     do {
-        $generator = ensure_type(
-            call_user_func($callable),
-            Generator::class
-        );
+        $generator = call_user_func($callable);
         foreach ($generator as $value) {
             yield $value;
         }
@@ -68,10 +58,7 @@ function loop_until (callable $callable): Generator
 function loop_while (callable $callable): Generator
 {
     do {
-        $generator = ensure_type(
-            call_user_func($callable),
-            Generator::class
-        );
+        $generator = call_user_func($callable);
         foreach ($generator as $value) {
             yield $value;
         }

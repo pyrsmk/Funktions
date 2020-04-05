@@ -68,10 +68,9 @@ Some useful aliases :
 - `loop_while (callable $callable): Generator`: loop over a generator while a condition is met
 - `rescue (callable $callable, array $exceptions): mixed`: execute a callback and catch exceptions
 
-### `Funktions\MiscellaneousFuncs`
+### `Funktions\MemoryFuncs`
 
 - `mem_cleaned (callable $callable): mixed`: collect garbage after callable execution
-- `ensure_type (mixed $value, string $type): mixed`: validate a value's type
 
 ### `Funktions\NumberFuncs`
 
