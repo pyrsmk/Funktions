@@ -103,7 +103,7 @@ Some useful aliases :
 - `mb_lcfirst ($string, string $encoding = null): string`: uncapitalize a string
 - `mb_truncate (string $string, int $length, string $encoding = null): string`: truncate a string to a specific length and append `...` at the end of the string
 - `random_hash (int $length = 5): string`: generate a random hash
-- `uuid4 (): string`: generate a random v4 UUID
+- `uuid_v4 (): string`: generate a random v4 UUID
 
 ### `Funktions\SystemFuncs`
 

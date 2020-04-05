@@ -81,7 +81,7 @@ function random_hash (int $length = 5): string
  * Generate a random v4 UUID
  * @see https://php.net/manual/en/function.uniqid.php#94959
  */
-function uuid4 (): string
+function uuid_v4 (): string
 {
     return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
         // 32 bits for "time_low"
