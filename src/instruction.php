@@ -25,25 +25,9 @@ function loop (iterable $iterable, callable $callable): Generator
         $generator = ensure_generator(
             call_user_func($callable, $item, $key)
         );
-        foreach($generator as $value) {
-            yield $value;
+        foreach($generator as $key => $value) {
+            yield $key => $value;
         }
-        if ($generator->getReturn() === true) {
-            break;
-        }
-    }
-}
-
-/**
- * Loop over an iterable and yield new values (with key preservation)
- */
-function loop_preserve (iterable $iterable, callable $callable): Generator
-{
-    foreach ($iterable as $key => $item) {
-        $generator = ensure_generator(
-            call_user_func($callable, $item, $key)
-        );
-        yield from $generator;
         if ($generator->getReturn() === true) {
             break;
         }

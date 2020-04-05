@@ -67,7 +67,6 @@ Some useful aliases :
 
 - `condition (bool $test, callable $truthy, callable $falsy): mixed`: return a value based on a test
 - `loop (iterable $iterable, callable $callable): Generator`: loop over an iterable and yield new values
-- `loop_preserve (iterable $iterable, callable $callable): Generator`: Loop over an iterable and yield new values (with key preservation)
 - `rescue (callable $callable, array $exceptions): mixed`: execute a callback and catch exceptions
 
 ### `Funktions\MemoryFuncs`
