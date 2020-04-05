@@ -53,8 +53,8 @@ $sorted_array = array_sort($my_array);
 
 Some useful aliases :
 
-- `map (array $array, callable $callback): array`: alias to `\array_kvmap()`
-- `reduce (array $array, callable $callback, $initial = null)`: alias to `\array_kvreduce()`
+- `map (array $array, callable $callback): array`: alias to `array_kvmap()`
+- `reduce (array $array, callable $callback, $initial = null)`: alias to `array_kvreduce()`
 
 ### `Funktions\ColorFuncs`
 
