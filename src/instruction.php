@@ -6,7 +6,7 @@ namespace Funktions\InstructionFuncs;
 
 use Exception;
 use Generator;
-use function Funktions\MiscellaneousFuncs\ensure_type;
+use function Funktions\GeneratorFuncs\ensure_generator;
 
 /**
  * Return a value based on a condition
@@ -17,51 +17,37 @@ function condition (bool $test, callable $truthy, callable $falsy)
 }
 
 /**
- * Just loop over items
+ * Loop over an iterable and yield new values
  */
-function loop (iterable $iterable, callable $callable): void
+function loop (iterable $iterable, callable $callable): Generator
 {
     foreach ($iterable as $key => $item) {
-        call_user_func($callable, $item, $key);
+        $generator = ensure_generator(
+            call_user_func($callable, $item, $key)
+        );
+        foreach($generator as $value) {
+            yield $value;
+        }
+        if ($generator->getReturn() === true) {
+            break;
+        }
     }
 }
 
 /**
- * Loop over items and pass them to a generator with key preservation
+ * Loop over an iterable and yield new values (with key preservation)
  */
-function loop_with_keys (iterable $iterable, callable $callable): Generator
+function loop_preserve (iterable $iterable, callable $callable): Generator
 {
     foreach ($iterable as $key => $item) {
-        yield from call_user_func($callable, $item, $key);
-    }
-}
-
-/**
- * Loop over a generator until a condition is met
- */
-function loop_until (callable $callable): Generator
-{
-    do {
-        $generator = call_user_func($callable);
-        foreach ($generator as $value) {
-            yield $value;
+        $generator = ensure_generator(
+            call_user_func($callable, $item, $key)
+        );
+        yield from $generator;
+        if ($generator->getReturn() === true) {
+            break;
         }
     }
-    while($generator->getReturn() === false);
-}
-
-/**
- * Loop over a generator while a condition is met
- */
-function loop_while (callable $callable): Generator
-{
-    do {
-        $generator = call_user_func($callable);
-        foreach ($generator as $value) {
-            yield $value;
-        }
-    }
-    while($generator->getReturn() === true);
 }
 
 /**

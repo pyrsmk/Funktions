@@ -66,10 +66,8 @@ Some useful aliases :
 ### `Funktions\InstructionFuncs`
 
 - `condition (bool $test, callable $truthy, callable $falsy): mixed`: return a value based on a test
-- `loop (iterable $iterable, callable $callable): void`: just loop over items
-- `loop_with_keys (iterable $iterable, callable $callable): Generator`: loop over items and pass them to a generator with key preservation
-- `loop_until (callable $callable): Generator`: loop in a generator until a condition is met
-- `loop_while (callable $callable): Generator`: loop over a generator while a condition is met
+- `loop (iterable $iterable, callable $callable): Generator`: loop over an iterable and yield new values
+- `loop_preserve (iterable $iterable, callable $callable): Generator`: Loop over an iterable and yield new values (with key preservation)
 - `rescue (callable $callable, array $exceptions): mixed`: execute a callback and catch exceptions
 
 ### `Funktions\MemoryFuncs`
