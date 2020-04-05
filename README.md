@@ -1,6 +1,13 @@
 # Funktions
 
-Funktions is a set of useful PHP functions aiming to ease your life by appending missing ones from PHP core, or modifying some of them, with immutability in mind.
+Funktions is a set of useful PHP functions aiming to ease your life by appending missing ones from PHP core.
+
+These functions are designed:
+
+- to be immutables
+- to support all iterables, not only arrays
+- to support all callables, not only closures
+- to use generators first (because it rocks!)
 
 __WARNING!!! STILL UNDER HEAVY DEVELOPMENT AND NOT TESTED YED__
 
@@ -62,6 +69,13 @@ Some useful aliases :
 
 - `array_to_generator (array $items): Generator`: convert an array to a generator
 - `ensure_generator ($maybe_a_generator): Generator`: ensure that the passed value will be a generator
+
+### `Funktions\IterableFuncs`
+
+- `one (iterable $iterable, callable $callable): bool`: return `true` when at least one element matches the callable's condition
+- `none (iterable $iterable, callable $callable): bool`: return `true` when no element has matched the callable's condition
+- `select (iterable $iterable, callable $callable): Generator`: select items that match the callable's condition
+- `reject (iterable $iterable, callable $callable): Generator`: reject items that match the callable's condition
 
 ### `Funktions\InstructionFuncs`
 

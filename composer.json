@@ -28,6 +28,7 @@
             "src/color.php",
             "src/generator.php",
             "src/instruction.php",
+            "src/iterable.php",
             "src/memory.php",
             "src/number.php",
             "src/output.php",

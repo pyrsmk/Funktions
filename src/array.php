@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Funktions\ArrayFuncs;
 
-use Generator;
 use TypeError;
 use Funktions\Exception\KeyNotFoundException;
 
