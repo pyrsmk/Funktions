@@ -9,7 +9,7 @@ use Generator;
 use function Funktions\GeneratorFuncs\ensure_generator;
 
 /**
- * Return a value based on a condition
+ * Return a value based on a condition.
  */
 function condition (bool $test, callable $truthy, callable $falsy)
 {
@@ -17,7 +17,7 @@ function condition (bool $test, callable $truthy, callable $falsy)
 }
 
 /**
- * Loop over an iterable and yield new values
+ * Loop over an iterable and yield new values.
  */
 function loop (iterable $iterable, callable $callable): Generator
 {
@@ -35,7 +35,7 @@ function loop (iterable $iterable, callable $callable): Generator
 }
 
 /**
- * Execute a callback and catch exceptions
+ * Execute a callback and catch exceptions.
  */
 function rescue (callable $callable, array $exceptions)
 {

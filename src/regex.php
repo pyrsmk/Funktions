@@ -8,7 +8,7 @@ use Funktions\Exception\NoMatchFoundException;
 use function Funktions\ArrayFuncs\map;
 
 /**
- * Count the number of matches for a regex in a string
+ * Count the number of matches for a regex in a string.
  */
 function regex_count (string $pattern, string $text, int $flags = 0): int
 {
@@ -16,7 +16,7 @@ function regex_count (string $pattern, string $text, int $flags = 0): int
 }
 
 /**
- * Return the matches of a regex, for the first match
+ * Return the matches of a regex, for the first match.
  */
 function regex_match (string $pattern, string $text, int $flags = 0): array
 {
@@ -27,7 +27,7 @@ function regex_match (string $pattern, string $text, int $flags = 0): array
 }
 
 /**
- * Return the first occurrence of the first match of a regex
+ * Return the first occurrence of the first match of a regex.
  */
 function regex_match_first (string $pattern, string $text, int $flags = 0): string
 {
@@ -38,7 +38,7 @@ function regex_match_first (string $pattern, string $text, int $flags = 0): stri
 }
 
 /**
- * Return all the matches of a regex
+ * Return all the matches of a regex.
  */
 function regex_match_all (string $pattern, string $text, int $flags = 0): array
 {
@@ -51,7 +51,7 @@ function regex_match_all (string $pattern, string $text, int $flags = 0): array
 }
 
 /**
- * Test if a regex matches against a string
+ * Test if a regex matches against a string.
  */
 function regex_test (string $pattern, string $text, int $flags = 0): bool
 {

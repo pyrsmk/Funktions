@@ -7,7 +7,7 @@ namespace Funktions\GeneratorFuncs;
 use Generator;
 
 /**
- * Convert an array to a generator
+ * Convert an array to a generator.
  */
 function array_to_generator (array $items): Generator
 {
@@ -15,7 +15,7 @@ function array_to_generator (array $items): Generator
 }
 
 /**
- * Ensure that the passed value will be a generator
+ * Ensure that the passed value will be a generator.
  */
 function ensure_generator ($maybe_a_generator): Generator
 {

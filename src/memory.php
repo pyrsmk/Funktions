@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Funktions\MiscellaneousFuncs;
 
 /**
- * Collect garbage after callable execution
+ * Collect garbage after callable execution.
  */
 function mem_cleaned (callable $callable)
 {

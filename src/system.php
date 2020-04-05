@@ -8,7 +8,7 @@ use Funktions\Exception\UnexpectedErrorException;
 use Funktions\Exception\InvalidFileException;
 
 /**
- * Formatted variable dumping function with variable passthrough
+ * Formatted variable dumping function with variable passthrough.
  */
 function dump ($var)
 {
@@ -24,7 +24,7 @@ function dump ($var)
 }
 
 /**
- * Get human-readable permissions
+ * Get human-readable file permissions.
  */
 function human_fileperms (string $path): string
 {
@@ -68,7 +68,7 @@ function human_fileperms (string $path): string
 }
 
 /**
- * Get human-readable file size
+ * Get human-readable file size.
  */
 function human_filesize (string $path): string
 {
@@ -83,7 +83,7 @@ function human_filesize (string $path): string
 }
 
 /**
- * Scan a directory without '.' and '..'
+ * Scan a directory without '.' and '..'.
  */
 function lessdir (string $dir): array
 {
@@ -95,7 +95,7 @@ function lessdir (string $dir): array
 }
 
 /**
- * Get a file's mime type
+ * Get a file's mime type.
  */
 function mimetype (string $path): string
 {
@@ -131,7 +131,7 @@ function mimetype (string $path): string
 }
 
 /**
- * Remove a directory recursively
+ * Remove a directory recursively.
  */
 function rrmdir (string $path): void
 {

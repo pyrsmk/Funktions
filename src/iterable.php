@@ -7,7 +7,7 @@ namespace Funktions\IterableFuncs;
 use Generator;
 
 /**
- * Return true when at least one element matches the callable's condition
+ * Return true when at least one element matches the callable's condition.
  */
 function one (iterable $iterable, callable $callable): bool
 {
@@ -20,7 +20,7 @@ function one (iterable $iterable, callable $callable): bool
 }
 
 /**
- * Return true when no element has matched the callable's condition
+ * Return true when no element has matched the callable's condition.
  */
 function none (iterable $iterable, callable $callable): bool
 {
@@ -33,7 +33,7 @@ function none (iterable $iterable, callable $callable): bool
 }
 
 /**
- * Select items that match the callable's condition
+ * Select items that match the callable's condition.
  */
 function select (iterable $iterable, callable $callable): Generator
 {
@@ -45,7 +45,7 @@ function select (iterable $iterable, callable $callable): Generator
 }
 
 /**
- * Reject items that match the callable's condition
+ * Reject items that match the callable's condition.
  */
 function reject (iterable $iterable, callable $callable): Generator
 {

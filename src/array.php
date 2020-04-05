@@ -9,7 +9,7 @@ use Funktions\Exception\KeyNotFoundException;
 use function Funktions\IterableFuncs\reduce;
 
 /**
- * Strict diff between two arrays by comparing the values at the same index
+ * Strict diff between two arrays by comparing the values at the same index.
  */
 function array_diff_strict (array $array1, array $array2): array
 {
@@ -33,7 +33,7 @@ function array_diff_strict (array $array1, array $array2): array
 }
 
 /**
- * Drop a part of an array (immutable `\array_splice`)
+ * Drop a part of an array (immutable `array_splice`).
  */
 function array_drop (array $array, int $offset, int $length): array
 {
@@ -42,7 +42,7 @@ function array_drop (array $array, int $offset, int $length): array
 }
 
 /**
- * Initialize multi-dimensional arrays
+ * Initialize multi-dimensional arrays.
  */
 function array_fill_multi (int $dimensions, int $size, $value): array
 {
@@ -62,7 +62,7 @@ function array_fill_multi (int $dimensions, int $size, $value): array
 
 /**
  * Strict insersection between two arrays
- * by comparing the values at the same index
+ * by comparing the values at the same index.
  */
 function array_intersect_strict (array $array1, array $array2): array
 {
@@ -82,7 +82,7 @@ function array_intersect_strict (array $array1, array $array2): array
 }
 
 /**
- * Merge arrays recursively
+ * Merge arrays recursively.
  */
 function array_merge_recursive_unique (array ...$arrays): array
 {
@@ -112,7 +112,7 @@ function array_merge_recursive_unique (array ...$arrays): array
 }
 
 /**
- * Improved `\array_splice()` with full string keys support when replacing
+ * Improved `\array_splice()` with full string keys support when replacing.
  */
 function array_substitute (
     array $array,
@@ -129,7 +129,7 @@ function array_substitute (
 }
 
 /**
- * Immutable `\sort()`
+ * Immutable `\sort()`.
  */
 function array_sort (array $array, int $flags = SORT_REGULAR): array
 {
@@ -138,7 +138,7 @@ function array_sort (array $array, int $flags = SORT_REGULAR): array
 }
 
 /**
- * Immutable `\asort()`
+ * Immutable `\asort()`.
  */
 function array_asort (array $array, int $flags = SORT_REGULAR): array
 {
@@ -147,7 +147,7 @@ function array_asort (array $array, int $flags = SORT_REGULAR): array
 }
 
 /**
- * Immutable `\arsort()`
+ * Immutable `\arsort()`.
  */
 function array_arsort (array $array, int $flags = SORT_REGULAR): array
 {
@@ -156,7 +156,7 @@ function array_arsort (array $array, int $flags = SORT_REGULAR): array
 }
 
 /**
- * Immutable `\rsort()`
+ * Immutable `\rsort()`.
  */
 function array_rsort (array $array, int $flags = SORT_REGULAR): array
 {
@@ -165,7 +165,7 @@ function array_rsort (array $array, int $flags = SORT_REGULAR): array
 }
 
 /**
- * Immutable `\ksort()`
+ * Immutable `\ksort()`.
  */
 function array_ksort (array $array, int $flags = SORT_REGULAR): array
 {
@@ -174,7 +174,7 @@ function array_ksort (array $array, int $flags = SORT_REGULAR): array
 }
 
 /**
- * Immutable `\krsort()`
+ * Immutable `\krsort()`.
  */
 function array_krsort (array $array, int $flags = SORT_REGULAR): array
 {
@@ -183,7 +183,7 @@ function array_krsort (array $array, int $flags = SORT_REGULAR): array
 }
 
 /**
- * Immutable `\usort()`
+ * Immutable `\usort()`.
  */
 function array_usort (array $array, callable $compare): array
 {
@@ -192,7 +192,7 @@ function array_usort (array $array, callable $compare): array
 }
 
 /**
- * Immutable `\uksort()`
+ * Immutable `\uksort()`.
  */
 function array_uksort (array $array, callable $compare): array
 {
@@ -201,7 +201,7 @@ function array_uksort (array $array, callable $compare): array
 }
 
 /**
- * Immutable `\uasort()`
+ * Immutable `\uasort()`.
  */
 function array_uasort (array $array, callable $compare): array
 {
@@ -210,7 +210,7 @@ function array_uasort (array $array, callable $compare): array
 }
 
 /**
- * Immutable `\natsort()`
+ * Immutable `\natsort()`.
  */
 function array_natsort (array $array): array
 {
@@ -219,7 +219,7 @@ function array_natsort (array $array): array
 }
 
 /**
- * Immutable `\natcasesort()`
+ * Immutable `\natcasesort()`.
  */
 function array_natcasesort (array $array): array
 {
@@ -229,7 +229,7 @@ function array_natcasesort (array $array): array
 
 /**
  * Glue array elements together,
- * like `\implode()` but with parameters in the right order
+ * like `implode()` but with parameters in the right order.
  */
 function glue (array $array, string $glue = ''): string
 {
@@ -237,7 +237,7 @@ function glue (array $array, string $glue = ''): string
 }
 
 /**
- * Return the key of the maximum value
+ * Return the key of the maximum value.
  */
 function kmax (array $array)
 {
@@ -248,7 +248,7 @@ function kmax (array $array)
 }
 
 /**
- * Return the key of the minimum value
+ * Return the key of the minimum value.
  */
 function kmin (array $array)
 {
@@ -259,7 +259,7 @@ function kmin (array $array)
 }
 
 /**
- * Move the array pointer to a specified key (mutable)
+ * Move the array pointer to a specified key (mutable).
  */
 function seek (array &$array, $key): void
 {

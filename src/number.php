@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Funktions\NumberFuncs;
 
 /**
- * Verify if the value is even
+ * Verify if the value is even.
  */
 function is_even (int $value): bool
 {
@@ -13,7 +13,7 @@ function is_even (int $value): bool
 }
 
 /**
- * Verify if the value is odd
+ * Verify if the value is odd.
  */
 function is_odd (int $value): bool
 {
@@ -21,7 +21,7 @@ function is_odd (int $value): bool
 }
 
 /**
- * Bound a number to a minimum value
+ * Bound a number to a minimum value.
  */
 function above (float $value, float $min): float
 {
@@ -29,7 +29,7 @@ function above (float $value, float $min): float
 }
 
 /**
- * Bound a number to a maximum value
+ * Bound a number to a maximum value.
  */
 function under (float $value, float $max): float
 {

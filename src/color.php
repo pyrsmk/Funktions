@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Funktions\ColorFuncs;
 
 /**
- * Convert RGB to HSL color
+ * Convert RGB to HSL color.
  */
 function rgb2hsl(int $r, int $g, int $b): array
 {
@@ -50,7 +50,7 @@ function rgb2hsl(int $r, int $g, int $b): array
 }
 
 /**
- * Convert HSL to RGB color
+ * Convert HSL to RGB color.
  */
 function hsl2rgb (int $h, int $s, int $l): array
 {
@@ -108,7 +108,7 @@ function hsl2rgb (int $h, int $s, int $l): array
 }
 
 /**
- * Convert RGB to HSV color
+ * Convert RGB to HSV color.
  */
 function rgb2hsv (int $r, int $g, int $b): array
 {
@@ -149,7 +149,7 @@ function rgb2hsv (int $r, int $g, int $b): array
 }
 
 /**
- * Convert HSV to RGB color
+ * Convert HSV to RGB color.
  */
 function hsv2rgb (int $h, int $s, int $v): array
 {
@@ -205,7 +205,7 @@ function hsv2rgb (int $h, int $s, int $v): array
 }
 
 /**
- * Convert RGB to HTML color
+ * Convert RGB to HTML color.
  */
 function rgb2hex (int $r, int $g, int $b): string
 {
@@ -223,7 +223,7 @@ function rgb2hex (int $r, int $g, int $b): string
 }
 
 /**
- * Convert HTML to RGB color
+ * Convert HTML to RGB color.
  */
 function hex2rgb (string $hex): array
 {

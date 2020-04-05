@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Funktions\OutputFuncs;
 
 /**
- * Capture output on a callable execution
+ * Capture output on a callable execution.
  */
 function capture (callable $callable): string
 {
@@ -15,7 +15,7 @@ function capture (callable $callable): string
 }
 
 /**
- * Mute output on a callable execution
+ * Mute output on a callable execution.
  */
 function mute (callable $callable)
 {
@@ -26,7 +26,7 @@ function mute (callable $callable)
 }
 
 /**
- * Print a one-line text
+ * Print a one-line text.
  */
 function puts (string $text): void
 {
