@@ -28,7 +28,8 @@
     "require": {
         "php": ">=7.2.0",
         "ext-curl": "*",
-        "ext-fileinfo": "*"
+        "ext-fileinfo": "*",
+        "symfony/var-dumper": "^5.0"
     },
     "autoload": {
         "files": [

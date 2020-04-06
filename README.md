@@ -25,6 +25,10 @@ use function Funktions\ArrayFuncs\array_sort;
 $sorted_array = array_sort($my_array);
 ```
 
+### `Symfony\VarDumper`
+
+We've added the `VarDumper` module from Symfony to have a better `dump()` function (in replacement of `var_dump()`). It can do many things and ease your debug life, go [read the documentation](https://symfony.com/doc/current/components/var_dumper.html) to know more about it ;)
+
 ### `Funktions\ArrayFuncs`
 
 - `array_diff_strict (array $array1, array $array2): array`: Strict diff between two arrays by comparing the values at the same index.
@@ -123,7 +127,6 @@ $sorted_array = array_sort($my_array);
 
 ### `Funktions\SystemFuncs`
 
-- `dump (mixed $var): mixed` : Formatted variable dumping function with variable passthrough.
 - `human_fileperms (string $path): string`: Get human-readable file permissions.
 - `human_filesize (string $path): string`: Get human-readable file size.
 - `lessdir (string $dir): array`: Like `scandir()` but without `.` and `..`.

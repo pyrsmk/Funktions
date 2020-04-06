@@ -8,22 +8,6 @@ use Funktions\Exception\UnexpectedErrorException;
 use Funktions\Exception\InvalidFileException;
 
 /**
- * Formatted variable dumping function with variable passthrough.
- */
-function dump ($var)
-{
-    $output = var_export($var, true);
-    if (php_sapi_name() === 'cli') {
-        $output = PHP_EOL . $output . PHP_EOL;
-    } else {
-        $escaped = htmlspecialchars($output);
-        $output = '<pre>' . ($escaped ? $escaped : $output) . '</pre>';
-    }
-    echo $output;
-    return $var;
-}
-
-/**
  * Get human-readable file permissions.
  */
 function human_fileperms (string $path): string
