@@ -32,6 +32,9 @@
         "symfony/var-dumper": "^5.0"
     },
     "autoload": {
+        "psr-4" : {
+            "Funktions\\" : "src/"
+        },
         "files": [
             "src/array.php",
             "src/color.php",
