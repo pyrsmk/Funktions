@@ -3,6 +3,23 @@
 declare(strict_types=1);
 
 /**
+ * Retrieve a value from an iterable with a specified key.
+ * Note that it should be used with a hash or an array because iterating
+ * other an iterable for searching an element is not efficient at all.
+ */
+function value (iterable $iterable, string $key)
+{
+    if (is_array($iterable)) {
+        return $iterable[$key];
+    }
+    foreach ($iterable as $k => $v) {
+        if ($key === $k) {
+            return $v;
+        }
+    }
+}
+
+/**
  * Return the first element on an iterable.
  * Note that the iterable's pointer will be resetted.
  */
@@ -82,6 +99,23 @@ function reject (iterable $iterable, callable $callable): Generator
             yield $key => $value;
         }
     }
+}
+
+/**
+ * Extract lines from an iterable based on the requested keys.
+ */
+function pluck (iterable $iterable, string ...$keys): Generator
+{
+    return loop($iterable, function ($_k, array $line) use ($keys) {
+        if (count($keys) == 1) {
+            yield value($line, first($keys));
+        } else {
+            yield map(
+                $keys,
+                fn($key) => value($line, $key)
+            );
+        }
+    });
 }
 
 /**

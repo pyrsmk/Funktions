@@ -61,12 +61,14 @@ We've added the `VarDumper` module from Symfony to have a better `dump()` functi
 
 ### `iterable.php`
 
+- `value (iterable $iterable, string $key): mixed`: Retrieve a value from an iterable with a specified key. Note that it should be used with a hash or an array because iterating other an iterable for searching an element is not efficient at all.
 - `first (iterable $iterable): mixed`: Return the first element on an iterable. Note that the iterable's pointer will be resetted.
 - `last (iterable $iterable): mixed`: Return the last element of an iterable. Note that: if the iterable is an array, then its pointer will be resetted; if the iterable is not an array, it will be converted to one, then have in mind that a complete iteration will be done before being able to get its last element.
 - `one (iterable $iterable, callable $callable): bool`: Return `true` when at least one element matches the callable's condition.
 - `none (iterable $iterable, callable $callable): bool`: Return `true` when no element has matched the callable's condition.
 - `select (iterable $iterable, callable $callable): Generator`: Select items that match the callable's condition.
 - `reject (iterable $iterable, callable $callable): Generator`: Reject items that match the callable's condition.
+- `pluck (iterable $iterable, string ...$keys): Generator`: Extract lines from an iterable based on the requested keys.
 - `map (iterable $iterable, callable $callable): Generator`: Like `array_map()` but works on any iterable and with key/value support.
 - `reduce (iterable $iterable, callable $callable, $initial = null)`: Like `array_reduce()` but works on any iterable and with key/value support.
 - `to_array (Traversable $iterator, bool $use_keys = true): array`: Alias to `iterator_to_array()`.
