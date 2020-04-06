@@ -88,9 +88,9 @@ function to_array (Traversable $iterator, bool $use_keys = true): array
 }
 
 /**
- * Convert an array to a generator.
+ * Convert an iterable to a generator.
  */
-function array_to_generator (array $items): Generator
+function to_generator (iterable $items): Generator
 {
     yield from $items;
 }
