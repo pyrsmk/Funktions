@@ -34,7 +34,6 @@
         "files": [
             "src/array.php",
             "src/color.php",
-            "src/generator.php",
             "src/instruction.php",
             "src/iterable.php",
             "src/memory.php",

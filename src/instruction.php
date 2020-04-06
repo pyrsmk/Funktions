@@ -6,7 +6,7 @@ namespace Funktions\InstructionFuncs;
 
 use Exception;
 use Generator;
-use function Funktions\GeneratorFuncs\ensure_generator;
+use function Funktions\IterableFuncs\ensure_generator;
 
 /**
  * Return a value based on a condition.

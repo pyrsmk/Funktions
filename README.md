@@ -58,11 +58,6 @@ $sorted_array = array_sort($my_array);
 - `rgb2hex (int $r, int $g, int $b): string`: Convert RGB to HTML color.
 - `hex2rgb (string $hex): array`: Convert HTML to RGB color.
 
-### `Funktions\GeneratorFuncs`
-
-- `array_to_generator (array $items): Generator`: Convert an array to a generator.
-- `ensure_generator ($maybe_a_generator): Generator`: Ensure that the passed value will be a generator.
-
 ### `Funktions\IterableFuncs`
 
 - `one (iterable $iterable, callable $callable): bool`: Return `true` when at least one element matches the callable's condition.
@@ -72,6 +67,8 @@ $sorted_array = array_sort($my_array);
 - `map (iterable $iterable, callable $callable): Generator`: Like `array_map()` but works on any iterable and with key/value support.
 - `reduce (iterable $iterable, callable $callable, $initial = null)`: Like `array_reduce()` but works on any iterable and with key/value support.
 - `to_array (Traversable $iterator, bool $use_keys = true): array`: Alias to `iterator_to_array()`.
+- `array_to_generator (array $items): Generator`: Convert an array to a generator.
+- `ensure_generator ($maybe_a_generator): Generator`: Ensure that the passed value will be a generator.
 
 ### `Funktions\InstructionFuncs`
 
