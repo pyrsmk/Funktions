@@ -48,6 +48,7 @@ We've added the `VarDumper` module from Symfony to have a better `dump()` functi
 - `seek (array &$array, int|string $key): void`: Move the array pointer to a specified key (mutable).
 - `push (array $array, ...$elements): array`: Immutable `array_push()`.
 - `unshift (array $array, ...$elements): array`: Immutable `array_unshift()`.
+- `shake (array $array): array`: Immutable `shuffle()`.
 
 ### `color.php`
 

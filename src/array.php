@@ -284,3 +284,12 @@ function unshift (array $array, ...$elements): array
     array_unshift($array, ...$elements);
     return $array;
 }
+
+/**
+ * Immutable `shuffle()`.
+ */
+function shake (array $array): array
+{
+    shuffle($array);
+    return $array;
+}
