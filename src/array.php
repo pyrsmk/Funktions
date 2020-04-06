@@ -266,3 +266,21 @@ function seek (array &$array, $key): void
         }
     }
 }
+
+/**
+ * Immutable `array_push()`.
+ */
+function push (array $array, ...$elements): array
+{
+    array_push($array, ...$elements);
+    return $array;
+}
+
+/**
+ * Immutable `array_unshift()`.
+ */
+function unshift (array $array, ...$elements): array
+{
+    array_unshift($array, ...$elements);
+    return $array;
+}

@@ -46,6 +46,8 @@ We've added the `VarDumper` module from Symfony to have a better `dump()` functi
 - `kmax (array $array): mixed`: Return the key of the maximum value.
 - `kmin (array $array): mixed`: Return the key of the minimum value.
 - `seek (array &$array, int|string $key): void`: Move the array pointer to a specified key (mutable).
+- `push (array $array, ...$elements): array`: Immutable `array_push()`.
+- `unshift (array $array, ...$elements): array`: Immutable `array_unshift()`.
 
 ### `color.php`
 
