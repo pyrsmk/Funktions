@@ -2,11 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Funktions\IterableFuncs;
-
-use Generator;
-use Traversable;
-
 /**
  * Return true when at least one element matches the callable's condition.
  */

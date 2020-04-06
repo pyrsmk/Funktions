@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Funktions\NumberFuncs;
-
 /**
  * Verify if the value is even.
  */

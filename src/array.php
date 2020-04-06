@@ -2,11 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Funktions\ArrayFuncs;
-
-use TypeError;
 use Funktions\Exception\KeyNotFoundException;
-use function Funktions\IterableFuncs\reduce;
 
 /**
  * Strict diff between two arrays by comparing the values at the same index.

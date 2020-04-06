@@ -2,17 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Funktions\InstructionFuncs;
-
-use Exception;
-use Generator;
-use function Funktions\IterableFuncs\ensure_generator;
-
 /**
  * Return a value based on a condition.
  */
-function condition (bool $test, callable $truthy, callable $falsy)
+function condition (bool $test, callable $truthy, callable $falsy = null)
 {
+    $falsy = $falsy ?? fn () => null;
     return call_user_func($test ? $truthy : $falsy);
 }
 

@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Funktions\MiscellaneousFuncs;
-
 /**
  * Collect garbage after callable execution.
  */

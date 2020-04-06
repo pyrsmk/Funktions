@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Funktions\StringFuncs;
-
 /**
 <<<<<<< HEAD
  * Converts a string to camel case

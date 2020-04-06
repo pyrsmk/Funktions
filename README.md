@@ -17,19 +17,13 @@ __WARNING!!! STILL UNDER HEAVY DEVELOPMENT AND NOT TESTED YED__
 composer require pyrsmk/funktions
 ```
 
-## Use
+Note: to ease the use of functions, they're all imported into the global scope.
 
-```php
-use function Funktions\ArrayFuncs\array_sort;
-
-$sorted_array = array_sort($my_array);
-```
-
-### `Symfony\VarDumper`
+### `dump()`
 
 We've added the `VarDumper` module from Symfony to have a better `dump()` function (in replacement of `var_dump()`). It can do many things and ease your debug life, go [read the documentation](https://symfony.com/doc/current/components/var_dumper.html) to know more about it ;)
 
-### `Funktions\ArrayFuncs`
+### `array.php`
 
 - `array_diff_strict (array $array1, array $array2): array`: Strict diff between two arrays by comparing the values at the same index.
 - `array_fill_multi (int $dimensions, int $size, mixed $value): array`: Initialize multi-dimensional arrays.
@@ -53,7 +47,7 @@ We've added the `VarDumper` module from Symfony to have a better `dump()` functi
 - `kmin (array $array): mixed`: Return the key of the minimum value.
 - `seek (array &$array, int|string $key): void`: Move the array pointer to a specified key (mutable).
 
-### `Funktions\ColorFuncs`
+### `color.php`
 
 - `rgb2hsl (int $r, int $g, int $b): array`: Convert RGB to HSL color.
 - `hsl2rgb (int $h, int $s, int $l): array`: Convert HSL to RGB color.
@@ -62,7 +56,7 @@ We've added the `VarDumper` module from Symfony to have a better `dump()` functi
 - `rgb2hex (int $r, int $g, int $b): string`: Convert RGB to HTML color.
 - `hex2rgb (string $hex): array`: Convert HTML to RGB color.
 
-### `Funktions\IterableFuncs`
+### `iterable.php`
 
 - `one (iterable $iterable, callable $callable): bool`: Return `true` when at least one element matches the callable's condition.
 - `none (iterable $iterable, callable $callable): bool`: Return `true` when no element has matched the callable's condition.
@@ -74,30 +68,30 @@ We've added the `VarDumper` module from Symfony to have a better `dump()` functi
 - `to_generator (iterable $items): Generator`: Convert an iterable to a generator.
 - `ensure_generator ($maybe_a_generator): Generator`: Ensure that the passed value will be a generator.
 
-### `Funktions\InstructionFuncs`
+### `instruction.php`
 
 - `condition (bool $test, callable $truthy, callable $falsy): mixed`: Return a value based on a test.
 - `loop (iterable $iterable, callable $callable): Generator`: Loop over an iterable and yield new values.
 - `rescue (callable $callable, array $exceptions): mixed`: Execute a callback and catch exceptions.
 
-### `Funktions\MemoryFuncs`
+### `memory.php`
 
 - `mem_cleaned (callable $callable): mixed`: Collect garbage after callable execution.
 
-### `Funktions\NumberFuncs`
+### `number.php`
 
 - `is_even (int $value): bool`: Verify if the value is even.
 - `is_odd (int $value): bool`: Verify if the value is odd.
 - `above (float $value, float $min): float`: Bound a number to a minimum value.
 - `under (float $value, float $max): float`: Bound a number to a maximum value.
 
-### `Funktions\OutputFuncs`
+### `output.php`
 
 - `capture (callable $callable): string`: Capture output on a callable execution.
 - `mute (callable $callable): mixed`: Mute output on a callable execution.
 - `puts (string $text): void`: Print a one-line text.
 
-### `Funktions\RegexFuncs`
+### `regex.php`
 
 - `regex_count (string $pattern, string $text, int $flags = 0): int`: Count the number of matches for a regex in a string.
 - `regex_match (string $pattern, string $text, int $flags = 0): Generator`: Return the matches of a regex, for the first match.
@@ -105,7 +99,7 @@ We've added the `VarDumper` module from Symfony to have a better `dump()` functi
 - `regex_match_all (string $pattern, string $text, int $flags = 0): Generator`: Return all the matches of a regex.
 - `regex_test (string $pattern, string $text, int $flags = 0): bool`: Test if a regex matches against a string.
 
-### `Funktions\StringFuncs`
+### `string.php`
 
 <<<<<<< HEAD
 - `mb_to_camelcase (string $string): string`: converts a string to camel case
@@ -125,7 +119,7 @@ We've added the `VarDumper` module from Symfony to have a better `dump()` functi
 - `uuid_v4 (): string`: Generate a random v4 UUID.
 >>>>>>> 46e018a... Update documentation
 
-### `Funktions\SystemFuncs`
+### `system.php`
 
 - `human_fileperms (string $path): string`: Get human-readable file permissions.
 - `human_filesize (string $path): string`: Get human-readable file size.
