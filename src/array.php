@@ -33,15 +33,6 @@ function array_diff_strict (array $array1, array $array2): array
 }
 
 /**
- * Drop a part of an array (immutable `array_splice`).
- */
-function array_drop (array $array, int $offset, int $length): array
-{
-    array_splice($array, $offset, $length);
-    return $array;
-}
-
-/**
  * Initialize multi-dimensional arrays.
  */
 function array_fill_multi (int $dimensions, int $size, $value): array
@@ -112,9 +103,117 @@ function array_merge_recursive_unique (array ...$arrays): array
 }
 
 /**
- * Improved `\array_splice()` with full string keys support when replacing.
+ * Immutable `sort()`.
  */
-function array_substitute (
+function immut_sort (array $array, int $flags = SORT_REGULAR): array
+{
+    sort($array, $flags);
+    return $array;
+}
+
+/**
+ * Immutable `asort()`.
+ */
+function immut_asort (array $array, int $flags = SORT_REGULAR): array
+{
+    asort($array, $flags);
+    return $array;
+}
+
+/**
+ * Immutable `arsort()`.
+ */
+function immut_arsort (array $array, int $flags = SORT_REGULAR): array
+{
+    arsort($array, $flags);
+    return $array;
+}
+
+/**
+ * Immutable `rsort()`.
+ */
+function immut_rsort (array $array, int $flags = SORT_REGULAR): array
+{
+    rsort($array, $flags);
+    return $array;
+}
+
+/**
+ * Immutable `ksort()`.
+ */
+function immut_ksort (array $array, int $flags = SORT_REGULAR): array
+{
+    ksort($array, $flags);
+    return $array;
+}
+
+/**
+ * Immutable `krsort()`.
+ */
+function immut_krsort (array $array, int $flags = SORT_REGULAR): array
+{
+    krsort($array, $flags);
+    return $array;
+}
+
+/**
+ * Immutable `usort()`.
+ */
+function immut_usort (array $array, callable $compare): array
+{
+    usort($array, $compare);
+    return $array;
+}
+
+/**
+ * Immutable `uksort()`.
+ */
+function immut_uksort (array $array, callable $compare): array
+{
+    uksort($array, $compare);
+    return $array;
+}
+
+/**
+ * Immutable `uasort()`.
+ */
+function immut_uasort (array $array, callable $compare): array
+{
+    uasort($array, $compare);
+    return $array;
+}
+
+/**
+ * Immutable `natsort()`.
+ */
+function immut_natsort (array $array): array
+{
+    natsort($array);
+    return $array;
+}
+
+/**
+ * Immutable `natcasesort()`.
+ */
+function immut_natcasesort (array $array): array
+{
+    natcasesort($array);
+    return $array;
+}
+
+/**
+ * Drop a part of an array (immutable `array_splice`).
+ */
+function drop (array $array, int $offset, int $length): array
+{
+    array_splice($array, $offset, $length);
+    return $array;
+}
+
+/**
+ * Improved `array_splice()` with full string keys support when replacing.
+ */
+function substitute (
     array $array,
     int $offset,
     int $length,
@@ -126,105 +225,6 @@ function array_substitute (
         $replacement,
         array_slice($array, $offset + $length)
     );
-}
-
-/**
- * Immutable `\sort()`.
- */
-function array_sort (array $array, int $flags = SORT_REGULAR): array
-{
-    \sort($array, $flags);
-    return $array;
-}
-
-/**
- * Immutable `\asort()`.
- */
-function array_asort (array $array, int $flags = SORT_REGULAR): array
-{
-    \asort($array, $flags);
-    return $array;
-}
-
-/**
- * Immutable `\arsort()`.
- */
-function array_arsort (array $array, int $flags = SORT_REGULAR): array
-{
-    \arsort($array, $flags);
-    return $array;
-}
-
-/**
- * Immutable `\rsort()`.
- */
-function array_rsort (array $array, int $flags = SORT_REGULAR): array
-{
-    \rsort($array, $flags);
-    return $array;
-}
-
-/**
- * Immutable `\ksort()`.
- */
-function array_ksort (array $array, int $flags = SORT_REGULAR): array
-{
-    \ksort($array, $flags);
-    return $array;
-}
-
-/**
- * Immutable `\krsort()`.
- */
-function array_krsort (array $array, int $flags = SORT_REGULAR): array
-{
-    \krsort($array, $flags);
-    return $array;
-}
-
-/**
- * Immutable `\usort()`.
- */
-function array_usort (array $array, callable $compare): array
-{
-    \usort($array, $compare);
-    return $array;
-}
-
-/**
- * Immutable `\uksort()`.
- */
-function array_uksort (array $array, callable $compare): array
-{
-    \uksort($array, $compare);
-    return $array;
-}
-
-/**
- * Immutable `\uasort()`.
- */
-function array_uasort (array $array, callable $compare): array
-{
-    \uasort($array, $compare);
-    return $array;
-}
-
-/**
- * Immutable `\natsort()`.
- */
-function array_natsort (array $array): array
-{
-    \natsort($array);
-    return $array;
-}
-
-/**
- * Immutable `\natcasesort()`.
- */
-function array_natcasesort (array $array): array
-{
-    \natcasesort($array);
-    return $array;
 }
 
 /**

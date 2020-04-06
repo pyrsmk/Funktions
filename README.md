@@ -28,22 +28,22 @@ $sorted_array = array_sort($my_array);
 ### `Funktions\ArrayFuncs`
 
 - `array_diff_strict (array $array1, array $array2): array`: Strict diff between two arrays by comparing the values at the same index.
-- `array_drop (array $array, int $offset, int $length): array`: Drop a part of an array (immutable `array_splice`).
 - `array_fill_multi (int $dimensions, int $size, mixed $value): array`: Initialize multi-dimensional arrays.
 - `array_intersect_strict (array $array1, array $array2): array`: Strict insersection between two arrays by comparing the values at the same index.
 - `array_merge_recursive_unique (array ...$arrays): array`: Contrary to `array_merge_recursive()`, it merges array by replacing values of the same key instead of appending them into a new array.
-- `array_substitute (array $array, int $offset, int $length, array $replacement): array`: Improved `\array_splice()` with full string keys support when replacing.
-- `array_sort (array $array, int $flags = SORT_REGULAR): array`: Immutable `\sort()`.
-- `array_asort (array $array, int $flags = SORT_REGULAR): array`: Immutable `\asort()`.
-- `array_arsort (array $array, int $flags = SORT_REGULAR): array`: Immutable `\arsort()`.
-- `array_rsort (array $array, int $flags = SORT_REGULAR): array`: Immutable `\rsort()`.
-- `array_ksort (array $array, int $flags = SORT_REGULAR): array`: Immutable `\ksort()`.
-- `array_krsort (array $array, int $flags = SORT_REGULAR): array`: Immutable `\krsort()`.
-- `array_usort (array $array, callable $compare): array`: Immutable `\usort()`.
-- `array_uksort (array $array, callable $compare): array`: Immutable `\uksort()`.
-- `array_uasort (array $array, callable $compare): array`: Immutable `\uasort()`.
-- `array_natsort (array $array): array`: Immutable `\natsort()`.
-- `array_natcasesort (array $array): array`: Immutable `\natcasesort()`.
+- `immut_sort (array $array, int $flags = SORT_REGULAR): array`: Immutable `sort()`.
+- `immut_asort (array $array, int $flags = SORT_REGULAR): array`: Immutable `asort()`.
+- `immut_arsort (array $array, int $flags = SORT_REGULAR): array`: Immutable `arsort()`.
+- `immut_rsort (array $array, int $flags = SORT_REGULAR): array`: Immutable `rsort()`.
+- `immut_ksort (array $array, int $flags = SORT_REGULAR): array`: Immutable `ksort()`.
+- `immut_krsort (array $array, int $flags = SORT_REGULAR): array`: Immutable `krsort()`.
+- `immut_usort (array $array, callable $compare): array`: Immutable `usort()`.
+- `immut_uksort (array $array, callable $compare): array`: Immutable `uksort()`.
+- `immut_uasort (array $array, callable $compare): array`: Immutable `uasort()`.
+- `immut_natsort (array $array): array`: Immutable `natsort()`.
+- `immut_natcasesort (array $array): array`: Immutable `natcasesort()`.
+- `drop (array $array, int $offset, int $length): array`: Drop a part of an array (immutable `array_splice`).
+- `substitute (array $array, int $offset, int $length, array $replacement): array`: Improved `array_splice()` with full string keys support when replacing.
 - `glue (array $array, string $glue = ''): string`: Glue array elements together, like `implode()` but with parameters in the right order.
 - `kmax (array $array): mixed`: Return the key of the maximum value.
 - `kmin (array $array): mixed`: Return the key of the minimum value.
