@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Funktions\IterableFuncs;
 
 use Generator;
+use Traversable;
 
 /**
  * Return true when at least one element matches the callable's condition.
@@ -76,4 +77,12 @@ function reduce (iterable $iterable, callable $callable, $initial = null)
         $carry = call_user_func($callable, $carry, $key, $value);
     }
     return $carry;
+}
+
+/**
+ * Alias to `iterator_to_array()`.
+ */
+function to_array (Traversable $iterator, bool $use_keys = true): array
+{
+    return iterator_to_array($iterator, $use_keys);
 }

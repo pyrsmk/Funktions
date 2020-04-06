@@ -69,8 +69,9 @@ $sorted_array = array_sort($my_array);
 - `none (iterable $iterable, callable $callable): bool`: Return `true` when no element has matched the callable's condition.
 - `select (iterable $iterable, callable $callable): Generator`: Select items that match the callable's condition.
 - `reject (iterable $iterable, callable $callable): Generator`: Reject items that match the callable's condition.
-- `map (iterable $iterable, callable $callable): Generator`: Like `array_map()` but with any iterable and key/value support. Note that if the callable yields values from several generators, same keys will be merged (contrary to `loop()` behavior).
-- `reduce (iterable $iterable, callable $callable, $initial = null)`: Like `array_reduce()` but with any iterable and key/value support.
+- `map (iterable $iterable, callable $callable): Generator`: Like `array_map()` but works on any iterable and with key/value support.
+- `reduce (iterable $iterable, callable $callable, $initial = null)`: Like `array_reduce()` but works on any iterable and with key/value support.
+- `to_array (Traversable $iterator, bool $use_keys = true): array`: Alias to `iterator_to_array()`.
 
 ### `Funktions\InstructionFuncs`
 
