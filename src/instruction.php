@@ -18,10 +18,10 @@ function loop (iterable $iterable, callable $callable): Generator
 {
     foreach ($iterable as $key => $item) {
         $generator = ensure_generator(
-            call_user_func($callable, $item, $key)
+            call_user_func($callable, $key, $item)
         );
-        foreach($generator as $key => $value) {
-            yield $key => $value;
+        foreach($generator as $gen_key => $gen_item) {
+            yield $gen_key => $gen_item;
         }
         if ($generator->getReturn() === true) {
             break;
