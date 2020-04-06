@@ -60,6 +60,8 @@ We've added the `VarDumper` module from Symfony to have a better `dump()` functi
 
 ### `iterable.php`
 
+- `first (iterable $iterable): mixed`: Return the first element on an iterable. Note that the iterable's pointer will be resetted.
+- `last (iterable $iterable): mixed`: Return the last element of an iterable. Note that: if the iterable is an array, then its pointer will be resetted; if the iterable is not an array, it will be converted to one, then have in mind that a complete iteration will be done before being able to get its last element.
 - `one (iterable $iterable, callable $callable): bool`: Return `true` when at least one element matches the callable's condition.
 - `none (iterable $iterable, callable $callable): bool`: Return `true` when no element has matched the callable's condition.
 - `select (iterable $iterable, callable $callable): Generator`: Select items that match the callable's condition.

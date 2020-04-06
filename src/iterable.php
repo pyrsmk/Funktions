@@ -3,6 +3,38 @@
 declare(strict_types=1);
 
 /**
+ * Return the first element on an iterable.
+ * Note that the iterable's pointer will be resetted.
+ */
+function first (iterable $iterable)
+{
+    if (is_array($iterable)) {
+        reset($iterable);
+        return current($iterable);
+    }
+    $iterable->rewind();
+    return $iterable->current();
+}
+
+/**
+ * Return the last element of an iterable.
+ * Note that:
+ *     - if the iterable is an array, then its pointer will be resetted
+ *     - if the iterable is not an array, it will be converted to one,
+ *       then have in mind that a complete iteration will be done before
+ *       being able to get its last element
+ */
+function last (iterable $iterable)
+{
+    if (!is_array($iterable)) {
+        $iterable = to_array($iterable);
+    }
+    $value = end($iterable);
+    reset($iterable);
+    return $value;
+}
+
+/**
  * Return true when at least one element matches the callable's condition.
  */
 function one (iterable $iterable, callable $callable): bool
