@@ -106,6 +106,9 @@ function reject (iterable $iterable, callable $callable): Generator
  */
 function pluck (iterable $iterable, string ...$keys): Generator
 {
+    if (is_array($iterable) && count($keys) == 1) {
+        return array_column($iterable, first($keys));
+    }
     return loop($iterable, function ($_k, array $line) use ($keys) {
         if (count($keys) == 1) {
             yield value($line, first($keys));
