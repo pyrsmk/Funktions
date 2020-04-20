@@ -9,7 +9,7 @@ declare(strict_types=1);
  */
 function value (iterable $iterable, string $key)
 {
-    if (is_array($iterable)) {
+    if (is_array($iterable) || $iterable instanceof ArrayAccess) {
         return $iterable[$key];
     }
     foreach ($iterable as $k => $v) {
@@ -20,7 +20,7 @@ function value (iterable $iterable, string $key)
 }
 
 /**
- * Return the first element on an iterable.
+ * Return the first element of an iterable.
  * Note that the iterable's pointer will be resetted.
  */
 function first (iterable $iterable)
