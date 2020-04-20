@@ -12,6 +12,9 @@ function value (iterable $iterable, string $key)
     if (is_array($iterable) || $iterable instanceof ArrayAccess) {
         return $iterable[$key];
     }
+    if (property_exists($iterable, $key)) {
+        return $iterable->$key;
+    }
     foreach ($iterable as $k => $v) {
         if ($key === $k) {
             return $v;
