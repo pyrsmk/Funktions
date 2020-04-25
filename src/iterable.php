@@ -57,7 +57,7 @@ function last (iterable $iterable)
 /**
  * Return true when at least one element matches the callable's condition.
  */
-function one (iterable $iterable, callable $callable): bool
+function any (iterable $iterable, callable $callable): bool
 {
     foreach ($iterable as $key => $value) {
         if (call_user_func($callable, $key, $value) === true) {
