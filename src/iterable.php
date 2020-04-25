@@ -55,6 +55,23 @@ function last (iterable $iterable)
 }
 
 /**
+ * Enumerate elements in an iterable.
+ */
+function enumerate (iterable $iterable, ?callable $callable = null): int
+{
+    if ($callable === null && is_countable($iterable)) {
+        return count($iterable);
+    }
+    $i = 0;
+    foreach ($iterable as $key => $value) {
+        if (call_user_func($callable, $key, $value) === true) {
+            $i += 1;
+        }
+    }
+    return $i;
+}
+
+/**
  * Return true when all elements match the callable's condition.
  */
 function all (iterable $iterable, callable $callable): bool
