@@ -71,8 +71,9 @@ We've added the `VarDumper` module from Symfony to have a better `dump()` functi
 - `pluck (iterable $iterable, string ...$keys): Generator`: Extract lines from an iterable based on the requested keys.
 - `map (iterable $iterable, callable $callable): Generator`: Like `array_map()` but works on any iterable and with key/value support.
 - `reduce (iterable $iterable, callable $callable, $initial = null)`: Like `array_reduce()` but works on any iterable and with key/value support.
-- `to_array (Traversable $iterator, bool $use_keys = true): array`: Alias to `iterator_to_array()`.
-- `to_generator (iterable $items): Generator`: Convert an iterable to a generator.
+- `iterable_to_generator (iterable $items): Generator`: Convert an iterable to a generator.
+- `itog (iterable $items): Generator`: Alias to `iterable_to_generator()`.
+- `itoa (Traversable $iterator, bool $use_keys = true): array`: Alias to `iterator_to_array()`.
 - `ensure_generator ($maybe_a_generator): Generator`: Ensure that the passed value will be a generator.
 
 ### `instruction.php`

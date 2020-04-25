@@ -47,7 +47,7 @@ function first (iterable $iterable)
 function last (iterable $iterable)
 {
     if (!is_array($iterable)) {
-        $iterable = to_array($iterable);
+        $iterable = iterator_to_array($iterable);
     }
     $value = end($iterable);
     reset($iterable);
@@ -147,19 +147,27 @@ function reduce (iterable $iterable, callable $callable, $initial = null)
 }
 
 /**
- * Alias to `iterator_to_array()`.
+ * Convert an iterable to a generator.
  */
-function to_array (Traversable $iterator, bool $use_keys = true): array
+function iterable_to_generator (iterable $items): Generator
 {
-    return iterator_to_array($iterator, $use_keys);
+    yield from $items;
 }
 
 /**
- * Convert an iterable to a generator.
+ * Convert an iterable to a generator (alias to `iterable_to_generator()`).
  */
-function to_generator (iterable $items): Generator
+function itog (iterable $items): Generator
 {
-    yield from $items;
+    yield from iterable_to_generator($items);
+}
+
+/**
+ * Convert an iterator to an array (alias to `iterator_to_array()`).
+ */
+function itoa (Traversable $iterator, bool $use_keys = true): array
+{
+    return iterator_to_array($iterator, $use_keys);
 }
 
 /**
