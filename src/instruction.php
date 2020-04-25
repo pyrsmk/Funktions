@@ -23,7 +23,7 @@ function loop (iterable $iterable, callable $callable): Generator
         foreach($generator as $gen_key => $gen_item) {
             yield $gen_key => $gen_item;
         }
-        if ($generator->getReturn() === true) {
+        if ($generator->getReturn() === false) {
             break;
         }
     }
