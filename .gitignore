@@ -1,3 +1,7 @@
 node_modules/
+package-lock.json
+yarn.lock
 tests/vendor/
+tests/composer.lock
 vendor/
+composer.lock
