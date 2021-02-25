@@ -60,6 +60,41 @@ function array_fill_multi (int $dimensions, int $size, $value) : array
 }
 
 /**
+ * Flatten an array by keeping an arbitrary minimum depth if necessary.
+ */
+function array_flatten(array $array, ?int $min_depth = null) : array
+{
+    $depth = function ($array) use (&$depth) : int {
+        $level = 0;
+        if (is_array($array[0])) {
+            $level += 1 + $depth($array[0]);
+        } else {
+            $level += 1;
+        }
+        return $level;
+    };
+    if ($min_depth !== null) {
+        if ($depth($array) === $min_depth) {
+            return [$array];
+        }
+    }
+    $newArray = [];
+    foreach ($array as $key => $child) {
+        if (is_array($child)) {
+            $newArray = array_merge(
+                $newArray,
+                array_flatten($child, $min_depth)
+            );
+        } elseif (is_string($key)) {
+            $newArray[$key] = $child;
+        } else {
+            $newArray[] = $child;
+        }
+    }
+    return $newArray;
+}
+
+/**
  * Strict insersection between two arrays
  * by comparing the values at the same index.
  */
@@ -119,8 +154,8 @@ function array_seek (array &$array, $key) : void
     while(key($array) !== $key) {
         if (next($array) === false) {
             throw new KeyNotFoundException("'$key' key not found");
-}
-}
+        }
+    }
 }
 
 /**
