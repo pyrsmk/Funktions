@@ -39,10 +39,6 @@ $fruits = [
 $flatten_fruits = array_flatten($fruits);
 ```
 
-### `dump()`
-
-We've added the `VarDumper` module from Symfony to have a better `dump()` function (in replacement of `var_dump()`). It can do many things and ease your debug life, go [read the documentation](https://symfony.com/doc/current/components/var_dumper.html) to know more about it ;)
-
 ### `array.php`
 
 - `array_diff_strict (array $array1, array $array2) : array`: Strict diff between two arrays by comparing the values at the same index.

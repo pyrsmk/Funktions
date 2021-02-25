@@ -28,8 +28,7 @@
     "require": {
         "php": ">=7.4.0",
         "ext-curl": "*",
-        "ext-fileinfo": "*",
-        "symfony/var-dumper": "^5.0"
+        "ext-fileinfo": "*"
     },
     "autoload": {
         "psr-4" : {
