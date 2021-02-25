@@ -8,31 +8,9 @@ use Funktions\Exception\UnexpectedErrorException;
 use Funktions\Exception\InvalidFileException;
 
 /**
- * Formatted variable dumping function with variable passthrough
- *
- * @param mixed $var
- * @return mixed
+ * Get human-readable file permissions.
  */
-function dump($var)
-{
-    $output = var_export($var, true);
-    if (php_sapi_name() === 'cli') {
-        $output = PHP_EOL . $output . PHP_EOL;
-    } else {
-        $escaped = htmlspecialchars($output);
-        $output = '<pre>' . ($escaped ? $escaped : $output) . '</pre>';
-    }
-    echo $output;
-    return $var;
-}
-
-/**
- * Get human-readable permissions
- *
- * @param string $path
- * @return string
- */
-function human_fileperms(string $path): string
+function human_fileperms (string $path) : string
 {
     $perms = fileperms($path);
     // Socket
@@ -55,31 +33,28 @@ function human_fileperms(string $path): string
     $owner = (($perms & 0x0100) ? 'r' : '-');
     $owner .= (($perms & 0x0080) ? 'w' : '-');
     $owner .= (($perms & 0x0040) ?
-        (($perms & 0x0800) ? 's' : 'x'):
+        (($perms & 0x0800) ? 's' : 'x') :
         (($perms & 0x0800) ? 'S' : '-'));
     // Group
     $group = (($perms & 0x0020) ? 'r' : '-');
     $group .= (($perms & 0x0010) ? 'w' : '-');
     $group .= (($perms & 0x0008) ?
-        (($perms & 0x0400) ? 's' : 'x'):
+        (($perms & 0x0400) ? 's' : 'x') :
         (($perms & 0x0400) ? 'S' : '-'));
     // All
     $all = (($perms & 0x0004) ? 'r' : '-');
     $all .= (($perms & 0x0002) ? 'w' : '-');
     $all .= (($perms & 0x0001) ?
-        (($perms & 0x0200) ? 't' : 'x'):
+        (($perms & 0x0200) ? 't' : 'x') :
         (($perms & 0x0200) ? 'T' : '-'));
     // Return permissions
     return "$type$owner$group$all";
 }
 
 /**
- * Get human-readable file size
- *
- * @param string $path
- * @return string
+ * Get human-readable file size.
  */
-function human_filesize(string $path): string
+function human_filesize (string $path) : string
 {
     $bytes = filesize($path);
     $units = ['b', 'Kb', 'Mb', 'Gb', 'Tb', 'Eb'];
@@ -92,12 +67,9 @@ function human_filesize(string $path): string
 }
 
 /**
- * Scan a directory without '.' and '..'
- *
- * @param string $dir
- * @return array
+ * Scan a directory without '.' and '..'.
  */
-function lessdir(string $dir): array
+function lessdir (string $dir) : array
 {
     if (file_exists($dir) === false) {
         return [];
@@ -107,12 +79,9 @@ function lessdir(string $dir): array
 }
 
 /**
- * Get a file's mime type
- *
- * @param string $path
- * @return string
+ * Get a file's mime type.
  */
-function mimetype(string $path): string
+function mimetype (string $path) : string
 {
     if (filter_var($path, FILTER_VALIDATE_URL)) {
         $request = curl_init($path);
@@ -146,12 +115,9 @@ function mimetype(string $path): string
 }
 
 /**
- * Remove a directory recursively
- *
- * @param string $path
- * @return void
+ * Remove a directory recursively.
  */
-function rrmdir(string $path): void
+function rrmdir (string $path) : void
 {
     if ($path[strlen($path) - 1] == '/') {
         $path = substr($path, 0, -1);

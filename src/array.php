@@ -4,25 +4,20 @@ declare(strict_types=1);
 
 namespace Funktions;
 
-use Generator;
-use TypeError;
 use Funktions\Exception\KeyNotFoundException;
+use TypeError;
 
 /**
- * Strict diff between two arrays by comparing the values at the same index
- *
- * @param array $array1
- * @param array $array2
- * @return array
+ * Strict diff between two arrays by comparing the values at the same index.
  */
-function array_diff_strict(array $array1, array $array2): array
+function array_diff_strict (array $array1, array $array2) : array
 {
     if (count($array1) !== count($array2)) {
         throw new TypeError('Arrays must be of the same length');
     }
-    return array_kvreduce(
+    return reduce(
         $array1,
-        function (array $diff, $key, $value) use ($array2): array {
+        function (array $diff, $key, $value) use ($array2) : array {
             if ($value !== $array2[$key]) {
                 $diff[] = [
                     'offset' => $key,
@@ -31,35 +26,26 @@ function array_diff_strict(array $array1, array $array2): array
                 ];
             }
             return $diff;
-        }, []
+        },
+        []
     );
 }
 
 /**
- * Drop a part of an array
- *
- * @param array $array
- * @param integer $offset
- * @param integer $length
- * @return array
+ * Drop a part of an array (immutable `array_splice`).
  */
-function array_drop(array $array, int $offset, int $length): array
+function array_drop (array $array, int $offset, int $length) : array
 {
     array_splice($array, $offset, $length);
     return $array;
 }
 
 /**
- * Initialize multi-dimensional arrays
- *
- * @param integer $dimensions
- * @param integer $size
- * @param mixed $value
- * @return array
+ * Initialize multi-dimensional arrays.
  */
-function array_fill_multi(int $dimensions, int $size, $value): array
+function array_fill_multi (int $dimensions, int $size, $value) : array
 {
-    $create = function (int $dimension, int $size, $value) use (&$create, $dimensions): array {
+    $create = function (int $dimension, int $size, $value) use (&$create, $dimensions) : array {
         $array = [];
         foreach (range(1, $size) as $i) {
             if ($dimension < $dimensions) {
@@ -74,89 +60,65 @@ function array_fill_multi(int $dimensions, int $size, $value): array
 }
 
 /**
- * Strict insersection between two arrays by comparing the values at the same index
- *
- * @param array $array1
- * @param array $array2
- * @return array
+ * Flatten an array by keeping an arbitrary minimum depth if necessary.
  */
-function array_intersect_strict(array $array1, array $array2): array
+function array_flatten(array $array, ?int $min_depth = null) : array
+{
+    $depth = function ($array) use (&$depth) : int {
+        $level = 0;
+        if (is_array($array[0])) {
+            $level += 1 + $depth($array[0]);
+        } else {
+            $level += 1;
+        }
+        return $level;
+    };
+    if ($min_depth !== null) {
+        if ($depth($array) === $min_depth) {
+            return [$array];
+        }
+    }
+    $newArray = [];
+    foreach ($array as $key => $child) {
+        if (is_array($child)) {
+            $newArray = array_merge(
+                $newArray,
+                array_flatten($child, $min_depth)
+            );
+        } elseif (is_string($key)) {
+            $newArray[$key] = $child;
+        } else {
+            $newArray[] = $child;
+        }
+    }
+    return $newArray;
+}
+
+/**
+ * Strict insersection between two arrays
+ * by comparing the values at the same index.
+ */
+function array_intersect_strict (array $array1, array $array2) : array
 {
     if (count($array1) !== count($array2)) {
         throw new TypeError('Arrays must be of the same length');
     }
-    return array_kvreduce(
+    return reduce(
         $array1,
-        function (array $diff, $key, $value) use ($array2): array {
+        function (array $diff, $key, $value) use ($array2) : array {
             if ($value === $array2[$key]) {
                 $diff[] = $value;
             }
             return $diff;
-        }, []
+        },
+        []
     );
 }
 
 /**
- * array_map with key/value support
- *
- * @param array $array
- * @param callable $callable
- * @return array
+ * Merge arrays recursively.
  */
-function array_kvmap(array $array, callable $callable): array
-{
-    return array_map($callable, $array, array_keys($array));
-}
-
-/**
- * Alias to array_kvmap()
- *
- * @param array $array
- * @param callable $callback
- * @return array
- */
-function map(array $array, callable $callable): array
-{
-    return array_kvmap($array, $callable);
-}
-
-/**
- * array_reduce with key/value support
- *
- * @param array $array
- * @param callable $callable
- * @param mixed $initial
- * @return mixed
- */
-function array_kvreduce(array $array, callable $callable, $initial = null)
-{
-    $carry = $initial;
-    foreach ($array as $key => $value) {
-        $carry = call_user_func($callable, $carry, $value, $key);
-    }
-    return $carry;
-}
-
-/**
- * Alias to array_kvreduce()
- *
- * @param array $array
- * @param callable $callback
- * @param mixed $initial
- * @return array
- */
-function reduce(array $array, callable $callable, $initial = null): array
-{
-    return array_kvreduce($array, $callable, $initial);
-}
-
-/**
- * Merge arrays recursively
- *
- * @param array ...$arrays
- * @return array
- */
-function array_merge_recursive_unique(array ...$arrays): array
+function array_merge_recursive_unique (array ...$arrays) : array
 {
     $merged = [];
     while ($arrays) {
@@ -164,9 +126,14 @@ function array_merge_recursive_unique(array ...$arrays): array
         foreach ($array as $key => $value){
             if (is_string($key)) {
                 if (is_array($value) &&
-                    array_key_exists($key, $merged) && is_array($merged[$key])
+                    array_key_exists($key, $merged) &&
+                    is_array($merged[$key])
                 ) {
-                    $merged[$key] = call_user_func(__FUNCTION__, $merged[$key], $value);
+                    $merged[$key] = call_user_func(
+                        __FUNCTION__,
+                        $merged[$key],
+                        $value
+                    );
                 } else {
                     $merged[$key] = $value;
                 }
@@ -179,28 +146,27 @@ function array_merge_recursive_unique(array ...$arrays): array
 }
 
 /**
- * Convert an array to a generator
- *
- * @param array $items
- * @return Generator
+ * Move the array pointer to a specified key (mutable).
  */
-function array_to_generator(array $items): Generator
+function array_seek (array &$array, $key) : void
 {
-    foreach ($items as $key => $item) {
-        yield $key => $item;
+    reset($array);
+    while(key($array) !== $key) {
+        if (next($array) === false) {
+            throw new KeyNotFoundException("'$key' key not found");
+        }
     }
 }
 
 /**
- * Improved array_splice() with full string keys support when replacing
- *
- * @param array $array
- * @param integer $offset
- * @param integer $length
- * @param array $replacement
- * @return array
+ * Improved `array_splice()` with full string keys support when replacing.
  */
-function array_substitute(array $array, int $offset, int $length, array $replacement): array
+function array_substitute (
+    array $array,
+    int $offset,
+    int $length,
+    array $replacement
+) : array
 {
     return array_merge(
         array_slice($array, 0, $offset),
@@ -210,164 +176,144 @@ function array_substitute(array $array, int $offset, int $length, array $replace
 }
 
 /**
- * Immutable sort()
- *
- * @param array $array
- * @param integer $flags
- * @return array
+ * Glue array elements together,
+ * like `implode()` but with parameters in the right order.
  */
-function array_sort(array $array, int $flags = SORT_REGULAR): array
+function glue (array $array, string $glue = '') : string
 {
-    sort($array, $flags);
+    return implode($glue, $array);
+}
+
+/**
+ * Immutable `shuffle()`.
+ */
+function immut_array_shuffle (array $array) : array
+{
+    shuffle($array);
     return $array;
 }
 
 /**
- * Immutable asort()
- *
- * @param array $array
- * @param integer $flags
- * @return array
+ * Immutable `array_unshift()`.
  */
-function array_asort(array $array, int $flags = SORT_REGULAR): array
+function immut_array_unshift (array $array, ...$elements) : array
 {
-    asort($array, $flags);
+    array_unshift($array, ...$elements);
     return $array;
 }
 
 /**
- * Immutable arsort()
- *
- * @param array $array
- * @param integer $flags
- * @return array
+ * Immutable `arsort()`.
  */
-function array_arsort(array $array, int $flags = SORT_REGULAR): array
+function immut_arsort (array $array, int $flags = SORT_REGULAR) : array
 {
     arsort($array, $flags);
     return $array;
 }
 
 /**
- * Immutable rsort()
- *
- * @param array $array
- * @param integer $flags
- * @return array
+ * Immutable `asort()`.
  */
-function array_rsort(array $array, int $flags = SORT_REGULAR): array
+function immut_asort (array $array, int $flags = SORT_REGULAR) : array
 {
-    rsort($array, $flags);
+    asort($array, $flags);
     return $array;
 }
 
 /**
- * Immutable ksort()
- *
- * @param array $array
- * @param integer $flags
- * @return array
+ * Immutable `krsort()`.
  */
-function array_ksort(array $array, int $flags = SORT_REGULAR): array
-{
-    ksort($array, $flags);
-    return $array;
-}
-
-/**
- * Immutable krsort()
- *
- * @param array $array
- * @param integer $flags
- * @return array
- */
-function array_krsort(array $array, int $flags = SORT_REGULAR): array
+function immut_krsort (array $array, int $flags = SORT_REGULAR) : array
 {
     krsort($array, $flags);
     return $array;
 }
 
 /**
- * Immutable usort()
- *
- * @param array $array
- * @param callable $compare
- * @return array
+ * Immutable `ksort()`.
  */
-function array_usort(array $array, callable $compare): array
+function immut_ksort (array $array, int $flags = SORT_REGULAR) : array
 {
-    usort($array, $compare);
+    ksort($array, $flags);
     return $array;
 }
 
 /**
- * Immutable uksort()
- *
- * @param array $array
- * @param callable $compare
- * @return array
+ * Immutable `natcasesort()`.
  */
-function array_uksort(array $array, callable $compare): array
-{
-    uksort($array, $compare);
-    return $array;
-}
-
-/**
- * Immutable uasort()
- *
- * @param array $array
- * @param callable $compare
- * @return array
- */
-function array_uasort(array $array, callable $compare): array
-{
-    uasort($array, $compare);
-    return $array;
-}
-
-/**
- * Immutable natsort()
- *
- * @param array $array
- * @return array
- */
-function array_natsort(array $array): array
-{
-    natsort($array);
-    return $array;
-}
-
-/**
- * Immutable natcasesort()
- *
- * @param array $array
- * @return array
- */
-function array_natcasesort(array $array): array
+function immut_natcasesort (array $array) : array
 {
     natcasesort($array);
     return $array;
 }
 
 /**
- * Glue array elements
- *
- * @param array $array
- * @return string
+ * Immutable `natsort()`.
  */
-function glue(array $array): string
+function immut_natsort (array $array) : array
 {
-    return implode('', $array);
+    natsort($array);
+    return $array;
 }
 
 /**
- * Return the key of the maximum value
- *
- * @param array $array
- * @return void
+ * Immutable `rsort()`.
  */
-function kmax(array $array)
+function immut_rsort (array $array, int $flags = SORT_REGULAR) : array
+{
+    rsort($array, $flags);
+    return $array;
+}
+
+/**
+ * Immutable `sort()`.
+ */
+function immut_sort (array $array, int $flags = SORT_REGULAR) : array
+{
+    sort($array, $flags);
+    return $array;
+}
+
+/**
+ * Immutable `uasort()`.
+ */
+function immut_uasort (array $array, callable $compare) : array
+{
+    uasort($array, $compare);
+    return $array;
+}
+
+/**
+ * Immutable `uksort()`.
+ */
+function immut_uksort (array $array, callable $compare) : array
+{
+    uksort($array, $compare);
+    return $array;
+}
+
+/**
+ * Immutable `usort()`.
+ */
+function immut_usort (array $array, callable $compare) : array
+{
+    usort($array, $compare);
+    return $array;
+}
+
+/**
+ * Immutable `array_push()`.
+ */
+function immut_array_push (array $array, ...$elements) : array
+{
+    array_push($array, ...$elements);
+    return $array;
+}
+
+/**
+ * Return the key of the maximum value.
+ */
+function kmax (array $array)
 {
     return array_search(
         max($array),
@@ -376,32 +322,12 @@ function kmax(array $array)
 }
 
 /**
- * Return the key of the minimum value
- *
- * @param array $array
- * @return void
+ * Return the key of the minimum value.
  */
-function kmin(array $array)
+function kmin (array $array)
 {
     return array_search(
         min($array),
         $array
     );
-}
-
-/**
- * Move the array pointer (mutable)
- *
- * @param array $array
- * @param integer|string $key
- * @return void
- */
-function seek(array &$array, $key): void
-{
-    reset($array);
-    while(key($array) !== $key) {
-        if (next($array) === false) {
-            throw new KeyNotFoundException("'$key' key not found");
-        }
-    }
 }

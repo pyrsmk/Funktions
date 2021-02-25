@@ -1,7 +1,0 @@
-{
-  "devDependencies": {
-    "execa": "^2.0.3",
-    "just-task": "^0.13.1",
-    "readline-sync": "^1.4.9"
-  }
-}

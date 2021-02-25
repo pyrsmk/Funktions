@@ -1,8 +1,15 @@
 # Funktions
 
-Funktions is a set of useful PHP functions aiming to ease your life by appending missing functions from the PHP core, or modifying some of them, with immutability in mind.
+Funktions is a set of useful PHP functions aiming to ease your life by appending missing ones from PHP core, with a salt for functional programming. It has been heavily inspired by Ruby-ish API and augmented from real life needs from my professional use cases.
 
-__It's not fully tested yet (but soon), please keep this in mind when using Funktions.__
+These functions are designed:
+
+- to be immutables
+- to support iterables, not only arrays
+- to support all callables, not only closures
+- to use generators first, because it rocks!
+
+__WARNING!!! THIS LIBRARY IS STILL UNDER HEAVY DEVELOPMENT AND IS NOT TESTED YET__
 
 ## Install
 
@@ -10,110 +17,137 @@ __It's not fully tested yet (but soon), please keep this in mind when using Funk
 composer require pyrsmk/funktions
 ```
 
-## Use
-
-To avoid collisions, the functions are namespaced:
+## Usage
 
 ```php
-use function Funktions\array_sort;
+use function Funktions\array_flatten;
 
-$sorted_array = array_sort($my_array);
+$fruits = [
+  ['strawberries', 'kiwis'],
+  [
+    ['oranges'],
+    [
+      ['lemons'],
+      [
+        'melons',
+        ['raspberries']
+      ]
+    ]
+  ]
+];
+
+$flatten_fruits = array_flatten($fruits);
 ```
 
-## Array
+### `dump()`
 
-- `array_diff_strict(array $array1, array $array2): array`: strict diff between two arrays by comparing the values at the same index
-- `array_drop(array $array, int $offset, int $length): array`: drop a part of an array
-- `array_fill_multi(int $dimensions, int $size, mixed $value): array`: initialize multi-dimensional arrays
-- `array_intersect_strict(array $array1, array $array2): array`: strict insersection between two arrays by comparing the values at the same index
-- `array_kvmap(array $array, callable $callback): array`: `array_map()` with key/value support
-- `array_kvreduce(array $array, callable $callback, mixed $initial = null): mixed`: `array_reduce()` with key/value support
-- `array_merge_recursive_unique(array ...$arrays): array`: contrary to `array_merge_recursive()`, it merges array by replacing values of the same key instead of appending them into a new array
-- `array_to_generator(array $items): Generator`: convert an array to a generator
-- `array_substitute(array $array, int $offset, int $length, array $replacement): array`: improved `array_splice()` with full string keys support when replacing
-- `array_sort(array $array, int $flags = SORT_REGULAR): array`: immutable `sort()`
-- `array_asort(array $array, int $flags = SORT_REGULAR): array`: immutable `asort()`
-- `array_arsort(array $array, int $flags = SORT_REGULAR): array`: immutable `arsort()`
-- `array_rsort(array $array, int $flags = SORT_REGULAR): array`: immutable `rsort()`
-- `array_ksort(array $array, int $flags = SORT_REGULAR): array`: immutable `ksort()`
-- `array_krsort(array $array, int $flags = SORT_REGULAR): array`: immutable `krsort()`
-- `array_usort(array $array, callable $compare): array`: immutable `usort()`
-- `array_uksort(array $array, callable $compare): array`: immutable `uksort()`
-- `array_uasort(array $array, callable $compare): array`: immutable `uasort()`
-- `array_natsort(array $array): array`: immutable `natsort()`
-- `array_natcasesort(array $array): array`: immutable `natcasesort()`
-- `glue(array $array): string`: glue array elements
-- `kmax(array $array): mixed`: return the key of the maximum value
-- `kmin(array $array): mixed`: return the key of the minimum value
-- `seek(array &$array, int|string $key): void`: move the array pointer (mutable)
+We've added the `VarDumper` module from Symfony to have a better `dump()` function (in replacement of `var_dump()`). It can do many things and ease your debug life, go [read the documentation](https://symfony.com/doc/current/components/var_dumper.html) to know more about it ;)
 
-Some useful aliases :
+### `array.php`
 
-- `map(array $array, callable $callback): array`: alias to `array_kvmap()`
-- `reduce(array $array, callable $callback, $initial = null): array`: alias to `array_kvreduce()`
+- `array_diff_strict (array $array1, array $array2) : array`: Strict diff between two arrays by comparing the values at the same index.
+- `array_drop (array $array, int $offset, int $length) : array`: Drop a part of an array (immutable `array_splice`).
+- `array_intersect_strict (array $array1, array $array2) : array`: Strict insersection between two arrays by comparing the values at the same index.
+- `array_fill_multi (int $dimensions, int $size, mixed $value) : array`: Initialize multi-dimensional arrays.
+- `array_flatten (array $array, ?int $min_depth = null) : array` : Flatten an array by keeping an arbitrary minimum depth if necessary.
+- `array_merge_recursive_unique (array ...$arrays) : array`: Contrary to `array_merge_recursive()`, it merges array by replacing values of the same key instead of appending them into a new array.
+- `array_seek (array &$array, int|string $key) : void`: Move the array pointer to a specified key (mutable).
+- `array_substitute (array $array, int $offset, int $length, array $replacement) : array`: Improved `array_splice()` with full string keys support when replacing.
+- `glue (array $array, string $glue = '') : string`: Glue array elements together, like `implode()` but with parameters in the right order.
+- `immut_array_push (array $array, ...$elements) : array`: Immutable `array_push()`.
+- `immut_array_shuffle (array $array) : array`: Immutable `shuffle()`.
+- `immut_array_unshift (array $array, ...$elements) : array`: Immutable `array_unshift()`.
+- `immut_arsort (array $array, int $flags = SORT_REGULAR) : array`: Immutable `arsort()`.
+- `immut_asort (array $array, int $flags = SORT_REGULAR) : array`: Immutable `asort()`.
+- `immut_krsort (array $array, int $flags = SORT_REGULAR) : array`: Immutable `krsort()`.
+- `immut_ksort (array $array, int $flags = SORT_REGULAR) : array`: Immutable `ksort()`.
+- `immut_natcasesort (array $array) : array`: Immutable `natcasesort()`.
+- `immut_natsort (array $array) : array`: Immutable `natsort()`.
+- `immut_rsort (array $array, int $flags = SORT_REGULAR) : array`: Immutable `rsort()`.
+- `immut_sort (array $array, int $flags = SORT_REGULAR) : array`: Immutable `sort()`.
+- `immut_uasort (array $array, callable $compare) : array`: Immutable `uasort()`.
+- `immut_uksort (array $array, callable $compare) : array`: Immutable `uksort()`.
+- `immut_usort (array $array, callable $compare) : array`: Immutable `usort()`.
+- `kmax (array $array) : mixed`: Return the key of the maximum value.
+- `kmin (array $array) : mixed`: Return the key of the minimum value.
 
-## Color
+### `color.php`
 
-- `rgb2hsl(int $r, int $g, int $b): array`: convert RGB to HSL color
-- `hsl2rgb(int $h, int $s, int $l): array`: convert HSL to RGB color
-- `rgb2hsv(int $r, int $g, int $b): array`: convert RGB to HSV color
-- `hsv2rgb(int $h, int $s, int $v): array`: convert HSV to RGB color
-- `rgb2hex(int $r, int $g, int $b): string`: convert RGB to HTML color
-- `hex2rgb(string $hex): array`: convert HTML to RGB color
+- `hex2rgb (string $hex) : array`: Convert HTML to RGB color.
+- `hsl2rgb (int $h, int $s, int $l) : array`: Convert HSL to RGB color.
+- `hsv2rgb (int $h, int $s, int $v) : array`: Convert HSV to RGB color.
+- `rgb2hex (int $r, int $g, int $b) : string`: Convert RGB to HTML color.
+- `rgb2hsl (int $r, int $g, int $b) : array`: Convert RGB to HSL color.
+- `rgb2hsv (int $r, int $g, int $b) : array`: Convert RGB to HSV color.
 
-## Instruction
+### `iterable.php`
 
-- `condition(bool $test, callable $truthy, callable $falsy): mixed`: return a value based on a test
-- `loop(iterable $iterable, callable $callable): Generator`: loop over items and pass them to a generator
-- `loop_with_keys(iterable $iterable, callable $callable): Generator`: loop over items and pass them to a generator with key preservation
-- `loop_until(callable $callable): Generator`: loop in a generator until a condition is met
-- `loop_while(callable $callable): Generator`: loop over a generator while a condition is met
-- `rescue(callable $callable, array $exceptions): mixed`: execute a callback and catch exceptions
+- `all (iterable $iterable, callable $callable) : bool`: Return `true` when all elements match the callable's condition.
+- `any (iterable $iterable, callable $callable) : bool`: Return `true` when at least one element matches the callable's condition.
+- `ensure_generator ($maybe_a_generator) : Generator`: Ensure that the passed value will be a generator.
+- `enumerate (iterable $iterable, ?callable $callable = null) : int`: Enumerate elements in an iterable.
+- `first (iterable $iterable) : mixed`: Return the first element of an iterable. Note that the iterable's pointer will be resetted.
+- `iterable_to_generator (iterable $items) : Generator`: Convert an iterable to a generator.
+- `itoa (Traversable $iterator, bool $use_keys = true) : array`: Alias to `iterator_to_array()`.
+- `itog (iterable $items) : Generator`: Alias to `iterable_to_generator()`.
+- `last (iterable $iterable) : mixed`: Return the last element of an iterable. Note that: if the iterable is an array, then its pointer will be resetted; if the iterable is not an array, it will be converted to one, then have in mind that a complete iteration will be done before being able to get its last element.
+- `map (iterable $iterable, callable $callable) : Generator`: Like `array_map()` but works on any iterable and with key/value support.
+- `none (iterable $iterable, callable $callable) : bool`: Return `true` when no element has matched the callable's condition.
+- `pluck (iterable $iterable, string ...$keys) : Generator`: Extract lines from an iterable based on the requested keys.
+- `reduce (iterable $iterable, callable $callable, $initial = null)`: Like `array_reduce()` but works on any iterable and with key/value support.
+- `reject (iterable $iterable, callable $callable) : Generator`: Reject items that match the callable's condition.
+- `select (iterable $iterable, callable $callable) : Generator`: Select items that match the callable's condition.
+- `value (iterable $iterable, string $key) : mixed`: Retrieve a value from an iterable with a specified key. Note that it should be used with a hash or an array because iterating other an iterable for searching an element is not efficient at all.
 
-## Number
+### `instruction.php`
 
-- `is_even(int $value): bool`: verify if the value is even
-- `is_odd(int $value): bool`: verify if the value is odd
-- `above(float $value, float $min): float`: bound a number to a minimum value
-- `under(float $value, float $max): float`: bound a number to a maximum value
+- `condition (bool $test, callable $truthy, callable $falsy) : mixed`: Return a value based on a test.
+- `loop (iterable $iterable, callable $callable) : Generator`: Loop over an iterable and yield new values.
+- `rescue (callable $callable, array $exceptions) : mixed`: Execute a callback and catch exceptions.
 
-## Output
+### `memory.php`
 
-- `capture(callable $callable): string`: capture output on a callable execution
-- `mute(callable $callable): mixed`: mute output on a callable execution
+- `memory_safe (callable $callable) : mixed`: Collect garbage after callable execution.
 
-## Regex
+### `number.php`
 
-- `regex_count(string $pattern, string $text, int $flags = 0): int`: count the number of matches for a regex in a string
-- `regex_match(string $pattern, string $text, int $flags = 0): array`: return the matches of a regex, for the first match
-- `regex_match_first(string $pattern, string $text, int $flags = 0): string`: return the first occurrence of the first match of a regex
-- `regex_match_all(string $pattern, string $text, int $flags = 0): array`: return all the matches of a regex
-- `regex_test(string $pattern, string $text, int $flags = 0): bool`: test if a regex matches against a string
+- `above (float $value, float $min) : float`: Bound a number to a minimum value.
+- `is_even (int $value) : bool`: Verify if the value is even.
+- `is_odd (int $value) : bool`: Verify if the value is odd.
+- `under (float $value, float $max) : float`: Bound a number to a maximum value.
 
-## String
+### `output.php`
 
-- `mb_to_camelcase(string $string): string`: converts a string to camel case
-- `mb_ucwords(string $string, ?string $encoding = null): string`: capitalize all words in a string
-- `mb_ucfirst(string $string, ?string $encoding = null): string`: capitalize a string
-- `mb_lcfirst($string, ?string $encoding = null): string`: uncapitalize a string
-- `mb_truncate(string $string, int $length, ?string $encoding = null): string`: truncate a string to a specific length and append `...` at the end of the string
-- `random_hash(int $length = 5): string`: generate a random hash
-- `uuid4(): string`: generate a random v4 UUID
+- `capture (callable $callable) : string`: Capture output on a callable execution.
+- `mute (callable $callable) : mixed`: Mute output on a callable execution.
+- `puts (string $text) : void`: Print a one-line text.
 
-## System
+### `regex.php`
 
-- `dump(mixed $var): mixed` : formatted variable dumping function with variable passthrough
-- `human_fileperms(string $path): string`: get human-readable permissions
-- `human_filesize(string $path): string`: get human-readable file size
-- `lessdir(string $dir): array`: like `scandir()` but without `.` and `..`
-- `mimetype(string $path): string`: get a file's mime type with several mecanism support
-- `rrmdir(string $path): void`: remove a directory recursively
+- `regex_count (string $pattern, string $text, int $flags = 0) : int`: Count the number of matches for a regex in a string.
+- `regex_match (string $pattern, string $text, int $flags = 0) : Generator`: Return the matches of a regex, for the first match.
+- `regex_match_all (string $pattern, string $text, int $flags = 0) : Generator`: Return all the matches of a regex.
+- `regex_match_first (string $pattern, string $text, int $flags = 0) : string`: Return the first occurrence of the first match of a regex.
+- `regex_test (string $pattern, string $text, int $flags = 0) : bool`: Test if a regex matches against a string.
 
-## Various
+### `string.php`
 
-- `clean(callable $callable): mixed`: collect garbage after callable execution
-- `ensure(mixed $value, string $type): mixed`: validate a value's type
+- `mb_lcfirst ($string, string $encoding = null) : string`: Uncapitalize a string (multibyte support).
+- `mb_to_camelcase (string $string) : string`: Converts a string to camelcase (multibyte support).
+- `mb_truncate (string $string, int $length, string $encoding = null) : string`: Truncate a string to a specific length and append `...` at the end of the string (multibyte support).
+- `mb_ucfirst (string $string, string $encoding = null) : string`: Capitalize a string (multibyte support).
+- `mb_ucwords (string $string, string $encoding = null) : string`: Capitalize all words in a string (multibyte support).
+- `random_hash (int $length = 5) : string`: Generate a random hash.
+- `uuid_v4 () : string`: Generate a random v4 UUID.
+
+### `system.php`
+
+- `human_fileperms (string $path) : string`: Get human-readable file permissions.
+- `human_filesize (string $path) : string`: Get human-readable file size.
+- `lessdir (string $dir) : array`: Like `scandir()` but without `.` and `..`.
+- `mimetype (string $path) : string`: Get a file's mime type with several mecanism support.
+- `rrmdir (string $path) : void`: Remove a directory recursively.
 
 ## License
 
-[MIT](http://dreamysource.mit-license.org).
+MIT.

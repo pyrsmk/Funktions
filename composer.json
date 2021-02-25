@@ -1,15 +1,23 @@
 {
     "name": "pyrsmk/funktions",
-    "description": "Enhance PHP functions with a salt of functional programming",
+    "description": "Premium PHP functions with a salt of functional programming",
     "keywords": [
         "functional",
         "array",
         "color",
+        "generator",
+        "instruction",
+        "iterable",
+        "memory",
         "number",
+        "output",
+        "print",
+        "echo",
         "regex",
         "string",
         "mimetype",
-        "filesystem"
+        "file",
+        "system"
     ],
     "license": "MIT",
     "authors": [{
@@ -18,21 +26,14 @@
         "homepage": "https://github.com/pyrsmk/Funktions"
     }],
     "require": {
-        "php": ">=7.2.0",
+        "php": ">=7.4.0",
         "ext-curl": "*",
-        "ext-fileinfo": "*"
+        "ext-fileinfo": "*",
+        "symfony/var-dumper": "^5.0"
     },
     "autoload": {
-        "files": [
-            "src/array.php",
-            "src/color.php",
-            "src/instruction.php",
-            "src/number.php",
-            "src/output.php",
-            "src/regex.php",
-            "src/string.php",
-            "src/system.php",
-            "src/various.php"
-        ]
+        "psr-4" : {
+            "Funktions\\" : "src/"
+        }
     }
 }

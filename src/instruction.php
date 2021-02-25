@@ -6,109 +6,38 @@ namespace Funktions;
 
 use Exception;
 use Generator;
-use function Funktions\ensure;
 
 /**
- * Return a value based on a test
- *
- * @param boolean $test
- * @param callable $truthy
- * @param callable $falsy
- * @return mixed
+ * Return a value based on a condition.
  */
-function condition(bool $test, callable $truthy, callable $falsy)
+function condition (bool $test, callable $truthy, callable $falsy = null)
 {
-    if ($test) {
-        return call_user_func($truthy);
-    }
-    return call_user_func($falsy);
+    $falsy = $falsy ?? fn () => null;
+    return call_user_func($test ? $truthy : $falsy);
 }
 
 /**
- * Loop over items and pass them to a generator
- *
- * @param iterable $iterable
- * @param callable $callable
- * @return Generator
+ * Loop over an iterable and yield new values.
  */
-function loop(iterable $iterable, callable $callable): Generator
+function loop (iterable $iterable, callable $callable) : Generator
 {
     foreach ($iterable as $key => $item) {
-        $generator = ensure(
-            call_user_func($callable, $item, $key),
-            'Generator'
+        $generator = ensure_generator(
+            call_user_func($callable, $key, $item)
         );
-        foreach ($generator as $value) {
-            yield $value;
+        foreach($generator as $gen_key => $gen_item) {
+            yield $gen_key => $gen_item;
+        }
+        if ($generator->getReturn() === false) {
+            break;
         }
     }
 }
 
 /**
- * Loop over items and pass them to a generator with key preservation
- *
- * @param iterable $iterable
- * @param callable $callable
- * @return Generator
+ * Execute a callback and catch exceptions.
  */
-function loop_with_keys(iterable $iterable, callable $callable): Generator
-{
-    foreach ($iterable as $key => $item) {
-        yield from ensure(
-            call_user_func($callable, $item, $key),
-            'Generator'
-        );
-    }
-}
-
-/**
- * Loop over a generator until a condition is met
- *
- * @param callable $callable
- * @return Generator
- */
-function loop_until(callable $callable): Generator
-{
-    do {
-        $generator = ensure(
-            call_user_func($callable),
-            'Generator'
-        );
-        foreach ($generator as $value) {
-            yield $value;
-        }
-    }
-    while($generator->getReturn() === false);
-}
-
-/**
- * Loop over a generator while a condition is met
- *
- * @param callable $callable
- * @return Generator
- */
-function loop_while(callable $callable): Generator
-{
-    do {
-        $generator = ensure(
-            call_user_func($callable),
-            'Generator'
-        );
-        foreach ($generator as $value) {
-            yield $value;
-        }
-    }
-    while($generator->getReturn() === true);
-}
-
-/**
- * Execute a callback and catch exceptions
- *
- * @param callable $callable
- * @param array $exceptions
- * @return mixed
- */
-function rescue(callable $callable, array $exceptions)
+function rescue (callable $callable, array $exceptions)
 {
     try {
         return call_user_func($callable);
