@@ -11,7 +11,7 @@ publish: ## Install libraries
 	@read -p "Version? " VERSION; \
 	git checkout master && \
 	git pull && \
-	git tag v$$VERSION && \
+	git tag $$VERSION && \
 	git push --tags
 
 console: ## Run a PHP console
