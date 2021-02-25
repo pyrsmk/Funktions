@@ -9,9 +9,9 @@ publish: ## Install libraries
 	@git describe --abbrev=0 --tags
 	@echo
 	@read -p "Version? " VERSION; \
-	git checkout master \
-	git pull \
-	git tag $$VERSION \
+	git checkout master && \
+	git pull && \
+	git tag v$$VERSION && \
 	git push --tags
 
 console: ## Run a PHP console
