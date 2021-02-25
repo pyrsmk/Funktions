@@ -2,12 +2,15 @@
 
 declare(strict_types=1);
 
+namespace Funktions;
+
 use Funktions\Exception\NoMatchFoundException;
+use Generator;
 
 /**
  * Count the number of matches for a regex in a string.
  */
-function regex_count (string $pattern, string $text, int $flags = 0): int
+function regex_count (string $pattern, string $text, int $flags = 0) : int
 {
     return (int) preg_match($pattern, $text, null, $flags);
 }
@@ -15,7 +18,7 @@ function regex_count (string $pattern, string $text, int $flags = 0): int
 /**
  * Return the matches of a regex, for the first match.
  */
-function regex_match (string $pattern, string $text, int $flags = 0): Generator
+function regex_match (string $pattern, string $text, int $flags = 0) : Generator
 {
     if (!preg_match($pattern, $text, $matches, $flags)) {
         throw new NoMatchFoundException("'$pattern' has no match in the provided text");
@@ -24,20 +27,9 @@ function regex_match (string $pattern, string $text, int $flags = 0): Generator
 }
 
 /**
- * Return the first occurrence of the first match of a regex.
- */
-function regex_match_first (string $pattern, string $text, int $flags = 0): string
-{
-    if (!preg_match($pattern, $text, $matches, $flags)) {
-        throw new NoMatchFoundException("'$pattern' has no match in the provided text");
-    }
-    return $matches[1];
-}
-
-/**
  * Return all the matches of a regex.
  */
-function regex_match_all (string $pattern, string $text, int $flags = 0): Generator
+function regex_match_all (string $pattern, string $text, int $flags = 0) : Generator
 {
     if (!preg_match_all($pattern, $text, $matches, $flags)) {
         throw new NoMatchFoundException("'$pattern' has no match in the provided text");
@@ -48,9 +40,20 @@ function regex_match_all (string $pattern, string $text, int $flags = 0): Genera
 }
 
 /**
+ * Return the first occurrence of the first match of a regex.
+ */
+function regex_match_first (string $pattern, string $text, int $flags = 0) : string
+{
+    if (!preg_match($pattern, $text, $matches, $flags)) {
+        throw new NoMatchFoundException("'$pattern' has no match in the provided text");
+    }
+    return $matches[1];
+}
+
+/**
  * Test if a regex matches against a string.
  */
-function regex_test (string $pattern, string $text, int $flags = 0): bool
+function regex_test (string $pattern, string $text, int $flags = 0) : bool
 {
     return (bool) preg_match($pattern, $text, null, $flags);
 }

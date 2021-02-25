@@ -2,59 +2,20 @@
 
 declare(strict_types=1);
 
+namespace Funktions;
+
 /**
-<<<<<<< HEAD
- * Converts a string to camel case
-=======
  * Converts a string to camelcase (multibyte support).
->>>>>>> 46e018a... Update documentation
  */
-function mb_to_camelcase (string $string): string
+function mb_to_camelcase (string $string) : string
 {
     return mb_ereg_replace('-', '', ucwords($string, '-'));
 }
 
 /**
-<<<<<<< HEAD
- * Capitalize all words in a string
-=======
- * Capitalize all words in a string (multibyte support).
->>>>>>> 46e018a... Update documentation
- */
-function mb_ucwords (string $string, ?string $encoding = null): string
-{
-    return mb_convert_case(
-        $string,
-        MB_CASE_TITLE,
-        $encoding ?? mb_internal_encoding()
-    );
-}
-
-/**
-<<<<<<< HEAD
- * Capitalize a string
-=======
- * Capitalize a string (multibyte support).
->>>>>>> 46e018a... Update documentation
- */
-function mb_ucfirst (string $string, ?string $encoding = null): string
-{
-    $encoding = $encoding ?? mb_internal_encoding();
-    $first = mb_strtoupper(
-        mb_substr($string, 0, 1, $encoding),
-        $encoding
-    );
-    return $first . mb_substr($string, 1, null, $encoding);
-}
-
-/**
-<<<<<<< HEAD
- * Uncapitalize a string
-=======
  * Uncapitalize a string (multibyte support).
->>>>>>> 46e018a... Update documentation
  */
-function mb_lcfirst ($string, ?string $encoding = null): string
+function mb_lcfirst ($string, ?string $encoding = null) : string
 {
     $encoding = $encoding ?? mb_internal_encoding();
     $first = mb_strtolower(
@@ -65,13 +26,9 @@ function mb_lcfirst ($string, ?string $encoding = null): string
 }
 
 /**
-<<<<<<< HEAD
-* Truncate a string
-=======
 * Truncate a string (multibyte support).
->>>>>>> 46e018a... Update documentation
 */
-function mb_truncate (string $string, int $length, ?string $encoding = null): string
+function mb_truncate (string $string, int $length, ?string $encoding = null) : string
 {
    if (mb_strlen($string) <= $length) {
        return $string;
@@ -87,10 +44,35 @@ function mb_truncate (string $string, int $length, ?string $encoding = null): st
 }
 
 /**
+ * Capitalize a string (multibyte support).
+ */
+function mb_ucfirst (string $string, ?string $encoding = null) : string
+{
+    $encoding = $encoding ?? mb_internal_encoding();
+    $first = mb_strtoupper(
+        mb_substr($string, 0, 1, $encoding),
+        $encoding
+    );
+    return $first . mb_substr($string, 1, null, $encoding);
+}
+
+/**
+ * Capitalize all words in a string (multibyte support).
+ */
+function mb_ucwords (string $string, ?string $encoding = null) : string
+{
+    return mb_convert_case(
+        $string,
+        MB_CASE_TITLE,
+        $encoding ?? mb_internal_encoding()
+    );
+}
+
+/**
  * Generate a random hash.
  * @see https://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
  */
-function random_hash (int $length = 5): string
+function random_hash (int $length = 5) : string
 {
     return bin2hex(random_bytes($length));
 }
@@ -99,9 +81,10 @@ function random_hash (int $length = 5): string
  * Generate a random v4 UUID.
  * @see https://php.net/manual/en/function.uniqid.php#94959
  */
-function uuid_v4 (): string
+function uuid_v4 () : string
 {
-    return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+    return sprintf(
+        '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
         // 32 bits for "time_low"
         mt_rand(0, 0xffff), mt_rand(0, 0xffff),
         // 16 bits for "time_mid"

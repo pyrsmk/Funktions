@@ -2,6 +2,11 @@
 
 declare(strict_types=1);
 
+namespace Funktions;
+
+use Exception;
+use Generator;
+
 /**
  * Return a value based on a condition.
  */
@@ -14,7 +19,7 @@ function condition (bool $test, callable $truthy, callable $falsy = null)
 /**
  * Loop over an iterable and yield new values.
  */
-function loop (iterable $iterable, callable $callable): Generator
+function loop (iterable $iterable, callable $callable) : Generator
 {
     foreach ($iterable as $key => $item) {
         $generator = ensure_generator(

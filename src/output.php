@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
+namespace Funktions;
+
 /**
  * Capture output on a callable execution.
  */
-function capture (callable $callable): string
+function capture (callable $callable) : string
 {
     ob_start();
     call_user_func($callable);
@@ -26,7 +28,7 @@ function mute (callable $callable)
 /**
  * Print a one-line text.
  */
-function puts (string $text): void
+function puts (string $text) : void
 {
     echo "$text\n";
 }
