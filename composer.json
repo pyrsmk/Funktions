@@ -26,7 +26,7 @@
         "homepage": "https://github.com/pyrsmk/Funktions"
     }],
     "require": {
-        "php": ">=7.2.0",
+        "php": ">=7.4.0",
         "ext-curl": "*",
         "ext-fileinfo": "*",
         "symfony/var-dumper": "^5.0"
