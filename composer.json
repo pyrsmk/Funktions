@@ -31,8 +31,21 @@
         "ext-fileinfo": "*"
     },
     "autoload": {
-        "psr-4" : {
-            "Funktions\\" : "src/"
-        }
+        "files": [
+            "src/array.php",
+            "src/color.php",
+            "src/instruction.php",
+            "src/iterable.php",
+            "src/memory.php",
+            "src/number.php",
+            "src/output.php",
+            "src/regex.php",
+            "src/string.php",
+            "src/system.php",
+            "src/Exception/InvalidFileException.php",
+            "src/Exception/KeyNotFoundException.php",
+            "src/Exception/NoMatchFoundException.php",
+            "src/Exception/UnexpectedErrorException.php"
+        ]
     }
 }
