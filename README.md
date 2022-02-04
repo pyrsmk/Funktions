@@ -52,6 +52,7 @@ $flatten_fruits = array_flatten($fruits);
 - `glue (array $array, string $glue = '') : string`: Glue array elements together, like `implode()` but with parameters in the right order.
 - `immut_array_push (array $array, ...$elements) : array`: Immutable `array_push()`.
 - `immut_array_shuffle (array $array) : array`: Immutable `shuffle()`.
+- `immut_array_unset (array $array, int|string $key)`: Immutable `unset()`.
 - `immut_array_unshift (array $array, ...$elements) : array`: Immutable `array_unshift()`.
 - `immut_arsort (array $array, int $flags = SORT_REGULAR) : array`: Immutable `arsort()`.
 - `immut_asort (array $array, int $flags = SORT_REGULAR) : array`: Immutable `asort()`.

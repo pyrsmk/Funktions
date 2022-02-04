@@ -194,6 +194,15 @@ function immut_array_shuffle (array $array) : array
 }
 
 /**
+ * Remove an element from an array (immutable `unset`).
+ */
+function immut_array_unset (array $array, $key) : array
+{
+    unset($array[$key]);
+    return $array;
+}
+
+/**
  * Immutable `array_unshift()`.
  */
 function immut_array_unshift (array $array, ...$elements) : array
