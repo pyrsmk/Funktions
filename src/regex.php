@@ -55,5 +55,5 @@ function regex_match_first (string $pattern, string $text, int $flags = 0) : str
  */
 function regex_test (string $pattern, string $text, int $flags = 0) : bool
 {
-    return (bool) preg_match($pattern, $text, null, $flags);
+    return (bool) preg_match($pattern, $text, $matches, $flags);
 }
